@@ -10,13 +10,24 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.IForgeShearable;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 
-public class SoulSporeBaseBlock extends Block implements IPlantable {
+public class SoulSporeBaseBlock extends Block implements IPlantable, IForgeShearable {
+
+    public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 
     public SoulSporeBaseBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
     @SuppressWarnings("deprecation")
@@ -27,12 +38,12 @@ public class SoulSporeBaseBlock extends Block implements IPlantable {
     }
 
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state, Direction direction, BlockState previousState, LevelAccessor level, BlockPos pos, BlockPos updatesPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
         if (!state.canSurvive(level, pos)) {
             level.scheduleTick(pos, this, 1);
         }
 
-        return super.updateShape(state, direction, previousState, level, pos, updatesPos);
+        return super.updateShape(state, direction, newState, level, pos, updatedPos);
     }
 
     @SuppressWarnings("deprecation")
