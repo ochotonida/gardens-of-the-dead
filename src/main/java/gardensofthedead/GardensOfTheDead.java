@@ -5,6 +5,7 @@ import gardensofthedead.common.init.ModBlocks;
 import gardensofthedead.common.init.ModItems;
 import gardensofthedead.common.region.GardensOfTheDeadRegion;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -15,8 +16,6 @@ import terrablender.api.Regions;
 
 @Mod(GardensOfTheDead.MODID)
 public class GardensOfTheDead {
-
-    // TODO add compostables
 
     public static final String MODID = "gardens_of_the_dead";
 
@@ -38,6 +37,9 @@ public class GardensOfTheDead {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> Regions.register(new GardensOfTheDeadRegion()));
+        event.enqueueWork(() -> {
+            Regions.register(new GardensOfTheDeadRegion());
+            ModItems.addCompostables();
+        });
     }
 }

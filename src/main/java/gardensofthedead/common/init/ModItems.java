@@ -6,7 +6,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -30,5 +32,14 @@ public class ModItems {
 
     private static Item.Properties properties() {
         return new Item.Properties().tab(CREATIVE_TAB);
+    }
+
+    public static void addCompostables() {
+        addCompostable(0.3F, SOUL_SPORE.get());
+        addCompostable(0.85F, GLOWING_SOUL_SPORE.get());
+    }
+
+    private static void addCompostable(double chance, ItemLike item) {
+        ComposterBlock.COMPOSTABLES.put(item, (float) chance);
     }
 }
