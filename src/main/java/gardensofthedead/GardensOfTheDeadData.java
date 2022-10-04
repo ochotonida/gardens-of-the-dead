@@ -1,6 +1,7 @@
 package gardensofthedead;
 
 import gardensofthedead.data.BlockStates;
+import gardensofthedead.data.BlockTags;
 import gardensofthedead.data.ItemModels;
 import gardensofthedead.data.LootTables;
 import net.minecraft.data.DataGenerator;
@@ -25,6 +26,7 @@ public class GardensOfTheDeadData {
         generator.addProvider(event.includeClient(), blockStates);
         generator.addProvider(event.includeClient(), new ItemModels(generator, blockStates.models().existingFileHelper));
 
+        generator.addProvider(event.includeServer(), new BlockTags(generator, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTables(generator));
     }
 }

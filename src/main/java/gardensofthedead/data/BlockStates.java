@@ -6,9 +6,11 @@ import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
@@ -40,6 +42,18 @@ public class BlockStates extends BlockStateProvider {
                 .partialState().with(SoulSporeBlock.TOP, true).addModels(cross("soul_spore_top"), crossMirrored("soul_spore_top"))
                 .partialState().with(SoulSporeBlock.TOP, false).addModels(cross("soul_spore"), crossMirrored("soul_spore"));
         simpleBlock(ModBlocks.GLOWING_SOUL_SPORE.get(), cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"));
+
+        pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
+        pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
+    }
+
+    private void pottedPlant(Block pottedPlant, String textureName) {
+        // noinspection ConstantConditions
+        simpleBlock(pottedPlant, models()
+                .withExistingParent(ForgeRegistries.BLOCKS.getKey(pottedPlant).getPath(), "flower_pot_cross")
+                .texture("plant", blockTexture(textureName))
+                .renderType(CUTOUT)
+        );
     }
 
     private ConfiguredModel cross(String textureName) {

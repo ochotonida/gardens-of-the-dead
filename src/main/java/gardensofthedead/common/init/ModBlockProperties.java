@@ -9,6 +9,8 @@ import net.minecraft.world.level.material.MaterialColor;
 
 public class ModBlockProperties {
 
+    private static final int GLOWING_SOUL_SPORE_LIGHT = 7;
+
     public static BlockBehaviour.Properties SOUL_SPORE = BlockBehaviour.Properties.of(Material.PLANT)
             .color(MaterialColor.COLOR_BROWN)
             .sound(SoundType.WEEPING_VINES)
@@ -16,7 +18,16 @@ public class ModBlockProperties {
             .instabreak();
 
     public static BlockBehaviour.Properties GLOWING_SOUL_SPORE = copy(SOUL_SPORE)
-            .lightLevel(state -> 7);
+            .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
+
+    public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
+            .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
+
+    public static BlockBehaviour.Properties pottedPlant() {
+        return BlockBehaviour.Properties.of(Material.DECORATION)
+                .instabreak()
+                .noOcclusion();
+    }
 
     public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {
         return BlockBehaviour.Properties.copy(new BlockBehaviour(properties) {

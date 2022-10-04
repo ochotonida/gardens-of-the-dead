@@ -1,4 +1,6 @@
 {
   "block.gardens_of_the_dead.soul_spore": "Soul Spore",
-  "block.gardens_of_the_dead.glowing_soul_spore": "Glowing Soul Spore"
+  "block.gardens_of_the_dead.glowing_soul_spore": "Glowing Soul Spore",
+  "block.gardens_of_the_dead.potted_soul_spore": "Potted Soul Spore",
+  "block.gardens_of_the_dead.potted_glowing_soul_spore": "Potted Glowing Soul Spore"
 }

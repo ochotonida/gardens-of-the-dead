@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "gardens_of_the_dead:block/potted_glowing_soul_spore"
+  }
+}

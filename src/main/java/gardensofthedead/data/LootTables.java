@@ -7,6 +7,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
@@ -14,8 +15,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.loot.CanToolPerformAction;
 
@@ -38,18 +37,36 @@ public class LootTables extends LootTableProvider {
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         tables.clear();
 
-        shearableBlock(ModBlocks.SOUL_SPORE.get());
-        shearableBlock(ModBlocks.GLOWING_SOUL_SPORE.get());
+        addShearHarvestableBlock(ModBlocks.SOUL_SPORE.get());
+        addShearHarvestableBlock(ModBlocks.GLOWING_SOUL_SPORE.get());
+
+        addPottedPlant(ModBlocks.POTTED_SOUL_SPORE.get());
+        addPottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get());
 
         return tables;
     }
 
-    private void shearableBlock(Block block) {
+    private void addShearHarvestableBlock(Block block) {
         addBlockLootTable(block, LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .add(LootItem.lootTableItem(block)
                                 .when(CanToolPerformAction.canToolPerformAction(ToolActions.SHEARS_DIG))
                         )
+                )
+        );
+    }
+
+    private void addPottedPlant(FlowerPotBlock block) {
+        Block emptyPot = block.getEmptyPot();
+        Block content = block.getContent();
+
+        addBlockLootTable(block, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(emptyPot))
+                        .when(ExplosionCondition.survivesExplosion())
+                ).withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(content))
+                        .when(ExplosionCondition.survivesExplosion())
                 )
         );
     }
@@ -60,7 +77,6 @@ public class LootTables extends LootTableProvider {
 
     private LootPool.Builder createStandardDrops(ItemLike itemProvider) {
         return LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
                 .when(ExplosionCondition.survivesExplosion())
                 .add(LootItem.lootTableItem(itemProvider));
     }
