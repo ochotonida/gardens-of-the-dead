@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "top=false": [
+      {
+        "model": "gardens_of_the_dead:block/soul_spore"
+      },
+      {
+        "model": "gardens_of_the_dead:block/soul_spore_mirrored"
+      }
+    ],
+    "top=true": [
+      {
+        "model": "gardens_of_the_dead:block/soul_spore_top"
+      },
+      {
+        "model": "gardens_of_the_dead:block/soul_spore_top_mirrored"
+      }
+    ]
+  }
+}

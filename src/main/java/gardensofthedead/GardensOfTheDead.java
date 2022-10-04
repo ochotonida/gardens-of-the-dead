@@ -16,6 +16,8 @@ import terrablender.api.Regions;
 @Mod(GardensOfTheDead.MODID)
 public class GardensOfTheDead {
 
+    // TODO add compostables
+
     public static final String MODID = "gardens_of_the_dead";
 
     public static ResourceLocation id(String path) {
