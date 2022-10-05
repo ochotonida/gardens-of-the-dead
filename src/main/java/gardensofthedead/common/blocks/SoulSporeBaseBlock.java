@@ -66,11 +66,12 @@ public class SoulSporeBaseBlock extends Block implements IPlantable, IForgeShear
 
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        BlockPos attachedPos = pos.relative(state.getValue(DIRECTION).getOpposite());
+        Direction direction = state.getValue(DIRECTION);
+        BlockPos attachedPos = pos.relative(direction.getOpposite());
         BlockState supportingBlock = level.getBlockState(attachedPos);
         return supportingBlock.canSustainPlant(level, pos, Direction.UP, this)
                 || supportingBlock.isFaceSturdy(level, attachedPos, Direction.UP)
-                || supportingBlock.is(ModBlocks.SOUL_SPORE.get());
+                || supportingBlock.is(ModBlocks.SOUL_SPORE.get()) && supportingBlock.getValue(DIRECTION) == direction;
     }
 
     @Override
