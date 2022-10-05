@@ -31,7 +31,7 @@ public class ModBlockProperties {
             .strength(2)
             .sound(SoundType.STEM);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_WART = BlockBehaviour.Properties.of(Material.GRASS)
+    public static BlockBehaviour.Properties BLIGHTWART_BLOCK = BlockBehaviour.Properties.of(Material.GRASS)
             .color(MaterialColor.COLOR_YELLOW)
             .strength(1)
             .sound(SoundType.WART_BLOCK);

@@ -49,7 +49,7 @@ public class LootTables extends LootTableProvider {
                 ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
                 ModBlocks.SOULBLIGHT_HYPHAE.get(),
                 ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get(),
-                ModBlocks.SOULBLIGHT_WART_BLOCK.get()
+                ModBlocks.BLIGHTWART_BLOCK.get()
         );
 
         addPottedPlants(

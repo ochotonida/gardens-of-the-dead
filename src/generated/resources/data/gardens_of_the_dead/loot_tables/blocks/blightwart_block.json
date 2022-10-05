@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gardens_of_the_dead:soulblight_wart_block"
+          "name": "gardens_of_the_dead:blightwart_block"
         }
       ],
       "rolls": 1.0

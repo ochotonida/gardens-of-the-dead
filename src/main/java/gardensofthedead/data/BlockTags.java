@@ -23,7 +23,7 @@ public class BlockTags extends BlockTagsProvider {
         );
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_HOE).add(
-                ModBlocks.SOULBLIGHT_WART_BLOCK.get()
+                ModBlocks.BLIGHTWART_BLOCK.get()
         );
 
         // noinspection ConstantConditions
@@ -55,7 +55,7 @@ public class BlockTags extends BlockTagsProvider {
         );
 
         tag(net.minecraft.tags.BlockTags.WART_BLOCKS).add(
-                ModBlocks.SOULBLIGHT_WART_BLOCK.get()
+                ModBlocks.BLIGHTWART_BLOCK.get()
         );
     }
 }

@@ -28,7 +28,7 @@ public class ItemModels extends ItemModelProvider {
         simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
         simpleBlockItem(ModBlocks.SOULBLIGHT_HYPHAE.get());
         simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
-        simpleBlockItem(ModBlocks.SOULBLIGHT_WART_BLOCK.get());
+        simpleBlockItem(ModBlocks.BLIGHTWART_BLOCK.get());
     }
 
     private void simpleBlockItem(Block block) {
