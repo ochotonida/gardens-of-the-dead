@@ -1,6 +1,14 @@
 {
   "variants": {
-    "": [
+    "vertical_direction=down": [
+      {
+        "model": "gardens_of_the_dead:block/glowing_soul_spore_flipped"
+      },
+      {
+        "model": "gardens_of_the_dead:block/glowing_soul_spore_mirrored_flipped"
+      }
+    ],
+    "vertical_direction=up": [
       {
         "model": "gardens_of_the_dead:block/glowing_soul_spore"
       },

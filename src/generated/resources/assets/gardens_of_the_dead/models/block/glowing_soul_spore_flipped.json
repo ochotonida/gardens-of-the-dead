@@ -1,0 +1,7 @@
+{
+  "parent": "gardens_of_the_dead:block/cross_flipped",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "gardens_of_the_dead:block/glowing_soul_spore"
+  }
+}

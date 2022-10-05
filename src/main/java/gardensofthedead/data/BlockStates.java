@@ -1,6 +1,7 @@
 package gardensofthedead.data;
 
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.common.blocks.SoulSporeBaseBlock;
 import gardensofthedead.common.blocks.SoulSporeBlock;
 import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.Direction;
@@ -24,6 +25,41 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        createCrossModels();
+
+        getVariantBuilder(ModBlocks.SOUL_SPORE.get())
+                .partialState()
+                        .with(SoulSporeBlock.TOP, true)
+                        .with(SoulSporeBlock.DIRECTION, Direction.UP)
+                        .addModels(cross("soul_spore_top"), crossMirrored("soul_spore_top"))
+                .partialState()
+                        .with(SoulSporeBlock.TOP, true)
+                        .with(SoulSporeBlock.DIRECTION, Direction.DOWN)
+                        .addModels(crossFlipped("soul_spore_top"), crossMirroredFlipped("soul_spore_top"))
+                .partialState()
+                        .with(SoulSporeBlock.TOP, false)
+                        .addModels(cross("soul_spore"), crossMirrored("soul_spore"));
+
+        getVariantBuilder(ModBlocks.GLOWING_SOUL_SPORE.get())
+                .partialState()
+                        .with(SoulSporeBaseBlock.DIRECTION, Direction.UP)
+                        .addModels(cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"))
+                .partialState()
+                        .with(SoulSporeBaseBlock.DIRECTION, Direction.DOWN)
+                        .addModels(crossFlipped("glowing_soul_spore"), crossMirroredFlipped("glowing_soul_spore"));
+
+        simpleBlock(ModBlocks.SOULBLIGHT_FUNGUS.get(),
+                cross("soulblight_fungus"),
+                cross("soulblight_fungus_tall"),
+                cross("soulblight_fungus_short")
+        );
+
+        pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
+        pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
+        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(), "soulblight_fungus");
+    }
+
+    private void createCrossModels() {
         models().getBuilder("cross_mirrored")
                 .ao(false)
                 .texture("particle", "#cross")
@@ -38,20 +74,33 @@ public class BlockStates extends BlockStateProvider {
                 .face(Direction.EAST).uvs(16, 0, 0, 16).texture("#cross").end()
                 .end();
 
-        getVariantBuilder(ModBlocks.SOUL_SPORE.get())
-                .partialState().with(SoulSporeBlock.TOP, true).addModels(cross("soul_spore_top"), crossMirrored("soul_spore_top"))
-                .partialState().with(SoulSporeBlock.TOP, false).addModels(cross("soul_spore"), crossMirrored("soul_spore"));
-        simpleBlock(ModBlocks.GLOWING_SOUL_SPORE.get(), cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"));
+        models().getBuilder("cross_flipped")
+                .ao(false)
+                .texture("particle", "#cross")
+                .element().from(0.8F, 0, 8).to(15.2F, 16, 8).shade(false)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45).rescale(true).end()
+                .face(Direction.NORTH).uvs(0, 16, 16, 0).texture("#cross").end()
+                .face(Direction.SOUTH).uvs(0, 16, 16, 0).texture("#cross").end()
+                .end()
+                .element().from(8, 0, 0.8F).to(8, 16, 15.2F).shade(false)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45).rescale(true).end()
+                .face(Direction.WEST).uvs(0, 16, 16, 0).texture("#cross").end()
+                .face(Direction.EAST).uvs(0, 16, 16, 0).texture("#cross").end()
+                .end();
 
-        simpleBlock(ModBlocks.SOULBLIGHT_FUNGUS.get(),
-                cross("soulblight_fungus"),
-                cross("soulblight_fungus_tall"),
-                cross("soulblight_fungus_short")
-        );
-
-        pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
-        pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
-        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(), "soulblight_fungus");
+        models().getBuilder("cross_mirrored_flipped")
+                .ao(false)
+                .texture("particle", "#cross")
+                .element().from(0.8F, 0, 8).to(15.2F, 16, 8).shade(false)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45).rescale(true).end()
+                .face(Direction.NORTH).uvs(16, 16, 0, 0).texture("#cross").end()
+                .face(Direction.SOUTH).uvs(16, 16, 0, 0).texture("#cross").end()
+                .end()
+                .element().from(8, 0, 0.8F).to(8, 16, 15.2F).shade(false)
+                .rotation().origin(8, 8, 8).axis(Direction.Axis.Y).angle(45).rescale(true).end()
+                .face(Direction.WEST).uvs(16, 16, 0, 0).texture("#cross").end()
+                .face(Direction.EAST).uvs(16, 16, 0, 0).texture("#cross").end()
+                .end();
     }
 
     private void pottedPlant(Block pottedPlant, String textureName) {
@@ -70,6 +119,16 @@ public class BlockStates extends BlockStateProvider {
     private ConfiguredModel crossMirrored(String textureName) {
         ResourceLocation cross = blockTexture(textureName);
         return new ConfiguredModel(models().singleTexture(textureName + "_mirrored", modLoc(BLOCK_FOLDER + "/cross_mirrored"), "cross", cross).renderType(CUTOUT));
+    }
+
+    private ConfiguredModel crossFlipped(String textureName) {
+        ResourceLocation cross = blockTexture(textureName);
+        return new ConfiguredModel(models().singleTexture(textureName + "_flipped", modLoc(BLOCK_FOLDER + "/cross_flipped"), "cross", cross).renderType(CUTOUT));
+    }
+
+    private ConfiguredModel crossMirroredFlipped(String textureName) {
+        ResourceLocation cross = blockTexture(textureName);
+        return new ConfiguredModel(models().singleTexture(textureName + "_mirrored_flipped", modLoc(BLOCK_FOLDER + "/cross_mirrored_flipped"), "cross", cross).renderType(CUTOUT));
     }
 
     private ResourceLocation blockTexture(String textureName) {

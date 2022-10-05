@@ -22,11 +22,12 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
 
-    public static final VoxelShape TOP_SHAPE = Block.box(1, 0, 1, 15, 8, 15);
+    public static final VoxelShape TOP_SHAPE_UP = Block.box(1, 0, 1, 15, 8, 15);
+    public static final VoxelShape TOP_SHAPE_DOWN = Block.box(1, 8, 1, 15, 16, 15);
 
     public SoulSporeBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(TOP, true).setValue(GROWING, true));
+        registerDefaultState(defaultBlockState().setValue(TOP, true).setValue(GROWING, true));
     }
 
     public static int getMaxHeight(BlockState supportingBlock) {
@@ -40,12 +41,13 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(TOP, GROWING);
     }
 
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
-        if (direction == Direction.UP) {
+        if (direction == state.getValue(DIRECTION)) {
             if (newState.is(this) || newState.is(ModBlocks.GLOWING_SOUL_SPORE.get())) {
                 if (state.getValue(TOP)) {
                     // update shape when plant is placed/grown above
@@ -59,31 +61,42 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return state.hasProperty(TOP) && state.getValue(TOP) ? TOP_SHAPE : super.getShape(state, level, pos, context);
+        if (!state.hasProperty(TOP) || !state.getValue(TOP)) {
+            return super.getShape(state, level, pos, context);
+        } else if (state.hasProperty(DIRECTION) && state.getValue(DIRECTION) == Direction.UP) {
+            return TOP_SHAPE_UP;
+        } else {
+            return TOP_SHAPE_DOWN;
+        }
     }
 
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if (randomSource.nextFloat() < 0.1F && level.isEmptyBlock(pos.above())) {
+            Direction direction = state.getValue(DIRECTION);
             int height = 1;
-            while (level.getBlockState(pos.below(height)).is(this)) {
+            while (level.getBlockState(pos.relative(direction, height)).is(this)) {
                 height++;
             }
 
-            BlockState supportingBlock = level.getBlockState(pos.below(height));
+            BlockState supportingBlock = level.getBlockState(pos.relative(direction, height));
 
             int maxHeight = getMaxHeight(supportingBlock);
 
             if (!state.getValue(TOP) && (height >= maxHeight || randomSource.nextInt(maxHeight - height + 1) == 0)) {
                 if (height > 1 && randomSource.nextInt(8) == 0) {
-                    level.setBlockAndUpdate(pos, ModBlocks.GLOWING_SOUL_SPORE.get().defaultBlockState());
+                    BlockState glowingSoulSpore = ModBlocks.GLOWING_SOUL_SPORE.get()
+                            .defaultBlockState()
+                            .setValue(DIRECTION, direction);
+                    level.setBlockAndUpdate(pos, glowingSoulSpore);
                 } else {
                     level.setBlock(pos, state.setValue(GROWING, false), Block.UPDATE_NONE);
                 }
             } else {
                 if (ForgeHooks.onCropsGrowPre(level, pos, state, true)) {
-                    level.setBlockAndUpdate(pos.above(), defaultBlockState());
-                    ForgeHooks.onCropsGrowPost(level, pos.above(), defaultBlockState());
+                    BlockState grownState = defaultBlockState().setValue(DIRECTION, direction);
+                    level.setBlockAndUpdate(pos.above(), grownState);
+                    ForgeHooks.onCropsGrowPost(level, pos.above(), grownState);
                     level.setBlock(pos, state.setValue(TOP, false), 4);
                 }
             }

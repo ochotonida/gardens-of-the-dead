@@ -8,7 +8,15 @@
         "model": "gardens_of_the_dead:block/soul_spore_mirrored"
       }
     ],
-    "top=true": [
+    "top=true,vertical_direction=down": [
+      {
+        "model": "gardens_of_the_dead:block/soul_spore_top_flipped"
+      },
+      {
+        "model": "gardens_of_the_dead:block/soul_spore_top_mirrored_flipped"
+      }
+    ],
+    "top=true,vertical_direction=up": [
       {
         "model": "gardens_of_the_dead:block/soul_spore_top"
       },
