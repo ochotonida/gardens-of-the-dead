@@ -23,6 +23,17 @@ public class ItemModels extends ItemModelProvider {
         flatBlockItem(ModBlocks.SOUL_SPORE.get());
         flatBlockItem(ModBlocks.GLOWING_SOUL_SPORE.get());
         flatBlockItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
+
+        simpleBlockItem(ModBlocks.SOULBLIGHT_STEM.get());
+        simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
+        simpleBlockItem(ModBlocks.SOULBLIGHT_HYPHAE.get());
+        simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
+    }
+
+    private void simpleBlockItem(Block block) {
+        ResourceLocation id = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block));
+
+        withExistingParent(id.getPath(), modLoc(BLOCK_FOLDER + '/' + id.getPath()));
     }
 
     public void flatBlockItem(Block block) {

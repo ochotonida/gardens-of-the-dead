@@ -27,6 +27,12 @@ public class ModItems {
     public static final RegistryObject<Item> GLOWING_SOUL_SPORE = blockItem(ModBlocks.GLOWING_SOUL_SPORE);
     public static final RegistryObject<Item> SOULBLIGHT_FUNGUS = blockItem(ModBlocks.SOULBLIGHT_FUNGUS);
 
+    public static final RegistryObject<Item> SOULBLIGHT_STEM = blockItem(ModBlocks.SOULBLIGHT_STEM);
+    public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_STEM = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM);
+    public static final RegistryObject<Item> SOULBLIGHT_HYPHAE = blockItem(ModBlocks.SOULBLIGHT_HYPHAE);
+    public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_HYPHAE = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE);
+
+
     private static RegistryObject<Item> blockItem(RegistryObject<? extends Block> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties()));
     }

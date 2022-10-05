@@ -2,6 +2,7 @@ package gardensofthedead.data;
 
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.init.ModBlocks;
+import gardensofthedead.common.init.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +29,25 @@ public class BlockTags extends BlockTagsProvider {
 
         tag(net.minecraft.tags.BlockTags.ENDERMAN_HOLDABLE).add(
                 ModBlocks.SOULBLIGHT_FUNGUS.get()
+        );
+
+        tag(ModTags.Blocks.SOULBLIGHT_STEMS).add(
+                ModBlocks.SOULBLIGHT_STEM.get(),
+                ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
+                ModBlocks.SOULBLIGHT_HYPHAE.get(),
+                ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get()
+        );
+
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).addTag(
+                ModTags.Blocks.SOULBLIGHT_STEMS
+        );
+
+        tag(net.minecraft.tags.BlockTags.NON_FLAMMABLE_WOOD).addTag(
+                ModTags.Blocks.SOULBLIGHT_STEMS
+        );
+
+        tag(net.minecraft.tags.BlockTags.LOGS).addTag(
+                ModTags.Blocks.SOULBLIGHT_STEMS
         );
     }
 }

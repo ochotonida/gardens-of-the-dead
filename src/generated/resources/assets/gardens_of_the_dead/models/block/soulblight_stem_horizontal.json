@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "gardens_of_the_dead:block/soulblight_stem_top",
+    "side": "gardens_of_the_dead:block/soulblight_stem"
+  }
+}

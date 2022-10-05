@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 
 public class LootTables extends LootTableProvider {
 
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = new ArrayList<>();
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = new ArrayList<>();
 
     public LootTables(DataGenerator dataGenerator) {
         super(dataGenerator);
@@ -35,46 +35,64 @@ public class LootTables extends LootTableProvider {
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        tables.clear();
+        lootTables.clear();
 
-        addShearHarvestableBlock(ModBlocks.SOUL_SPORE.get());
-        addShearHarvestableBlock(ModBlocks.GLOWING_SOUL_SPORE.get());
+        addShearHarvestables(
+                ModBlocks.SOUL_SPORE.get(),
+                ModBlocks.GLOWING_SOUL_SPORE.get()
+        );
+
         addDefaultDrops(ModBlocks.SOULBLIGHT_FUNGUS.get());
 
-        addPottedPlant(ModBlocks.POTTED_SOUL_SPORE.get());
-        addPottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get());
-        addPottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
-
-        return tables;
-    }
-
-    private void addShearHarvestableBlock(Block block) {
-        addBlockLootTable(block, LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(block)
-                                .when(CanToolPerformAction.canToolPerformAction(ToolActions.SHEARS_DIG))
-                        )
-                )
+        addDefaultDrops(
+                ModBlocks.SOULBLIGHT_STEM.get(),
+                ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
+                ModBlocks.SOULBLIGHT_HYPHAE.get(),
+                ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get()
         );
-    }
 
-    private void addPottedPlant(FlowerPotBlock block) {
-        Block emptyPot = block.getEmptyPot();
-        Block content = block.getContent();
-
-        addBlockLootTable(block, LootTable.lootTable()
-                .withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(emptyPot))
-                        .when(ExplosionCondition.survivesExplosion())
-                ).withPool(LootPool.lootPool()
-                        .add(LootItem.lootTableItem(content))
-                        .when(ExplosionCondition.survivesExplosion())
-                )
+        addPottedPlants(
+                ModBlocks.POTTED_SOUL_SPORE.get(),
+                ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(),
+                ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get()
         );
+
+        return lootTables;
     }
 
-    private void addDefaultDrops(Block block) {
-        addBlockLootTable(block, LootTable.lootTable().withPool(defaultDrops(block)));
+    private void addShearHarvestables(Block... blocks) {
+        for (Block block : blocks) {
+            addBlockLootTable(block, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .add(LootItem.lootTableItem(block)
+                                    .when(CanToolPerformAction.canToolPerformAction(ToolActions.SHEARS_DIG))
+                            )
+                    )
+            );
+        }
+    }
+
+    private void addPottedPlants(FlowerPotBlock... blocks) {
+        for (FlowerPotBlock block : blocks) {
+            Block emptyPot = block.getEmptyPot();
+            Block content = block.getContent();
+
+            addBlockLootTable(block, LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .add(LootItem.lootTableItem(emptyPot))
+                            .when(ExplosionCondition.survivesExplosion())
+                    ).withPool(LootPool.lootPool()
+                            .add(LootItem.lootTableItem(content))
+                            .when(ExplosionCondition.survivesExplosion())
+                    )
+            );
+        }
+    }
+
+    private void addDefaultDrops(Block... blocks) {
+        for (Block block : blocks) {
+            addBlockLootTable(block, LootTable.lootTable().withPool(defaultDrops(block)));
+        }
     }
 
     private LootPool.Builder defaultDrops(ItemLike itemProvider) {
@@ -84,7 +102,7 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addBlockLootTable(Block block, LootTable.Builder lootTable) {
-        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
+        lootTables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
     }
 
     @Override

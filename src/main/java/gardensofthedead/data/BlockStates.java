@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -54,9 +55,14 @@ public class BlockStates extends BlockStateProvider {
                 cross("soulblight_fungus_short")
         );
 
+        log(ModBlocks.SOULBLIGHT_STEM.get());
+        log(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
+        wood(ModBlocks.SOULBLIGHT_HYPHAE.get());
+        wood(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
+
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
-        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(), "soulblight_fungus");
+        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
     }
 
     private void createCrossModels() {
@@ -101,6 +107,29 @@ public class BlockStates extends BlockStateProvider {
                 .face(Direction.WEST).uvs(16, 16, 0, 0).texture("#cross").end()
                 .face(Direction.EAST).uvs(16, 16, 0, 0).texture("#cross").end()
                 .end();
+    }
+
+    private void log(RotatedPillarBlock wood) {
+        // noinspection ConstantConditions
+        String name = ForgeRegistries.BLOCKS.getKey(wood).getPath();
+        ResourceLocation side = blockTexture(name);
+        ResourceLocation top = blockTexture(name + "_top");
+        axisBlock(wood, side, top);
+    }
+
+    private void wood(RotatedPillarBlock wood) {
+        // noinspection ConstantConditions
+        String name = ForgeRegistries.BLOCKS.getKey(wood).getPath()
+                .replace("wood", "log")
+                .replace("hyphae", "stem");
+        ResourceLocation side = blockTexture(name);
+        axisBlock(wood, side, side);
+    }
+
+    private void pottedPlant(Block pottedPlant) {
+        // noinspection ConstantConditions
+        String id = ForgeRegistries.BLOCKS.getKey(pottedPlant).getPath().replace("potted_", "");
+        pottedPlant(pottedPlant, id);
     }
 
     private void pottedPlant(Block pottedPlant, String textureName) {

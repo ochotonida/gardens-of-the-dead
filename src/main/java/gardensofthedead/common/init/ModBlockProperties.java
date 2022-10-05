@@ -26,6 +26,11 @@ public class ModBlockProperties {
             .noCollission()
             .sound(SoundType.FUNGUS);
 
+    public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
+            .color(MaterialColor.COLOR_BROWN)
+            .strength(2)
+            .sound(SoundType.STEM);
+
     public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
