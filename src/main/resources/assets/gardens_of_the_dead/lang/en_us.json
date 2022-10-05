@@ -1,6 +1,9 @@
 {
+  "itemGroup.gardens_of_hte_dead": "Gardens of the Dead",
   "block.gardens_of_the_dead.soul_spore": "Soul Spore",
   "block.gardens_of_the_dead.glowing_soul_spore": "Glowing Soul Spore",
+  "block.gardens_of_the_dead.soulblight_fungus": "Soulblight Fungus",
   "block.gardens_of_the_dead.potted_soul_spore": "Potted Soul Spore",
-  "block.gardens_of_the_dead.potted_glowing_soul_spore": "Potted Glowing Soul Spore"
+  "block.gardens_of_the_dead.potted_glowing_soul_spore": "Potted Glowing Soul Spore",
+  "block.gardens_of_the_dead.potted_soulblight_fungus": "Potted Soulblight Fungus"
 }

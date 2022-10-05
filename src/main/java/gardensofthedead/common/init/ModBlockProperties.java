@@ -20,6 +20,12 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties GLOWING_SOUL_SPORE = copy(SOUL_SPORE)
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
+    public static BlockBehaviour.Properties SOULBLIGHT_FUNGUS = BlockBehaviour.Properties.of(Material.PLANT)
+            .color(MaterialColor.COLOR_BROWN)
+            .instabreak()
+            .noCollission()
+            .sound(SoundType.FUNGUS);
+
     public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 

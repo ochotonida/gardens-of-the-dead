@@ -25,6 +25,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> SOUL_SPORE = blockItem(ModBlocks.SOUL_SPORE);
     public static final RegistryObject<Item> GLOWING_SOUL_SPORE = blockItem(ModBlocks.GLOWING_SOUL_SPORE);
+    public static final RegistryObject<Item> SOULBLIGHT_FUNGUS = blockItem(ModBlocks.SOULBLIGHT_FUNGUS);
 
     private static RegistryObject<Item> blockItem(RegistryObject<? extends Block> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties()));
@@ -36,6 +37,7 @@ public class ModItems {
 
     public static void addCompostables() {
         addCompostable(0.3F, SOUL_SPORE.get());
+        addCompostable(0.65F, SOULBLIGHT_FUNGUS.get());
         addCompostable(0.85F, GLOWING_SOUL_SPORE.get());
     }
 

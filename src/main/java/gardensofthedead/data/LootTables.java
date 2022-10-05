@@ -39,9 +39,11 @@ public class LootTables extends LootTableProvider {
 
         addShearHarvestableBlock(ModBlocks.SOUL_SPORE.get());
         addShearHarvestableBlock(ModBlocks.GLOWING_SOUL_SPORE.get());
+        addDefaultDrops(ModBlocks.SOULBLIGHT_FUNGUS.get());
 
         addPottedPlant(ModBlocks.POTTED_SOUL_SPORE.get());
         addPottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get());
+        addPottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
 
         return tables;
     }
@@ -71,11 +73,11 @@ public class LootTables extends LootTableProvider {
         );
     }
 
-    private void addStandardDropTable(Block block) {
-        addBlockLootTable(block, LootTable.lootTable().withPool(createStandardDrops(block)));
+    private void addDefaultDrops(Block block) {
+        addBlockLootTable(block, LootTable.lootTable().withPool(defaultDrops(block)));
     }
 
-    private LootPool.Builder createStandardDrops(ItemLike itemProvider) {
+    private LootPool.Builder defaultDrops(ItemLike itemProvider) {
         return LootPool.lootPool()
                 .when(ExplosionCondition.survivesExplosion())
                 .add(LootItem.lootTableItem(itemProvider));

@@ -43,8 +43,15 @@ public class BlockStates extends BlockStateProvider {
                 .partialState().with(SoulSporeBlock.TOP, false).addModels(cross("soul_spore"), crossMirrored("soul_spore"));
         simpleBlock(ModBlocks.GLOWING_SOUL_SPORE.get(), cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"));
 
+        simpleBlock(ModBlocks.SOULBLIGHT_FUNGUS.get(),
+                cross("soulblight_fungus"),
+                cross("soulblight_fungus_tall"),
+                cross("soulblight_fungus_short")
+        );
+
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
+        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(), "soulblight_fungus");
     }
 
     private void pottedPlant(Block pottedPlant, String textureName) {

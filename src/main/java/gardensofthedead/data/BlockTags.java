@@ -1,6 +1,7 @@
 package gardensofthedead.data;
 
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.world.level.block.Block;
@@ -23,6 +24,10 @@ public class BlockTags extends BlockTagsProvider {
                         .filter(block -> ForgeRegistries.BLOCKS.getKey(block).getPath().equals(GardensOfTheDead.MODID))
                         .filter(block -> block instanceof FlowerPotBlock)
                         .toArray(Block[]::new)
+        );
+
+        tag(net.minecraft.tags.BlockTags.ENDERMAN_HOLDABLE).add(
+                ModBlocks.SOULBLIGHT_FUNGUS.get()
         );
     }
 }

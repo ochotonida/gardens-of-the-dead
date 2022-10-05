@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "gardens_of_the_dead:block/soulblight_fungus"
+      },
+      {
+        "model": "gardens_of_the_dead:block/soulblight_fungus_tall"
+      },
+      {
+        "model": "gardens_of_the_dead:block/soulblight_fungus_short"
+      }
+    ]
+  }
+}

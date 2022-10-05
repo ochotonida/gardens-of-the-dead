@@ -1,5 +1,7 @@
-// 1.19.2	2022-10-04T14:50:25.4773525	LootTables
+// 1.19.2	2022-10-05T13:38:16.8268803	LootTables
 5e7e8452b3c901444b992c7521140457a783d41b data/gardens_of_the_dead/loot_tables/blocks/glowing_soul_spore.json
 0c6ad6141cfcd63ba37c224c0cd3872913572f26 data/gardens_of_the_dead/loot_tables/blocks/potted_glowing_soul_spore.json
+60cf57231362c0b37dc5d279f67d5b19f8aaac03 data/gardens_of_the_dead/loot_tables/blocks/potted_soulblight_fungus.json
 2cb5892adcf44fee8c7379575a9f8be091489e0d data/gardens_of_the_dead/loot_tables/blocks/potted_soul_spore.json
+f1fcbe8ff1fc08dc8f602ef61fed13376e7b27fd data/gardens_of_the_dead/loot_tables/blocks/soulblight_fungus.json
 90a0fc76d0a317e3e082a3dd81b76931c5fb2506 data/gardens_of_the_dead/loot_tables/blocks/soul_spore.json

@@ -22,6 +22,7 @@ public class ItemModels extends ItemModelProvider {
     protected void registerModels() {
         flatBlockItem(ModBlocks.SOUL_SPORE.get());
         flatBlockItem(ModBlocks.GLOWING_SOUL_SPORE.get());
+        flatBlockItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
     }
 
     public void flatBlockItem(Block block) {
