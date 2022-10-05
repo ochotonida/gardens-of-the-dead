@@ -60,6 +60,8 @@ public class BlockStates extends BlockStateProvider {
         wood(ModBlocks.SOULBLIGHT_HYPHAE.get());
         wood(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
 
+        simpleBlock(ModBlocks.SOULBLIGHT_WART_BLOCK.get());
+
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());

@@ -1,4 +1,5 @@
-// 1.19.2	2022-10-05T18:47:31.561408	Tags for minecraft:item
+// 1.19.2	2022-10-05T19:32:09.7952374	Tags for minecraft:item
 8a30ddf8de24d7a253bc3ee9101b1b61d2755920 data/gardens_of_the_dead/tags/items/soulblight_stems.json
 16f588ddd2e564fe27488a72c6a1e0992ae52c7e data/minecraft/tags/items/logs.json
 16f588ddd2e564fe27488a72c6a1e0992ae52c7e data/minecraft/tags/items/non_flammable_wood.json
+1a8257060e3a8370d3e09b787b90601d69519237 data/minecraft/tags/items/wart_blocks.json

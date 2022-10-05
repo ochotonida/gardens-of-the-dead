@@ -31,6 +31,7 @@ public class ModItems {
     public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_STEM = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM);
     public static final RegistryObject<Item> SOULBLIGHT_HYPHAE = blockItem(ModBlocks.SOULBLIGHT_HYPHAE);
     public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_HYPHAE = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE);
+    public static final RegistryObject<Item> SOULBLIGHT_WART_BLOCK = blockItem(ModBlocks.SOULBLIGHT_WART_BLOCK);
 
 
     private static RegistryObject<Item> blockItem(RegistryObject<? extends Block> block) {
@@ -45,6 +46,7 @@ public class ModItems {
         addCompostable(0.3F, SOUL_SPORE.get());
         addCompostable(0.65F, SOULBLIGHT_FUNGUS.get());
         addCompostable(0.85F, GLOWING_SOUL_SPORE.get());
+        addCompostable(0.85F, SOULBLIGHT_WART_BLOCK.get());
     }
 
     private static void addCompostable(double chance, ItemLike item) {

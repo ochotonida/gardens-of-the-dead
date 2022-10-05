@@ -20,5 +20,6 @@ public class ItemTags extends ItemTagsProvider {
         copy(ModTags.Blocks.SOULBLIGHT_STEMS, ModTags.Items.SOULBlIGHT_STEMS);
         copy(BlockTags.NON_FLAMMABLE_WOOD, net.minecraft.tags.ItemTags.NON_FLAMMABLE_WOOD);
         copy(BlockTags.LOGS, net.minecraft.tags.ItemTags.LOGS);
+        copy(BlockTags.WART_BLOCKS, net.minecraft.tags.ItemTags.WART_BLOCKS);
     }
 }

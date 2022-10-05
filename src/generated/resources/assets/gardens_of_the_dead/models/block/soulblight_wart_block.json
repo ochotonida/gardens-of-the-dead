@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gardens_of_the_dead:block/soulblight_wart_block"
+  }
+}

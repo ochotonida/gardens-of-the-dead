@@ -31,6 +31,11 @@ public class ModBlockProperties {
             .strength(2)
             .sound(SoundType.STEM);
 
+    public static BlockBehaviour.Properties SOULBLIGHT_WART = BlockBehaviour.Properties.of(Material.GRASS)
+            .color(MaterialColor.COLOR_YELLOW)
+            .strength(1)
+            .sound(SoundType.WART_BLOCK);
+
     public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 

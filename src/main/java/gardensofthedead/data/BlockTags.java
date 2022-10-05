@@ -18,6 +18,14 @@ public class BlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).addTag(
+                ModTags.Blocks.SOULBLIGHT_STEMS
+        );
+
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_HOE).add(
+                ModBlocks.SOULBLIGHT_WART_BLOCK.get()
+        );
+
         // noinspection ConstantConditions
         tag(net.minecraft.tags.BlockTags.FLOWER_POTS).add(
                 ForgeRegistries.BLOCKS.getValues()
@@ -38,16 +46,16 @@ public class BlockTags extends BlockTagsProvider {
                 ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get()
         );
 
-        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).addTag(
-                ModTags.Blocks.SOULBLIGHT_STEMS
-        );
-
         tag(net.minecraft.tags.BlockTags.NON_FLAMMABLE_WOOD).addTag(
                 ModTags.Blocks.SOULBLIGHT_STEMS
         );
 
         tag(net.minecraft.tags.BlockTags.LOGS).addTag(
                 ModTags.Blocks.SOULBLIGHT_STEMS
+        );
+
+        tag(net.minecraft.tags.BlockTags.WART_BLOCKS).add(
+                ModBlocks.SOULBLIGHT_WART_BLOCK.get()
         );
     }
 }
