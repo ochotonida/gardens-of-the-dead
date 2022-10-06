@@ -1,7 +1,8 @@
 package gardensofthedead.common.blocks;
 
+import gardensofthedead.common.init.ModFeatures;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
@@ -13,24 +14,18 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.Event;
 
-import java.util.function.Supplier;
-
 public class SoulBlightFungusBlock extends BushBlock implements BonemealableBlock {
 
     protected static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 13, 12);
     private static final double BONEMEAL_SUCCESS_PROBABILITY = 0.4D;
-    private final Supplier<Holder<ConfiguredFeature<HugeFungusConfiguration, ?>>> feature;
 
-    public SoulBlightFungusBlock(BlockBehaviour.Properties properties, Supplier<Holder<ConfiguredFeature<HugeFungusConfiguration, ?>>> feature) {
+    public SoulBlightFungusBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.feature = feature;
     }
 
     @SuppressWarnings("deprecation")
@@ -43,7 +38,7 @@ public class SoulBlightFungusBlock extends BushBlock implements BonemealableBloc
     }
 
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = (feature.get().value().config()).validBaseState.getBlock();
+        Block block = (ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().config()).validBaseState.getBlock();
         BlockState blockstate = level.getBlockState(pos.below());
         return blockstate.is(block);
     }
@@ -53,9 +48,9 @@ public class SoulBlightFungusBlock extends BushBlock implements BonemealableBloc
     }
 
     public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        Event.Result result = ForgeEventFactory.blockGrowFeature(level, randomSource, pos, feature.get()).getResult();
+        Event.Result result = ForgeEventFactory.blockGrowFeature(level, randomSource, pos, BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(BuiltinRegistries.CONFIGURED_FEATURE.getResourceKey(ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get()).orElseThrow())).getResult();
         if (!result.equals(Event.Result.DENY)) {
-            feature.get().value().place(level, level.getChunkSource().getGenerator(), randomSource, pos);
+            ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().place(level, level.getChunkSource().getGenerator(), randomSource, pos);
         }
     }
 }

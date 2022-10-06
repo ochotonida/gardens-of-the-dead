@@ -2,10 +2,10 @@ package gardensofthedead;
 
 import gardensofthedead.common.init.ModBiomes;
 import gardensofthedead.common.init.ModBlocks;
+import gardensofthedead.common.init.ModFeatures;
 import gardensofthedead.common.init.ModItems;
 import gardensofthedead.common.region.GardensOfTheDeadRegion;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -34,6 +34,8 @@ public class GardensOfTheDead {
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBiomes.BIOME_REGISTER.register(modEventBus);
+        ModFeatures.FEATURES.register(modEventBus);
+        ModFeatures.CONFIGURED_FEATURES.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
