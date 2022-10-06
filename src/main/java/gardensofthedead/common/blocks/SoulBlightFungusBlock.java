@@ -38,7 +38,7 @@ public class SoulBlightFungusBlock extends BushBlock implements BonemealableBloc
     }
 
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = (ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().config()).validBaseState.getBlock();
+        Block block = (ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().config()).validBaseState().getBlock();
         BlockState blockstate = level.getBlockState(pos.below());
         return blockstate.is(block);
     }

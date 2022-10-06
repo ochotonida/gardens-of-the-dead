@@ -1,6 +1,7 @@
 package gardensofthedead.common.features;
 
 import com.mojang.serialization.Codec;
+import gardensofthedead.common.features.configuration.HugeFlatFungusConfiguration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -13,22 +14,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
 import net.minecraft.world.level.material.Material;
 
-public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration> {
+public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> {
 
-    public HugeSoulblightFungusFeature(Codec<HugeFungusConfiguration> codec) {
-        super(codec); // TODO cleanup config
+    public HugeFlatFungusFeature(Codec<HugeFlatFungusConfiguration> codec) {
+        super(codec);
     }
 
-    public boolean place(FeaturePlaceContext<HugeFungusConfiguration> context) {
+    public boolean place(FeaturePlaceContext<HugeFlatFungusConfiguration> context) {
         WorldGenLevel level = context.level();
         BlockPos pos = context.origin();
         RandomSource randomsource = context.random();
         ChunkGenerator chunkgenerator = context.chunkGenerator();
-        HugeFungusConfiguration configuration = context.config();
-        Block validBaseBlock = configuration.validBaseState.getBlock();
+        HugeFlatFungusConfiguration configuration = context.config();
+        Block validBaseBlock = configuration.validBaseState().getBlock();
         BlockState supportingBlock = level.getBlockState(pos.below());
 
         if (!supportingBlock.is(validBaseBlock)) {
@@ -37,7 +37,7 @@ public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration
 
         int height = Mth.nextInt(randomsource, 4, 9);
 
-        if (!configuration.planted) {
+        if (!configuration.planted()) {
             int maxHeight = chunkgenerator.getGenDepth();
             if (pos.getY() + height + 1 >= maxHeight) {
                 return false;
@@ -57,14 +57,14 @@ public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration
         });
     }
 
-    private void placeStem(LevelAccessor level, RandomSource randomSource, HugeFungusConfiguration configuration, BlockPos origin, int height) {
+    private void placeStem(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-        BlockState stemState = configuration.stemState;
+        BlockState stemState = configuration.stemState();
 
         for (int y = 0; y < height; ++y) {
             pos.setWithOffset(origin, 0, y, 0);
             if (isReplaceable(level, pos, true)) {
-                if (configuration.planted) {
+                if (configuration.planted()) {
 
 
                     level.setBlock(pos, stemState, Block.UPDATE_ALL);
@@ -97,20 +97,20 @@ public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration
         }
     }
 
-    private boolean tryPlaceStem(LevelAccessor level, BlockPos.MutableBlockPos pos, HugeFungusConfiguration configuration) {
+    private boolean tryPlaceStem(LevelAccessor level, BlockPos.MutableBlockPos pos, HugeFlatFungusConfiguration configuration) {
         if (isReplaceable(level, pos, true)) {
-            if (configuration.planted) {
+            if (configuration.planted()) {
                 if (!level.getBlockState(pos.below()).isAir()) {
                     level.destroyBlock(pos, true);
                 }
             }
-            level.setBlock(pos, configuration.stemState, Block.UPDATE_ALL);
+            level.setBlock(pos, configuration.stemState(), Block.UPDATE_ALL);
             return true;
         }
         return false;
     }
 
-    private void placeHat(LevelAccessor level, RandomSource randomSource, HugeFungusConfiguration configuration, BlockPos origin, int height) {
+    private void placeHat(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
         float wobbliness = 0.1F + randomSource.nextFloat() * 0.15F;
         float wobbleAngle = randomSource.nextFloat() * (float) Math.PI * 2;
         float size = (6 + randomSource.nextFloat() * 3) / 2;
@@ -132,7 +132,7 @@ public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration
                     }
 
                     if (isReplaceable(level, pos, false)) {
-                        if (configuration.planted && !level.getBlockState(pos.below()).isAir()) {
+                        if (configuration.planted() && !level.getBlockState(pos.below()).isAir()) {
                             level.destroyBlock(pos, true);
                         }
                         placeHatBlock(level, randomSource, configuration, pos, isEdge);
@@ -142,8 +142,8 @@ public class HugeSoulblightFungusFeature extends Feature<HugeFungusConfiguration
         }
     }
 
-    private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge) {
-        setBlock(level, pos, configuration.hatState);
+    private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge) {
+        setBlock(level, pos, configuration.hatState());
         float hangingVineChance = isEdge ? 0.25F : 0.5F;
         float standingVineChance = 0.33F;
         if (randomSource.nextFloat() < hangingVineChance) {
