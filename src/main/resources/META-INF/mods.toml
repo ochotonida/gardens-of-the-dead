@@ -1,7 +1,7 @@
 modLoader="javafml"
 loaderVersion="[43,)"
 license="MIT"
-# TODO issueTrackerURL="https://github.com/ochotonida/gardens-of-the-dead/issues"
+issueTrackerURL="https://github.com/ochotonida/gardens-of-the-dead/issues"
 
 [[mods]]
 modId="gardens_of_the_dead"
