@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "gardens_of_the_dead:block/soulblight_planks"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "gardens_of_the_dead:soulblight_planks"
+    }
+  ],
+  "result": {
+    "item": "gardens_of_the_dead:soulblight_button"
+  }
+}

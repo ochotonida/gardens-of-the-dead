@@ -1,5 +1,16 @@
 {
   "values": [
-    "#gardens_of_the_dead:soulblight_stems"
+    "#gardens_of_the_dead:soulblight_stems",
+    "gardens_of_the_dead:soulblight_planks",
+    "gardens_of_the_dead:soulblight_slab",
+    "gardens_of_the_dead:soulblight_pressure_plate",
+    "gardens_of_the_dead:soulblight_fence",
+    "gardens_of_the_dead:soulblight_trapdoor",
+    "gardens_of_the_dead:soulblight_fence_gate",
+    "gardens_of_the_dead:soulblight_stairs",
+    "gardens_of_the_dead:soulblight_button",
+    "gardens_of_the_dead:soulblight_door",
+    "gardens_of_the_dead:soulblight_sign",
+    "gardens_of_the_dead:soulblight_wall_sign"
   ]
 }

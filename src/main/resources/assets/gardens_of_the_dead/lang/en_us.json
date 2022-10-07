@@ -10,5 +10,15 @@
   "block.gardens_of_the_dead.blightwart_block": "Blightwart Block",
   "block.gardens_of_the_dead.potted_soul_spore": "Potted Soul Spore",
   "block.gardens_of_the_dead.potted_glowing_soul_spore": "Potted Glowing Soul Spore",
-  "block.gardens_of_the_dead.potted_soulblight_fungus": "Potted Soulblight Fungus"
+  "block.gardens_of_the_dead.potted_soulblight_fungus": "Potted Soulblight Fungus",
+  "block.gardens_of_the_dead.soulblight_planks": "Soulblight Planks",
+  "block.gardens_of_the_dead.soulblight_slab": "Soulblight Slab",
+  "block.gardens_of_the_dead.soulblight_fence": "Soulblight Fence",
+  "block.gardens_of_the_dead.soulblight_stairs": "Soulblight Stairs",
+  "block.gardens_of_the_dead.soulblight_button": "Soulblight Button",
+  "block.gardens_of_the_dead.soulblight_pressure_plate": "Soulblight Pressure Plate",
+  "block.gardens_of_the_dead.soulblight_door": "Soulblight Door",
+  "block.gardens_of_the_dead.soulblight_trapdoor": "Soulblight Trapdoor",
+  "block.gardens_of_the_dead.soulblight_fence_gate": "Soulblight Fence Gate",
+  "block.gardens_of_the_dead.soulblight_sign": "Soulblight Sign"
 }

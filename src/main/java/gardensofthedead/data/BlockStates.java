@@ -7,8 +7,7 @@ import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -65,6 +64,16 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
+
+        ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
+        simpleBlock(ModBlocks.SOULBLIGHT_PLANKS.get());
+        slabBlock(ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanksTexture, soulblightPlanksTexture);
+        stairsBlock(ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanksTexture);
+        buttonBlock(ModBlocks.SOULBLIGHT_BUTTON.get(), soulblightPlanksTexture);
+        pressurePlateBlock(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), soulblightPlanksTexture);
+        fenceBlock(ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanksTexture);
+        fenceGateBlock(ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanksTexture);
+        signBlock(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
     }
 
     private void createCrossModels() {
@@ -109,6 +118,24 @@ public class BlockStates extends BlockStateProvider {
                 .face(Direction.WEST).uvs(16, 16, 0, 0).texture("#cross").end()
                 .face(Direction.EAST).uvs(16, 16, 0, 0).texture("#cross").end()
                 .end();
+    }
+
+    @Override
+    public void buttonBlock(ButtonBlock block, ResourceLocation texture) {
+        super.buttonBlock(block, texture);
+        itemModels().buttonInventory(ForgeRegistries.ITEMS.getKey(block.asItem()).getPath(), texture);
+    }
+
+    @Override
+    public void fenceBlock(FenceBlock block, ResourceLocation texture) {
+        super.fenceBlock(block, texture);
+        itemModels().fenceInventory(ForgeRegistries.ITEMS.getKey(block.asItem()).getPath(), texture);
+    }
+
+    @Override
+    public void signBlock(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
+        super.signBlock(signBlock, wallSignBlock, texture);
+        itemModels().basicItem(signBlock.asItem());
     }
 
     private void log(RotatedPillarBlock wood) {

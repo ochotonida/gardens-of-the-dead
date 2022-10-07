@@ -58,6 +58,19 @@ public class LootTables extends LootTableProvider {
                 ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get()
         );
 
+        addDefaultDrops(
+                ModBlocks.SOULBLIGHT_PLANKS.get(),
+                ModBlocks.SOULBLIGHT_SLAB.get(),
+                ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(),
+                ModBlocks.SOULBLIGHT_FENCE.get(),
+                ModBlocks.SOULBLIGHT_TRAPDOOR.get(),
+                ModBlocks.SOULBLIGHT_FENCE_GATE.get(),
+                ModBlocks.SOULBLIGHT_STAIRS.get(),
+                ModBlocks.SOULBLIGHT_BUTTON.get(),
+                ModBlocks.SOULBLIGHT_DOOR.get(),
+                ModBlocks.SOULBLIGHT_SIGN.get()
+        );
+
         return lootTables;
     }
 

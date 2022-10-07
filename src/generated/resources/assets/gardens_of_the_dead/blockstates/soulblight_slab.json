@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gardens_of_the_dead:block/soulblight_slab"
+    },
+    "type=double": {
+      "model": "gardens_of_the_dead:block/soulblight_planks"
+    },
+    "type=top": {
+      "model": "gardens_of_the_dead:block/soulblight_slab_top"
+    }
+  }
+}

@@ -29,6 +29,15 @@ public class ItemModels extends ItemModelProvider {
         simpleBlockItem(ModBlocks.SOULBLIGHT_HYPHAE.get());
         simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
         simpleBlockItem(ModBlocks.BLIGHTWART_BLOCK.get());
+
+        simpleBlockItem(ModBlocks.SOULBLIGHT_PLANKS.get());
+        simpleBlockItem(ModBlocks.SOULBLIGHT_SLAB.get());
+        simpleBlockItem(ModBlocks.SOULBLIGHT_STAIRS.get());
+        simpleBlockItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get());
+
+        simpleBlockItem(ModBlocks.SOULBLIGHT_FENCE_GATE.get());
+        // simpleBlockItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
+        // basicItem(ModItems.SOULBLIGHT_DOOR.get());
     }
 
     private void simpleBlockItem(Block block) {

@@ -1,15 +1,11 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.blocks.SoulBlightFungusBlock;
-import gardensofthedead.common.blocks.SoulSporeBaseBlock;
-import gardensofthedead.common.blocks.SoulSporeBlock;
-import gardensofthedead.common.blocks.StrippableLogBlock;
+import gardensofthedead.common.blocks.StandingSignBlock;
+import gardensofthedead.common.blocks.WallSignBlock;
+import gardensofthedead.common.blocks.*;
 import net.minecraft.core.Registry;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -34,6 +30,18 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_SPORE = flowerPot(SOUL_SPORE);
     public static final RegistryObject<FlowerPotBlock> POTTED_GLOWING_SOUL_SPORE = flowerPot(GLOWING_SOUL_SPORE, ModBlockProperties.POTTED_GLOWING_SOUL_SPORE);
     public static final RegistryObject<FlowerPotBlock> POTTED_SOULBLIGHT_FUNGUS = flowerPot(SOULBLIGHT_FUNGUS);
+
+    public static final RegistryObject<Block> SOULBLIGHT_PLANKS = BLOCKS.register("soulblight_planks", () -> new Block(ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<SlabBlock> SOULBLIGHT_SLAB = BLOCKS.register("soulblight_slab", () -> new SlabBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<PressurePlateBlock> SOULBLIGHT_PRESSURE_PLATE = BLOCKS.register("soulblight_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, ModBlockProperties.SOULBLIGHT_BUTTONS));
+    public static final RegistryObject<FenceBlock> SOULBLIGHT_FENCE = BLOCKS.register("soulblight_fence", () -> new FenceBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<TrapDoorBlock> SOULBLIGHT_TRAPDOOR = BLOCKS.register("soulblight_trapdoor", () -> new TrapDoorBlock(ModBlockProperties.SOULBLIGHT_TRAPDOOR));
+    public static final RegistryObject<FenceGateBlock> SOULBLIGHT_FENCE_GATE = BLOCKS.register("soulblight_fence_gate", () -> new FenceGateBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<StairBlock> SOULBLIGHT_STAIRS = BLOCKS.register("soulblight_stairs", () -> new StairBlock(() -> SOULBLIGHT_PLANKS.get().defaultBlockState(), ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<ButtonBlock> SOULBLIGHT_BUTTON = BLOCKS.register("soulblight_button", () -> new WoodButtonBlock(ModBlockProperties.SOULBLIGHT_BUTTONS));
+    public static final RegistryObject<DoorBlock> SOULBLIGHT_DOOR = BLOCKS.register("soulblight_door", () -> new DoorBlock(ModBlockProperties.SOULBLIGHT_DOOR));
+    public static final RegistryObject<StandingSignBlock> SOULBLIGHT_SIGN = BLOCKS.register("soulblight_sign", () -> new StandingSignBlock(ModBlockProperties.SOULBLIGHT_SIGN, ModWoodTypes.SOULBLIGHT));
+    public static final RegistryObject<WallSignBlock> SOULBLIGHT_WALL_SIGN = BLOCKS.register("soulblight_wall_sign", () -> new WallSignBlock(ModBlockProperties.SOULBLIGHT_WALL_SIGN, ModWoodTypes.SOULBLIGHT));
 
     private static RegistryObject<RotatedPillarBlock> soulblightStem(String name, Supplier<? extends Block> strippedLogBlock) {
         return BLOCKS.register(name, () -> new StrippableLogBlock(ModBlockProperties.SOULBLIGHT_STEM, strippedLogBlock));

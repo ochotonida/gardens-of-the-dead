@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "gardens_of_the_dead:block/soulblight_planks"
+  }
+}

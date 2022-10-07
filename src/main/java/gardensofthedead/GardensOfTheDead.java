@@ -1,9 +1,6 @@
 package gardensofthedead;
 
-import gardensofthedead.common.init.ModBiomes;
-import gardensofthedead.common.init.ModBlocks;
-import gardensofthedead.common.init.ModFeatures;
-import gardensofthedead.common.init.ModItems;
+import gardensofthedead.common.init.*;
 import gardensofthedead.common.region.GardensOfTheDeadRegion;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -24,7 +21,7 @@ public class GardensOfTheDead {
     }
 
     public GardensOfTheDead() {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClient::new);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClient::init);
         GardensOfTheDeadData.init();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -32,6 +29,7 @@ public class GardensOfTheDead {
         modEventBus.addListener(this::commonSetup);
 
         ModBlocks.BLOCKS.register(modEventBus);
+        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBiomes.BIOME_REGISTER.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);

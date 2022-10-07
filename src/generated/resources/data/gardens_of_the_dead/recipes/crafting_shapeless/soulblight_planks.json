@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "gardens_of_the_dead:soulblight_stems"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "gardens_of_the_dead:soulblight_planks"
+  }
+}
