@@ -74,6 +74,8 @@ public class BlockStates extends BlockStateProvider {
         fenceBlock(ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanksTexture);
         fenceGateBlock(ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanksTexture);
         signBlock(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
+        doorBlock(ModBlocks.SOULBLIGHT_DOOR.get());
+        trapdoorBlock(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
     }
 
     private void createCrossModels() {
@@ -120,16 +122,35 @@ public class BlockStates extends BlockStateProvider {
                 .end();
     }
 
+    public void doorBlock(DoorBlock block) {
+        doorBlock(block, CUTOUT);
+    }
+
+    public void doorBlock(DoorBlock block, String renderType) {
+        doorBlockWithRenderType(block, blockTexture(getName(block) + "_bottom"), blockTexture(getName(block) + "_top"), renderType);
+        itemModels().basicItem(block.asItem());
+    }
+
+    public void trapdoorBlock(TrapDoorBlock block) {
+        trapdoorBlock(block, CUTOUT);
+    }
+
+    public void trapdoorBlock(TrapDoorBlock block, String renderType) {
+        trapdoorBlockWithRenderType(block, blockTexture(getName(block)), true, renderType);
+
+        itemModels().withExistingParent(getName(block), modLoc("%s/%s_bottom".formatted(BLOCK_FOLDER, getName(block))));
+    }
+
     @Override
     public void buttonBlock(ButtonBlock block, ResourceLocation texture) {
         super.buttonBlock(block, texture);
-        itemModels().buttonInventory(ForgeRegistries.ITEMS.getKey(block.asItem()).getPath(), texture);
+        itemModels().buttonInventory(getName(block), texture);
     }
 
     @Override
     public void fenceBlock(FenceBlock block, ResourceLocation texture) {
         super.fenceBlock(block, texture);
-        itemModels().fenceInventory(ForgeRegistries.ITEMS.getKey(block.asItem()).getPath(), texture);
+        itemModels().fenceInventory(getName(block), texture);
     }
 
     @Override
@@ -139,16 +160,14 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void log(RotatedPillarBlock wood) {
-        // noinspection ConstantConditions
-        String name = ForgeRegistries.BLOCKS.getKey(wood).getPath();
+        String name = getName(wood);
         ResourceLocation side = blockTexture(name);
         ResourceLocation top = blockTexture(name + "_top");
         axisBlock(wood, side, top);
     }
 
     private void wood(RotatedPillarBlock wood) {
-        // noinspection ConstantConditions
-        String name = ForgeRegistries.BLOCKS.getKey(wood).getPath()
+        String name = getName(wood)
                 .replace("wood", "log")
                 .replace("hyphae", "stem");
         ResourceLocation side = blockTexture(name);
@@ -156,15 +175,13 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void pottedPlant(Block pottedPlant) {
-        // noinspection ConstantConditions
-        String id = ForgeRegistries.BLOCKS.getKey(pottedPlant).getPath().replace("potted_", "");
+        String id = getName(pottedPlant).replace("potted_", "");
         pottedPlant(pottedPlant, id);
     }
 
     private void pottedPlant(Block pottedPlant, String textureName) {
-        // noinspection ConstantConditions
         simpleBlock(pottedPlant, models()
-                .withExistingParent(ForgeRegistries.BLOCKS.getKey(pottedPlant).getPath(), "flower_pot_cross")
+                .withExistingParent(getName(pottedPlant), "flower_pot_cross")
                 .texture("plant", blockTexture(textureName))
                 .renderType(CUTOUT)
         );
@@ -191,5 +208,10 @@ public class BlockStates extends BlockStateProvider {
 
     private ResourceLocation blockTexture(String textureName) {
         return modLoc(BLOCK_FOLDER + "/" + textureName);
+    }
+
+    private String getName(Block block) {
+        // noinspection ConstantConditions
+        return ForgeRegistries.BLOCKS.getKey(block).getPath();
     }
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "gardens_of_the_dead:block/soulblight_door_bottom",
+    "top": "gardens_of_the_dead:block/soulblight_door_top"
+  }
+}
