@@ -47,7 +47,7 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
         if (direction == state.getValue(DIRECTION)) {
             if (newState.is(this) || newState.is(ModBlocks.GLOWING_SOUL_SPORE.get())) {
-                if (state.getValue(TOP)) {
+                if (state.getValue(TOP) && newState.getValue(DIRECTION) == state.getValue(DIRECTION)) {
                     // update shape when plant is placed/grown above
                     return state.setValue(TOP, false).setValue(GROWING, true);
                 }
