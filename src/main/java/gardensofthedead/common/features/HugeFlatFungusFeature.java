@@ -65,8 +65,6 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
             pos.setWithOffset(origin, 0, y, 0);
             if (isReplaceable(level, pos, true)) {
                 if (configuration.planted()) {
-
-
                     level.setBlock(pos, stemState, Block.UPDATE_ALL);
                 }
             }
@@ -87,7 +85,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
                     if (!isCorner && randomSource.nextFloat() <= 0.75F  || isCorner && randomSource.nextFloat() < 0.25F) {
                         pos.setWithOffset(origin, x, height - 1, z);
                         boolean placed = tryPlaceStem(level, pos, configuration);
-                        if (!isCorner && placed && randomSource.nextFloat() < 0.25F) {
+                        if (height > 4 && !isCorner && placed && randomSource.nextFloat() < 0.25F) {
                             pos.setWithOffset(origin, x, height - 2, z);
                             tryPlaceStem(level, pos, configuration);
                         }
@@ -144,8 +142,8 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
 
     private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge) {
         setBlock(level, pos, configuration.hatState());
-        float hangingVineChance = isEdge ? 0.25F : 0.5F;
-        float standingVineChance = 0.33F;
+        float hangingVineChance = isEdge ? 0.25F : 0.75F;
+        float standingVineChance = 0.5F;
         if (randomSource.nextFloat() < hangingVineChance) {
             tryPlaceHangingSoulSpore(pos, level, randomSource, isEdge);
         }
@@ -154,11 +152,11 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         }
     }
     
-    private static void tryPlaceHangingSoulSpore(BlockPos pos, LevelAccessor level, RandomSource randomSource, boolean glowing) {
+    private static void tryPlaceHangingSoulSpore(BlockPos pos, LevelAccessor level, RandomSource randomSource, boolean isEdge) {
         BlockPos.MutableBlockPos below = pos.mutable().move(Direction.DOWN);
         if (level.isEmptyBlock(below)) {
-            int length = Mth.nextInt(randomSource, 2, 3);
-            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, glowing ? 1 : 0);
+            int length = Mth.nextInt(randomSource, 2, 3) + (isEdge ? 0 : 1);
+            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, isEdge ? 1 : 0);
         }
     }
     
@@ -166,7 +164,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         BlockPos.MutableBlockPos above = pos.mutable().move(Direction.UP);
         if (level.isEmptyBlock(above)) {
             int length = Mth.nextInt(randomSource, 1, 2);
-            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, above, length, Direction.UP, 0.2F);
+            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, above, length, Direction.UP, 0.1F);
         }
     }
 }
