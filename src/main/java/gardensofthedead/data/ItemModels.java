@@ -23,6 +23,7 @@ public class ItemModels extends ItemModelProvider {
         flatBlockItem(ModBlocks.SOUL_SPORE.get());
         flatBlockItem(ModBlocks.GLOWING_SOUL_SPORE.get());
         flatBlockItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
+        flatBlockItem(ModBlocks.SOULBLIGHT_SPROUTS.get());
 
         simpleBlockItem(ModBlocks.SOULBLIGHT_STEM.get());
         simpleBlockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());

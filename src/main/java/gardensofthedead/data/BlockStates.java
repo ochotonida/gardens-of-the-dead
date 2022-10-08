@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -54,6 +55,8 @@ public class BlockStates extends BlockStateProvider {
                 cross("soulblight_fungus_short")
         );
 
+        simplePlant(ModBlocks.SOULBLIGHT_SPROUTS.get());
+
         log(ModBlocks.SOULBLIGHT_STEM.get());
         log(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
         wood(ModBlocks.SOULBLIGHT_HYPHAE.get());
@@ -64,6 +67,7 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
+        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get(), "potted_soulblight_sprouts");
 
         ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
         simpleBlock(ModBlocks.SOULBLIGHT_PLANKS.get());
@@ -185,6 +189,14 @@ public class BlockStates extends BlockStateProvider {
                 .texture("plant", blockTexture(textureName))
                 .renderType(CUTOUT)
         );
+    }
+
+    private void simplePlant(Block block) {
+        simpleBlock(block, cross(getName(block)));
+        // noinspection ConstantConditions
+        itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(block.asItem()).toString())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(block)));
     }
 
     private ConfiguredModel cross(String textureName) {

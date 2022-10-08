@@ -2,6 +2,7 @@ package gardensofthedead.common.features;
 
 import com.mojang.serialization.Codec;
 import gardensofthedead.common.features.configuration.HugeFlatFungusConfiguration;
+import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -142,12 +143,23 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
 
     private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge) {
         setBlock(level, pos, configuration.hatState());
+        float shroomlightChance = isEdge ? 0 : 0.1F;
         float hangingVineChance = isEdge ? 0.25F : 0.75F;
+        float sproutChance = 0.1F;
         float standingVineChance = 0.5F;
-        if (randomSource.nextFloat() < hangingVineChance) {
+
+        if (randomSource.nextFloat() < shroomlightChance) {
+            if (level.isEmptyBlock(pos.below())) {
+                setBlock(level, pos.below(), Blocks.SHROOMLIGHT.defaultBlockState());
+            }
+        } else if (randomSource.nextFloat() < hangingVineChance) {
             tryPlaceHangingSoulSpore(pos, level, randomSource, isEdge);
         }
-        if (randomSource.nextFloat() < standingVineChance) {
+        if (randomSource.nextFloat() < sproutChance) {
+            if (level.isEmptyBlock(pos.above())) {
+                setBlock(level, pos.above(), ModBlocks.SOULBLIGHT_SPROUTS.get().defaultBlockState());
+            }
+        } else if (randomSource.nextFloat() < standingVineChance) {
             tryPlaceStandingSoulSpore(pos, level, randomSource);
         }
     }

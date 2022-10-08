@@ -30,6 +30,13 @@ public class ModBlockProperties {
             .noCollission()
             .sound(SoundType.FUNGUS);
 
+    public static BlockBehaviour.Properties SOULBLIGHT_SPROUTS = BlockBehaviour.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT)
+            .color(MaterialColor.COLOR_BROWN)
+            .noCollission()
+            .instabreak()
+            .sound(SoundType.NETHER_SPROUTS)
+            .offsetType(BlockBehaviour.OffsetType.XZ);
+
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
             .strength(2)

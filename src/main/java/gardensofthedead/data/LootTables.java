@@ -39,10 +39,13 @@ public class LootTables extends LootTableProvider {
 
         addShearHarvestables(
                 ModBlocks.SOUL_SPORE.get(),
-                ModBlocks.GLOWING_SOUL_SPORE.get()
+                ModBlocks.GLOWING_SOUL_SPORE.get(),
+                ModBlocks.SOULBLIGHT_SPROUTS.get()
         );
 
-        addDefaultDrops(ModBlocks.SOULBLIGHT_FUNGUS.get());
+        addDefaultDrops(
+                ModBlocks.SOULBLIGHT_FUNGUS.get()
+        );
 
         addDefaultDrops(
                 ModBlocks.SOULBLIGHT_STEM.get(),
@@ -55,7 +58,8 @@ public class LootTables extends LootTableProvider {
         addPottedPlants(
                 ModBlocks.POTTED_SOUL_SPORE.get(),
                 ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(),
-                ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get()
+                ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(),
+                ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get()
         );
 
         addDefaultDrops(

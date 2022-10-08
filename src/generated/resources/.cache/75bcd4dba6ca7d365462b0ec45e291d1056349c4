@@ -1,8 +1,8 @@
-// 1.19.2	2022-10-07T00:04:19.1584146	Tags for minecraft:block
+// 1.19.2	2022-10-08T01:59:33.2931774	Tags for minecraft:block
 2ff364bcbd5ad98a6c29bd7ad26dfcec88dc5897 data/forge/tags/blocks/fences/wooden.json
 b926ecf919279afd1e14fd7ee3d90d250b585dd8 data/forge/tags/blocks/fence_gates/wooden.json
 8a30ddf8de24d7a253bc3ee9101b1b61d2755920 data/gardens_of_the_dead/tags/blocks/soulblight_stems.json
-5a438d8a4d9a19337e61c677d1091214daabf394 data/minecraft/tags/blocks/enderman_holdable.json
+9669e2125b58bdc639966e62fa76410ec6bb7b9a data/minecraft/tags/blocks/enderman_holdable.json
 b926ecf919279afd1e14fd7ee3d90d250b585dd8 data/minecraft/tags/blocks/fence_gates.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/flower_pots.json
 16f588ddd2e564fe27488a72c6a1e0992ae52c7e data/minecraft/tags/blocks/logs.json

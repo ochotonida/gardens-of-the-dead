@@ -20,6 +20,7 @@ public class ModBlocks {
     public static final RegistryObject<SoulSporeBaseBlock> GLOWING_SOUL_SPORE = BLOCKS.register("glowing_soul_spore", () -> new SoulSporeBaseBlock(ModBlockProperties.GLOWING_SOUL_SPORE));
 
     public static final RegistryObject<Block> SOULBLIGHT_FUNGUS = BLOCKS.register("soulblight_fungus", () -> new SoulBlightFungusBlock(ModBlockProperties.SOULBLIGHT_FUNGUS));
+    public static final RegistryObject<Block> SOULBLIGHT_SPROUTS = BLOCKS.register("soulblight_sprouts", () -> new SoulblightSproutsBlock(ModBlockProperties.SOULBLIGHT_SPROUTS));
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_SOULBLIGHT_STEM = strippedSoulblightStem("stripped_soulblight_stem");
     public static final RegistryObject<RotatedPillarBlock> SOULBLIGHT_STEM = soulblightStem("soulblight_stem", STRIPPED_SOULBLIGHT_STEM);
@@ -30,6 +31,7 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_SPORE = flowerPot(SOUL_SPORE);
     public static final RegistryObject<FlowerPotBlock> POTTED_GLOWING_SOUL_SPORE = flowerPot(GLOWING_SOUL_SPORE, ModBlockProperties.POTTED_GLOWING_SOUL_SPORE);
     public static final RegistryObject<FlowerPotBlock> POTTED_SOULBLIGHT_FUNGUS = flowerPot(SOULBLIGHT_FUNGUS);
+    public static final RegistryObject<FlowerPotBlock> POTTED_SOULBLIGHT_SPROUTS = flowerPot(SOULBLIGHT_SPROUTS);
 
     public static final RegistryObject<Block> SOULBLIGHT_PLANKS = BLOCKS.register("soulblight_planks", () -> new Block(ModBlockProperties.SOULBLIGHT_PLANKS));
     public static final RegistryObject<SlabBlock> SOULBLIGHT_SLAB = BLOCKS.register("soulblight_slab", () -> new SlabBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
