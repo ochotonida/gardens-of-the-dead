@@ -65,9 +65,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         for (int y = 0; y < height; ++y) {
             pos.setWithOffset(origin, 0, y, 0);
             if (isReplaceable(level, pos, true)) {
-                if (configuration.planted()) {
-                    level.setBlock(pos, stemState, Block.UPDATE_ALL);
-                }
+                level.setBlock(pos, stemState, Block.UPDATE_ALL);
             }
         }
 
@@ -76,11 +74,14 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
                 if (x != 0 || z != 0) {
                     boolean isCorner = x != 0 && z != 0;
                     if (!isCorner && randomSource.nextFloat() <= 0.75F || isCorner && randomSource.nextFloat() < 0.25F) {
-                        pos.setWithOffset(origin, x, 0, z);
-                        boolean placed = tryPlaceStem(level, pos, configuration);
-                        if (!isCorner && placed && randomSource.nextFloat() < 0.25F) {
-                            pos.setWithOffset(origin, x, 1, z);
-                            tryPlaceStem(level, pos, configuration);
+                        pos.setWithOffset(origin, x, -1, z);
+                        if (!level.isEmptyBlock(pos)) {
+                            pos.move(Direction.UP);
+                            boolean placed = tryPlaceStem(level, pos, configuration);
+                            if (!isCorner && placed && randomSource.nextFloat() < 0.25F) {
+                                pos.setWithOffset(origin, x, 1, z);
+                                tryPlaceStem(level, pos, configuration);
+                            }
                         }
                     }
                     if (!isCorner && randomSource.nextFloat() <= 0.75F  || isCorner && randomSource.nextFloat() < 0.25F) {
@@ -115,6 +116,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         float size = (6 + randomSource.nextFloat() * 3) / 2;
         int maxSize = Mth.ceil(size * 1.25);
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        boolean placeGlowingSpores = randomSource.nextFloat() < 0.4F;
 
         for (int x = -maxSize; x <= maxSize; x++) {
             for (int z = -maxSize; z <= maxSize; z++) {
@@ -134,49 +136,38 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
                         if (configuration.planted() && !level.getBlockState(pos.below()).isAir()) {
                             level.destroyBlock(pos, true);
                         }
-                        placeHatBlock(level, randomSource, configuration, pos, isEdge);
+                        placeHatBlock(level, randomSource, configuration, pos, isEdge, placeGlowingSpores);
                     }
                 }
             }
         }
     }
 
-    private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge) {
+    private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge, boolean placeGlowingSpores) {
         setBlock(level, pos, configuration.hatState());
-        float shroomlightChance = isEdge ? 0 : 0.1F;
-        float hangingVineChance = isEdge ? 0.25F : 0.75F;
-        float sproutChance = 0.1F;
-        float standingVineChance = 0.5F;
+        float shroomlightChance = isEdge ? 0 : 0.05F;
+        float hangingVineChance = isEdge ? 0.3F : 0.75F;
+        float sproutChance = 0.2F;
 
         if (randomSource.nextFloat() < shroomlightChance) {
             if (level.isEmptyBlock(pos.below())) {
                 setBlock(level, pos.below(), Blocks.SHROOMLIGHT.defaultBlockState());
             }
         } else if (randomSource.nextFloat() < hangingVineChance) {
-            tryPlaceHangingSoulSpore(pos, level, randomSource, isEdge);
+            tryPlaceHangingSoulSpore(pos, level, randomSource, isEdge, placeGlowingSpores);
         }
         if (randomSource.nextFloat() < sproutChance) {
             if (level.isEmptyBlock(pos.above())) {
                 setBlock(level, pos.above(), ModBlocks.SOULBLIGHT_SPROUTS.get().defaultBlockState());
             }
-        } else if (randomSource.nextFloat() < standingVineChance) {
-            tryPlaceStandingSoulSpore(pos, level, randomSource);
         }
     }
     
-    private static void tryPlaceHangingSoulSpore(BlockPos pos, LevelAccessor level, RandomSource randomSource, boolean isEdge) {
+    private static void tryPlaceHangingSoulSpore(BlockPos pos, LevelAccessor level, RandomSource randomSource, boolean isEdge, boolean placeGlowingSpores) {
         BlockPos.MutableBlockPos below = pos.mutable().move(Direction.DOWN);
         if (level.isEmptyBlock(below)) {
             int length = Mth.nextInt(randomSource, 2, 3) + (isEdge ? 0 : 1);
-            SoulSporeColumnFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, isEdge ? 1 : 0);
-        }
-    }
-    
-    private static void tryPlaceStandingSoulSpore(BlockPos pos, LevelAccessor level, RandomSource randomSource) {
-        BlockPos.MutableBlockPos above = pos.mutable().move(Direction.UP);
-        if (level.isEmptyBlock(above)) {
-            int length = Mth.nextInt(randomSource, 1, 2);
-            SoulSporeColumnFeature.placeSoulSporeColumn(level, randomSource, above, length, Direction.UP, 0.1F);
+            SoulSporeColumnFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, isEdge && placeGlowingSpores ? 1 : 0);
         }
     }
 }

@@ -25,7 +25,7 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     public static final VoxelShape TOP_SHAPE_UP = Block.box(1, 0, 1, 15, 8, 15);
     public static final VoxelShape TOP_SHAPE_DOWN = Block.box(1, 8, 1, 15, 16, 15);
 
-    public static final int MAX_LENGTH_LONG = 6;
+    public static final int MAX_LENGTH_LONG = 8;
     public static final int MAX_LENGTH_SHORT = 3;
 
     public SoulSporeBlock(BlockBehaviour.Properties properties) {

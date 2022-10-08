@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 
 @Mod(GardensOfTheDead.MODID)
 public class GardensOfTheDead {
@@ -34,11 +35,14 @@ public class GardensOfTheDead {
         ModBiomes.BIOME_REGISTER.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
         ModConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
+        ModPlacedFeatures.PLACED_FEATURES.register(modEventBus);
+        ModPlacementModifiers.PLACEMENT_MODIFIER_TYPES.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             Regions.register(new GardensOfTheDeadRegion());
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, MODID, ModSurfaceRules.makeRules());
             ModItems.addCompostables();
         });
     }

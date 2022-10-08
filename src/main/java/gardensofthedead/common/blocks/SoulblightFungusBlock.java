@@ -21,12 +21,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.eventbus.api.Event;
 
-public class SoulBlightFungusBlock extends BushBlock implements BonemealableBlock {
+public class SoulblightFungusBlock extends BushBlock implements BonemealableBlock {
 
     protected static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 13, 12);
     private static final double BONEMEAL_SUCCESS_PROBABILITY = 0.4D;
 
-    public SoulBlightFungusBlock(BlockBehaviour.Properties properties) {
+    public SoulblightFungusBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 

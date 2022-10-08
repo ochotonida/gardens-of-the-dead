@@ -54,6 +54,7 @@ public class SoulSporeColumnFeature extends Feature<SoulSporeColumnConfiguration
                 }
 
                 BlockState state = ModBlocks.SOUL_SPORE.get().defaultBlockState()
+                        .setValue(SoulSporeBlock.TOP, false)
                         .setValue(SoulSporeBaseBlock.DIRECTION, direction)
                         .setValue(SoulSporeBlock.GROWING, false);
 
