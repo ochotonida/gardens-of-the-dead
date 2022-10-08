@@ -23,7 +23,7 @@ public class GardensOfTheDeadRegion extends Region {
         // TODO
         addBiome(mapper,
                 Climate.parameters(0, 0, 0, 0, 0, 0, 0),
-                ModBiomes.SOUL_FOREST
+                ModBiomes.SOULBLIGHT_FOREST
         );
     }
 }

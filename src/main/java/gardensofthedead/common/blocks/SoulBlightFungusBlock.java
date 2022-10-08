@@ -1,7 +1,8 @@
 package gardensofthedead.common.blocks;
 
-import gardensofthedead.common.init.ModFeatures;
+import gardensofthedead.common.init.ModConfiguredFeatures;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -38,7 +40,7 @@ public class SoulBlightFungusBlock extends BushBlock implements BonemealableBloc
     }
 
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
-        Block block = (ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().config()).validBaseState().getBlock();
+        Block block = (ModConfiguredFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().config()).validBaseState().getBlock();
         BlockState blockstate = level.getBlockState(pos.below());
         return blockstate.is(block);
     }
@@ -48,9 +50,15 @@ public class SoulBlightFungusBlock extends BushBlock implements BonemealableBloc
     }
 
     public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState state) {
-        Event.Result result = ForgeEventFactory.blockGrowFeature(level, randomSource, pos, BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(BuiltinRegistries.CONFIGURED_FEATURE.getResourceKey(ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get()).orElseThrow())).getResult();
+        Holder<ConfiguredFeature<?, ?>> holder = BuiltinRegistries.CONFIGURED_FEATURE.getHolderOrThrow(
+                BuiltinRegistries.CONFIGURED_FEATURE.getResourceKey(
+                        ModConfiguredFeatures.SOULBLIGHT_FUNGUS_PLANTED.get()
+                ).orElseThrow()
+        );
+
+        Event.Result result = ForgeEventFactory.blockGrowFeature(level, randomSource, pos, holder).getResult();
         if (!result.equals(Event.Result.DENY)) {
-            ModFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().place(level, level.getChunkSource().getGenerator(), randomSource, pos);
+            ModConfiguredFeatures.SOULBLIGHT_FUNGUS_PLANTED.get().place(level, level.getChunkSource().getGenerator(), randomSource, pos);
         }
     }
 }

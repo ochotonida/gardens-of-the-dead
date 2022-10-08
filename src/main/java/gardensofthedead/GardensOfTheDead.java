@@ -33,7 +33,7 @@ public class GardensOfTheDead {
         ModItems.ITEMS.register(modEventBus);
         ModBiomes.BIOME_REGISTER.register(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
-        ModFeatures.CONFIGURED_FEATURES.register(modEventBus);
+        ModConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

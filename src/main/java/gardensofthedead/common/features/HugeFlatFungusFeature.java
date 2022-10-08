@@ -168,7 +168,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         BlockPos.MutableBlockPos below = pos.mutable().move(Direction.DOWN);
         if (level.isEmptyBlock(below)) {
             int length = Mth.nextInt(randomSource, 2, 3) + (isEdge ? 0 : 1);
-            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, isEdge ? 1 : 0);
+            SoulSporeColumnFeature.placeSoulSporeColumn(level, randomSource, below, length, Direction.DOWN, isEdge ? 1 : 0);
         }
     }
     
@@ -176,7 +176,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         BlockPos.MutableBlockPos above = pos.mutable().move(Direction.UP);
         if (level.isEmptyBlock(above)) {
             int length = Mth.nextInt(randomSource, 1, 2);
-            SoulSporeFeature.placeSoulSporeColumn(level, randomSource, above, length, Direction.UP, 0.1F);
+            SoulSporeColumnFeature.placeSoulSporeColumn(level, randomSource, above, length, Direction.UP, 0.1F);
         }
     }
 }

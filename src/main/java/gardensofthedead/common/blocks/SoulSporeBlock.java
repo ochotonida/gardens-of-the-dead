@@ -25,16 +25,19 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     public static final VoxelShape TOP_SHAPE_UP = Block.box(1, 0, 1, 15, 8, 15);
     public static final VoxelShape TOP_SHAPE_DOWN = Block.box(1, 8, 1, 15, 16, 15);
 
+    public static final int MAX_LENGTH_LONG = 6;
+    public static final int MAX_LENGTH_SHORT = 3;
+
     public SoulSporeBlock(BlockBehaviour.Properties properties) {
         super(properties);
         registerDefaultState(defaultBlockState().setValue(TOP, true).setValue(GROWING, true));
     }
 
-    public static int getMaxHeight(BlockState supportingBlock) {
+    public static int getMaxLength(BlockState supportingBlock) {
         if (supportingBlock.is(Blocks.SOUL_SAND)) {
-            return 6;
+            return MAX_LENGTH_LONG;
         } else {
-            return 3;
+            return MAX_LENGTH_SHORT;
         }
     }
 
@@ -72,17 +75,17 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         Direction direction = state.getValue(DIRECTION);
         if (randomSource.nextFloat() < 0.1F && level.isEmptyBlock(pos.relative(direction))) {
-            int height = 1;
-            while (level.getBlockState(pos.relative(direction.getOpposite(), height)).is(this)) {
-                height++;
+            int length = 1;
+            while (level.getBlockState(pos.relative(direction.getOpposite(), length)).is(this)) {
+                length++;
             }
 
-            BlockState supportingBlock = level.getBlockState(pos.relative(direction.getOpposite(), height));
+            BlockState supportingBlock = level.getBlockState(pos.relative(direction.getOpposite(), length));
 
-            int maxHeight = getMaxHeight(supportingBlock);
+            int maxLength = getMaxLength(supportingBlock);
 
-            if (state.getValue(TOP) && (height >= maxHeight || randomSource.nextInt(maxHeight - height + 1) == 0)) {
-                if (height > 1 && randomSource.nextInt(8) == 0) {
+            if (state.getValue(TOP) && (length >= maxLength || randomSource.nextInt(maxLength - length + 1) == 0)) {
+                if (length > 1 && randomSource.nextInt(8) == 0) {
                     BlockState glowingSoulSpore = ModBlocks.GLOWING_SOUL_SPORE.get()
                             .defaultBlockState()
                             .setValue(DIRECTION, direction);

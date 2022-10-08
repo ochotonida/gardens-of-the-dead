@@ -11,7 +11,6 @@ public record HugeFlatFungusConfiguration(
         BlockState hatState,
         boolean planted
 ) implements FeatureConfiguration {
-
     public static final Codec<HugeFlatFungusConfiguration> CODEC = RecordCodecBuilder.create((builder) -> builder.group(
                     BlockState.CODEC.fieldOf("valid_base_block").forGetter((config) -> config.validBaseState),
                     BlockState.CODEC.fieldOf("stem_state").forGetter((config) -> config.stemState),
