@@ -1,0 +1,6 @@
+// 1.19.2	2022-10-09T14:52:42.1375959	Tags for minecraft:worldgen/biome
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/forge/tags/worldgen/biome/is_dry/nether.json
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/forge/tags/worldgen/biome/is_hot/nether.json
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/has_structure/nether_fossil.json
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/is_nether.json

@@ -26,6 +26,7 @@ public class GardensOfTheDeadData {
         BlockTags blockTags = new BlockTags(generator, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);
         generator.addProvider(event.includeServer(), new ItemTags(generator, blockTags, existingFileHelper));
+        generator.addProvider(event.includeClient(), new BiomeTags(generator, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTables(generator));
         generator.addProvider(event.includeServer(), new Recipes(generator));
     }
