@@ -37,6 +37,7 @@ public class GardensOfTheDead {
         ModConfiguredFeatures.CONFIGURED_FEATURES.register(modEventBus);
         ModPlacedFeatures.PLACED_FEATURES.register(modEventBus);
         ModPlacementModifiers.PLACEMENT_MODIFIER_TYPES.register(modEventBus);
+        ModParticleTypes.PARTICLE_TYPES.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
