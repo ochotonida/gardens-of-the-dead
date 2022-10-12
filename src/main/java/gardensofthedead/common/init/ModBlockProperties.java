@@ -37,6 +37,13 @@ public class ModBlockProperties {
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ);
 
+    public static BlockBehaviour.Properties BLISTERCROWN = BlockBehaviour.Properties.of(Material.PLANT)
+            .color(MaterialColor.COLOR_RED)
+            .noCollission()
+            .instabreak()
+            .sound(SoundType.NETHER_SPROUTS)
+            .offsetType(BlockBehaviour.OffsetType.XZ);
+
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
             .strength(2)

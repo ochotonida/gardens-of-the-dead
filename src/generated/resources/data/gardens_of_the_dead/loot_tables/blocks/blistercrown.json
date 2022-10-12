@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "action": "shears_dig",
+              "condition": "forge:can_tool_perform_action"
+            }
+          ],
+          "name": "gardens_of_the_dead:blistercrown"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

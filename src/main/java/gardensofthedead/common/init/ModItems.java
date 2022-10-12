@@ -24,6 +24,8 @@ public class ModItems {
     public static final RegistryObject<Item> GLOWING_SOUL_SPORE = blockItem(ModBlocks.GLOWING_SOUL_SPORE);
     public static final RegistryObject<Item> SOULBLIGHT_FUNGUS = blockItem(ModBlocks.SOULBLIGHT_FUNGUS);
     public static final RegistryObject<Item> SOULBLIGHT_SPROUTS = blockItem(ModBlocks.SOULBLIGHT_SPROUTS);
+    public static final RegistryObject<Item> BLISTERCROWN = blockItem(ModBlocks.BLISTERCROWN);
+    public static final RegistryObject<Item> TALL_BLISTERCROWN = blockItem(ModBlocks.TALL_BLISTERCROWN);
 
     public static final RegistryObject<Item> SOULBLIGHT_STEM = blockItem(ModBlocks.SOULBLIGHT_STEM);
     public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_STEM = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM);
@@ -51,13 +53,24 @@ public class ModItems {
     }
 
     public static void addCompostables() {
-        addCompostable(0.3F, SOUL_SPORE.get());
-        addCompostable(0.65F, SOULBLIGHT_FUNGUS.get());
-        addCompostable(0.85F, GLOWING_SOUL_SPORE.get());
-        addCompostable(0.85F, BLIGHTWART_BLOCK.get());
+        addCompostables(0.3F,
+                SOUL_SPORE.get(),
+                SOULBLIGHT_SPROUTS.get(),
+                BLISTERCROWN.get(),
+                TALL_BLISTERCROWN.get()
+        );
+        addCompostables(0.65F,
+                SOULBLIGHT_FUNGUS.get()
+        );
+        addCompostables(0.85F,
+                GLOWING_SOUL_SPORE.get(),
+                BLIGHTWART_BLOCK.get()
+        );
     }
 
-    private static void addCompostable(double chance, ItemLike item) {
-        ComposterBlock.COMPOSTABLES.put(item, (float) chance);
+    private static void addCompostables(double chance, ItemLike... items) {
+        for (ItemLike item : items) {
+            ComposterBlock.COMPOSTABLES.put(item, (float) chance);
+        }
     }
 }

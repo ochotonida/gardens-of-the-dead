@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "half=lower": [
+      {
+        "model": "gardens_of_the_dead:block/tall_blistercrown_bottom"
+      },
+      {
+        "model": "gardens_of_the_dead:block/tall_blistercrown_bottom_mirrored"
+      }
+    ],
+    "half=upper": [
+      {
+        "model": "gardens_of_the_dead:block/tall_blistercrown_top"
+      },
+      {
+        "model": "gardens_of_the_dead:block/tall_blistercrown_top_mirrored"
+      }
+    ]
+  }
+}

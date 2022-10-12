@@ -1,6 +1,8 @@
-// 1.19.2	2022-10-08T02:09:57.1696909	LootTables
+// 1.19.2	2022-10-12T16:10:05.8833945	LootTables
 269643404fae68d9eefcca6eda556831c083465d data/gardens_of_the_dead/loot_tables/blocks/blightwart_block.json
+bee9a4f8642c3de94956dc565ecf5e0d55d4f068 data/gardens_of_the_dead/loot_tables/blocks/blistercrown.json
 5e7e8452b3c901444b992c7521140457a783d41b data/gardens_of_the_dead/loot_tables/blocks/glowing_soul_spore.json
+7661fbac75ba2a626fc738a15e6c6407d49f5391 data/gardens_of_the_dead/loot_tables/blocks/potted_blistercrown.json
 0c6ad6141cfcd63ba37c224c0cd3872913572f26 data/gardens_of_the_dead/loot_tables/blocks/potted_glowing_soul_spore.json
 60cf57231362c0b37dc5d279f67d5b19f8aaac03 data/gardens_of_the_dead/loot_tables/blocks/potted_soulblight_fungus.json
 72a8ca08814724e5193d32c1c7ce49b82508be80 data/gardens_of_the_dead/loot_tables/blocks/potted_soulblight_sprouts.json
@@ -22,3 +24,4 @@ e27cd842040c658833b93c70c34cd272e24bfd40 data/gardens_of_the_dead/loot_tables/bl
 90a0fc76d0a317e3e082a3dd81b76931c5fb2506 data/gardens_of_the_dead/loot_tables/blocks/soul_spore.json
 dc24dad23ec5390e735399e0a2502221e6ae7c3a data/gardens_of_the_dead/loot_tables/blocks/stripped_soulblight_hyphae.json
 152de3c1dcf32934f76daa7eb5d0b8ba27b10026 data/gardens_of_the_dead/loot_tables/blocks/stripped_soulblight_stem.json
+0d81587da74c99c5169ed702015b4de6b693ed8c data/gardens_of_the_dead/loot_tables/blocks/tall_blistercrown.json

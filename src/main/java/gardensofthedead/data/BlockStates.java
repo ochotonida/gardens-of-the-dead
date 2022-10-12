@@ -7,7 +7,9 @@ import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -56,6 +58,8 @@ public class BlockStates extends BlockStateProvider {
         );
 
         simplePlant(ModBlocks.SOULBLIGHT_SPROUTS.get());
+        simplePlant(ModBlocks.BLISTERCROWN.get());
+        randomlyMirroredDoublePlant(ModBlocks.TALL_BLISTERCROWN.get());
 
         log(ModBlocks.SOULBLIGHT_STEM.get());
         log(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
@@ -68,6 +72,7 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get(), "potted_soulblight_sprouts");
+        pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
 
         ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
         simpleBlock(ModBlocks.SOULBLIGHT_PLANKS.get());
@@ -193,10 +198,29 @@ public class BlockStates extends BlockStateProvider {
 
     private void simplePlant(Block block) {
         simpleBlock(block, cross(getName(block)));
+        generatedItem(block);
+    }
+
+    private void randomlyMirroredDoublePlant(Block block) {
+        String topTexture = getName(block) + "_top";
+        String bottomTexture = getName(block) + "_bottom";
+        getVariantBuilder(block)
+                .partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER)
+                .addModels(cross(topTexture), crossMirrored(topTexture))
+                .partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
+                .addModels(cross(bottomTexture), crossMirrored(bottomTexture));
+        generatedItem(block.asItem(), GardensOfTheDead.id(BLOCK_FOLDER + "/" + topTexture));
+    }
+
+    private void generatedItem(Block block) {
+        generatedItem(block.asItem(), GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(block)));
+    }
+
+    private void generatedItem(Item item, ResourceLocation texture) {
         // noinspection ConstantConditions
-        itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(block.asItem()).toString())
+        itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(block)));
+                .texture("layer0", texture);
     }
 
     private ConfiguredModel cross(String textureName) {

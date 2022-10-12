@@ -50,7 +50,8 @@ public class BlockTags extends BlockTagsProvider {
 
         tag(net.minecraft.tags.BlockTags.ENDERMAN_HOLDABLE).add(
                 ModBlocks.SOULBLIGHT_FUNGUS.get(),
-                ModBlocks.SOULBLIGHT_SPROUTS.get()
+                ModBlocks.SOULBLIGHT_SPROUTS.get(),
+                ModBlocks.BLISTERCROWN.get()
         );
 
         tag(ModTags.Blocks.SOULBLIGHT_STEMS).add(

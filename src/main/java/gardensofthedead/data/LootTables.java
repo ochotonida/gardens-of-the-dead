@@ -1,6 +1,7 @@
 package gardensofthedead.data;
 
 import com.mojang.datafixers.util.Pair;
+import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -17,10 +18,9 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.loot.CanToolPerformAction;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -29,6 +29,8 @@ public class LootTables extends LootTableProvider {
 
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = new ArrayList<>();
 
+    private final Set<Block> blocksWithLootAdded = new HashSet<>();
+
     public LootTables(DataGenerator dataGenerator) {
         super(dataGenerator);
     }
@@ -36,44 +38,30 @@ public class LootTables extends LootTableProvider {
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         lootTables.clear();
+        blocksWithLootAdded.clear();
+
+        noLoot(
+                ModBlocks.SOULBLIGHT_WALL_SIGN.get()
+        );
 
         addShearHarvestables(
                 ModBlocks.SOUL_SPORE.get(),
                 ModBlocks.GLOWING_SOUL_SPORE.get(),
-                ModBlocks.SOULBLIGHT_SPROUTS.get()
+                ModBlocks.SOULBLIGHT_SPROUTS.get(),
+                ModBlocks.BLISTERCROWN.get(),
+                ModBlocks.TALL_BLISTERCROWN.get()
         );
 
-        addDefaultDrops(
-                ModBlocks.SOULBLIGHT_FUNGUS.get()
-        );
-
-        addDefaultDrops(
-                ModBlocks.SOULBLIGHT_STEM.get(),
-                ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
-                ModBlocks.SOULBLIGHT_HYPHAE.get(),
-                ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get(),
-                ModBlocks.BLIGHTWART_BLOCK.get()
-        );
-
-        addPottedPlants(
-                ModBlocks.POTTED_SOUL_SPORE.get(),
-                ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(),
-                ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get(),
-                ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get()
-        );
-
-        addDefaultDrops(
-                ModBlocks.SOULBLIGHT_PLANKS.get(),
-                ModBlocks.SOULBLIGHT_SLAB.get(),
-                ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(),
-                ModBlocks.SOULBLIGHT_FENCE.get(),
-                ModBlocks.SOULBLIGHT_TRAPDOOR.get(),
-                ModBlocks.SOULBLIGHT_FENCE_GATE.get(),
-                ModBlocks.SOULBLIGHT_STAIRS.get(),
-                ModBlocks.SOULBLIGHT_BUTTON.get(),
-                ModBlocks.SOULBLIGHT_DOOR.get(),
-                ModBlocks.SOULBLIGHT_SIGN.get()
-        );
+        for (Block block : ForgeRegistries.BLOCKS.getValues()) {
+            // noinspection ConstantConditions
+            if (!blocksWithLootAdded.contains(block) && ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(GardensOfTheDead.MODID)) {
+                if (block instanceof FlowerPotBlock pottedPlant) {
+                    addPottedPlants(pottedPlant);
+                } else {
+                    addDefaultDrops(block);
+                }
+            }
+        }
 
         return lootTables;
     }
@@ -120,7 +108,12 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addBlockLootTable(Block block, LootTable.Builder lootTable) {
+        blocksWithLootAdded.add(block);
         lootTables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(block.getLootTable(), lootTable), LootContextParamSets.BLOCK));
+    }
+
+    private void noLoot(Block... blocks) {
+        blocksWithLootAdded.addAll(Set.of(blocks));
     }
 
     @Override
