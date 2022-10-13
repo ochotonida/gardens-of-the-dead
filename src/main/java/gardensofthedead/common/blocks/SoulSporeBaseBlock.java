@@ -4,12 +4,14 @@ import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -70,7 +72,9 @@ public class SoulSporeBaseBlock extends Block implements IPlantable, IForgeShear
         BlockPos attachedPos = pos.relative(direction.getOpposite());
         BlockState supportingBlock = level.getBlockState(attachedPos);
         return supportingBlock.canSustainPlant(level, pos, Direction.UP, this)
-                || supportingBlock.isFaceSturdy(level, attachedPos, Direction.UP)
+                || supportingBlock.is(Blocks.SOUL_SAND)
+                || supportingBlock.is(Blocks.SOUL_SOIL)
+                || supportingBlock.is(BlockTags.WART_BLOCKS)
                 || supportingBlock.is(ModBlocks.SOUL_SPORE.get()) && supportingBlock.getValue(DIRECTION) == direction;
     }
 
