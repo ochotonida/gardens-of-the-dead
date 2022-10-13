@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-13T19:17:00.1736608	Block States: gardens_of_the_dead
+// 1.19.2	2022-10-13T21:06:15.0961629	Block States: gardens_of_the_dead
 64691076489f7ebfe627505c5912a2c89966a38e assets/gardens_of_the_dead/blockstates/blightwart_block.json
 c9dc65eb668de54de3a17d7e4edaad83b6c0616a assets/gardens_of_the_dead/blockstates/blistercrown.json
 b73f1d2dfe1f22fc77711d76b005b1e62f363aa4 assets/gardens_of_the_dead/blockstates/glowing_soul_spore.json
@@ -111,4 +111,4 @@ aa84e45c0c723c0fe4bcbce741917fcb5163e7af assets/gardens_of_the_dead/models/item/
 b86179a071ba580733af20b4e7a7b135a2e040b0 assets/gardens_of_the_dead/models/item/stripped_soulblight_hyphae.json
 bb135e8491bcd4ba37321b9c2696b9af0e23fb63 assets/gardens_of_the_dead/models/item/stripped_soulblight_stem.json
 75672741cab2bb03acb8e83f03e9f01010ed7146 assets/gardens_of_the_dead/models/item/tall_blistercrown.json
-d1f8d580a554799bdf87ee1c9028947d2d6210d0 assets/gardens_of_the_dead/models/item/whistlecane.json
+7ca0e6bcb248944fcd7a125e1926ac4f7954a99b assets/gardens_of_the_dead/models/item/whistlecane.json

@@ -106,7 +106,8 @@ public class BlockStates extends BlockStateProvider {
                     faceBuilder.texture("#cane");
                 }).end();
 
-        simpleBlockWithItem(ModBlocks.WHISTLECANE.get(), builder);
+        simpleBlock(ModBlocks.WHISTLECANE.get(), builder);
+        itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
     }
 
     private void createCrossModels() {
