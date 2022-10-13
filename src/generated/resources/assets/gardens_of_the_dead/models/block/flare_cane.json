@@ -1,0 +1,77 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#cane",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "east": {
+          "texture": "#cane",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "north": {
+          "texture": "#cane",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#cane",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "up": {
+          "texture": "#cane",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "west": {
+          "texture": "#cane",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        16,
+        11
+      ]
+    }
+  ],
+  "textures": {
+    "cane": "gardens_of_the_dead:block/flare_cane",
+    "particle": "#cane"
+  }
+}

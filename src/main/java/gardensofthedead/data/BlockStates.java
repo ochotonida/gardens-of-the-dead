@@ -16,6 +16,8 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
+
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 public class BlockStates extends BlockStateProvider {
@@ -30,43 +32,20 @@ public class BlockStates extends BlockStateProvider {
     protected void registerStatesAndModels() {
         createCrossModels();
 
-        getVariantBuilder(ModBlocks.SOUL_SPORE.get())
-                .partialState()
-                        .with(SoulSporeBlock.TOP, true)
-                        .with(SoulSporeBlock.DIRECTION, Direction.UP)
-                        .addModels(cross("soul_spore_top"), crossMirrored("soul_spore_top"))
-                .partialState()
-                        .with(SoulSporeBlock.TOP, true)
-                        .with(SoulSporeBlock.DIRECTION, Direction.DOWN)
-                        .addModels(crossFlipped("soul_spore_top"), crossMirroredFlipped("soul_spore_top"))
-                .partialState()
-                        .with(SoulSporeBlock.TOP, false)
-                        .addModels(cross("soul_spore"), crossMirrored("soul_spore"));
+        addSoulSpore();
+        addFlareCane();
 
-        getVariantBuilder(ModBlocks.GLOWING_SOUL_SPORE.get())
-                .partialState()
-                        .with(SoulSporeBaseBlock.DIRECTION, Direction.UP)
-                        .addModels(cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"))
-                .partialState()
-                        .with(SoulSporeBaseBlock.DIRECTION, Direction.DOWN)
-                        .addModels(crossFlipped("glowing_soul_spore"), crossMirroredFlipped("glowing_soul_spore"));
+        simplePlantWithItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
+        simplePlantWithItem(ModBlocks.SOULBLIGHT_SPROUTS.get());
+        simplePlantWithItem(ModBlocks.BLISTERCROWN.get());
+        randomlyMirroredDoublePlantWithItem(ModBlocks.TALL_BLISTERCROWN.get());
 
-        simpleBlock(ModBlocks.SOULBLIGHT_FUNGUS.get(),
-                cross("soulblight_fungus"),
-                cross("soulblight_fungus_tall"),
-                cross("soulblight_fungus_short")
-        );
+        logWithItem(ModBlocks.SOULBLIGHT_STEM.get());
+        logWithItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
+        woodWithItem(ModBlocks.SOULBLIGHT_HYPHAE.get());
+        woodWithItem(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
 
-        simplePlant(ModBlocks.SOULBLIGHT_SPROUTS.get());
-        simplePlant(ModBlocks.BLISTERCROWN.get());
-        randomlyMirroredDoublePlant(ModBlocks.TALL_BLISTERCROWN.get());
-
-        log(ModBlocks.SOULBLIGHT_STEM.get());
-        log(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
-        wood(ModBlocks.SOULBLIGHT_HYPHAE.get());
-        wood(ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get());
-
-        simpleBlock(ModBlocks.BLIGHTWART_BLOCK.get());
+        simpleBlockWithItem(ModBlocks.BLIGHTWART_BLOCK.get());
 
         pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
         pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
@@ -75,16 +54,59 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
 
         ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
-        simpleBlock(ModBlocks.SOULBLIGHT_PLANKS.get());
-        slabBlock(ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanksTexture, soulblightPlanksTexture);
-        stairsBlock(ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanksTexture);
-        buttonBlock(ModBlocks.SOULBLIGHT_BUTTON.get(), soulblightPlanksTexture);
-        pressurePlateBlock(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), soulblightPlanksTexture);
-        fenceBlock(ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanksTexture);
-        fenceGateBlock(ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanksTexture);
-        signBlock(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
-        doorBlock(ModBlocks.SOULBLIGHT_DOOR.get());
-        trapdoorBlock(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
+        simpleBlockWithItem(ModBlocks.SOULBLIGHT_PLANKS.get());
+        slabWithItem(ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanksTexture);
+        stairsWithItem(ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanksTexture);
+        buttonWithItem(ModBlocks.SOULBLIGHT_BUTTON.get(), soulblightPlanksTexture);
+        pressurePlateWithItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), soulblightPlanksTexture);
+        fenceWithItem(ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanksTexture);
+        fenceGateWithItem(ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanksTexture);
+        signWithItem(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
+        doorWithItem(ModBlocks.SOULBLIGHT_DOOR.get());
+        trapdoorWithItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
+    }
+
+    private void addSoulSpore() {
+        getVariantBuilder(ModBlocks.SOUL_SPORE.get())
+                .partialState()
+                .with(SoulSporeBlock.TOP, true)
+                .with(SoulSporeBlock.DIRECTION, Direction.UP)
+                .addModels(cross("soul_spore_top"), crossMirrored("soul_spore_top"))
+                .partialState()
+                .with(SoulSporeBlock.TOP, true)
+                .with(SoulSporeBlock.DIRECTION, Direction.DOWN)
+                .addModels(crossFlipped("soul_spore_top"), crossMirroredFlipped("soul_spore_top"))
+                .partialState()
+                .with(SoulSporeBlock.TOP, false)
+                .addModels(cross("soul_spore"), crossMirrored("soul_spore"));
+        generatedItem(ModBlocks.SOUL_SPORE.get());
+
+        getVariantBuilder(ModBlocks.GLOWING_SOUL_SPORE.get())
+                .partialState()
+                .with(SoulSporeBaseBlock.DIRECTION, Direction.UP)
+                .addModels(cross("glowing_soul_spore"), crossMirrored("glowing_soul_spore"))
+                .partialState()
+                .with(SoulSporeBaseBlock.DIRECTION, Direction.DOWN)
+                .addModels(crossFlipped("glowing_soul_spore"), crossMirroredFlipped("glowing_soul_spore"));
+        generatedItem(ModBlocks.GLOWING_SOUL_SPORE.get());
+    }
+
+    private void addFlareCane() {
+        ModelFile builder = models().withExistingParent(getName(ModBlocks.FLARE_CANE.get()), BLOCK_FOLDER + "/block")
+                .texture("cane", blockTexture(ModBlocks.FLARE_CANE.get()).toString())
+                .texture("particle", "#cane")
+                .element()
+                .from(5, 0, 5).to(11, 16, 11)
+                .allFaces((direction, faceBuilder) -> {
+                    if (direction.getAxis() == Direction.Axis.Y) {
+                        faceBuilder.uvs(6, 0, 12, 6);
+                    } else {
+                        faceBuilder.uvs(0, 0, 6, 16);
+                    }
+                    faceBuilder.texture("#cane");
+                }).end();
+
+        simpleBlockWithItem(ModBlocks.FLARE_CANE.get(), builder);
     }
 
     private void createCrossModels() {
@@ -131,56 +153,75 @@ public class BlockStates extends BlockStateProvider {
                 .end();
     }
 
-    public void doorBlock(DoorBlock block) {
-        doorBlock(block, CUTOUT);
+    public void slabWithItem(SlabBlock block, ResourceLocation texture) {
+        slabBlock(block, texture, texture);
+        simpleBlockItem(block);
     }
 
-    public void doorBlock(DoorBlock block, String renderType) {
+    public void stairsWithItem(StairBlock block, ResourceLocation texture) {
+        stairsBlock(block, texture);
+        simpleBlockItem(block);
+    }
+
+    public void doorWithItem(DoorBlock block) {
+        doorWithItem(block, CUTOUT);
+    }
+
+    public void doorWithItem(DoorBlock block, String renderType) {
         doorBlockWithRenderType(block, blockTexture(getName(block) + "_bottom"), blockTexture(getName(block) + "_top"), renderType);
         itemModels().basicItem(block.asItem());
     }
 
-    public void trapdoorBlock(TrapDoorBlock block) {
-        trapdoorBlock(block, CUTOUT);
+    public void trapdoorWithItem(TrapDoorBlock block) {
+        trapdoorWithItem(block, CUTOUT);
     }
 
-    public void trapdoorBlock(TrapDoorBlock block, String renderType) {
-        trapdoorBlockWithRenderType(block, blockTexture(getName(block)), true, renderType);
+    public void trapdoorWithItem(TrapDoorBlock trapDoor, String renderType) {
+        trapdoorBlockWithRenderType(trapDoor, blockTexture(getName(trapDoor)), true, renderType);
 
-        itemModels().withExistingParent(getName(block), modLoc("%s/%s_bottom".formatted(BLOCK_FOLDER, getName(block))));
+        itemModels().withExistingParent(getName(trapDoor), modLoc("%s/%s_bottom".formatted(BLOCK_FOLDER, getName(trapDoor))));
     }
 
-    @Override
-    public void buttonBlock(ButtonBlock block, ResourceLocation texture) {
-        super.buttonBlock(block, texture);
+    public void buttonWithItem(ButtonBlock block, ResourceLocation texture) {
+        buttonBlock(block, texture);
         itemModels().buttonInventory(getName(block), texture);
     }
 
-    @Override
-    public void fenceBlock(FenceBlock block, ResourceLocation texture) {
-        super.fenceBlock(block, texture);
+    public void pressurePlateWithItem(PressurePlateBlock block, ResourceLocation texture) {
+        pressurePlateBlock(block, texture);
+        simpleBlockItem(block);
+    }
+
+    public void fenceWithItem(FenceBlock block, ResourceLocation texture) {
+        fenceBlock(block, texture);
         itemModels().fenceInventory(getName(block), texture);
     }
 
-    @Override
-    public void signBlock(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
-        super.signBlock(signBlock, wallSignBlock, texture);
+    public void fenceGateWithItem(FenceGateBlock block, ResourceLocation texture) {
+        fenceGateBlock(block, texture);
+        simpleBlockItem(block);
+    }
+
+    public void signWithItem(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
+        signBlock(signBlock, wallSignBlock, texture);
         itemModels().basicItem(signBlock.asItem());
     }
 
-    private void log(RotatedPillarBlock wood) {
+    private void logWithItem(RotatedPillarBlock wood) {
         String name = getName(wood);
         ResourceLocation side = blockTexture(name);
         ResourceLocation top = blockTexture(name + "_top");
         axisBlock(wood, side, top);
+        simpleBlockItem(wood);
     }
 
-    private void wood(RotatedPillarBlock wood) {
+    private void woodWithItem(RotatedPillarBlock wood) {
         String name = getName(wood)
                 .replace("wood", "log")
                 .replace("hyphae", "stem");
         ResourceLocation side = blockTexture(name);
         axisBlock(wood, side, side);
+        simpleBlockItem(wood);
     }
 
     private void pottedPlant(Block pottedPlant) {
@@ -196,12 +237,12 @@ public class BlockStates extends BlockStateProvider {
         );
     }
 
-    private void simplePlant(Block block) {
+    private void simplePlantWithItem(Block block) {
         simpleBlock(block, cross(getName(block)));
         generatedItem(block);
     }
 
-    private void randomlyMirroredDoublePlant(Block block) {
+    private void randomlyMirroredDoublePlantWithItem(Block block) {
         String topTexture = getName(block) + "_top";
         String bottomTexture = getName(block) + "_bottom";
         getVariantBuilder(block)
@@ -210,6 +251,22 @@ public class BlockStates extends BlockStateProvider {
                 .partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER)
                 .addModels(cross(bottomTexture), crossMirrored(bottomTexture));
         generatedItem(block.asItem(), GardensOfTheDead.id(BLOCK_FOLDER + "/" + topTexture));
+    }
+
+    private void simpleBlockWithItem(Block block) {
+        simpleBlock(block);
+        simpleBlockItem(block);
+    }
+
+    private void simpleBlockWithItem(Block block, ModelFile modelFile) {
+        simpleBlock(block, modelFile);
+        simpleBlockItem(block);
+    }
+
+    private void simpleBlockItem(Block block) {
+        ResourceLocation id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(block.asItem()));
+
+        itemModels().withExistingParent(id.getPath(), modLoc(BLOCK_FOLDER + '/' + id.getPath()));
     }
 
     private void generatedItem(Block block) {

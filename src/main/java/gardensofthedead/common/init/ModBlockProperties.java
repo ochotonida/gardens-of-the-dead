@@ -44,6 +44,14 @@ public class ModBlockProperties {
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ);
 
+    public static BlockBehaviour.Properties FLARE_CANE = BlockBehaviour.Properties.of(Material.VEGETABLE)
+            .color(MaterialColor.CRIMSON_NYLIUM)
+            .randomTicks()
+            .instabreak()
+            .strength(1)
+            .sound(SoundType.BAMBOO)
+            .noOcclusion();
+
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
             .strength(2)

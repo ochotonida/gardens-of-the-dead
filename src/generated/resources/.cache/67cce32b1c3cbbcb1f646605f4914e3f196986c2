@@ -1,6 +1,7 @@
-// 1.19.2	2022-10-12T16:10:05.8833945	LootTables
+// 1.19.2	2022-10-12T20:21:03.2298996	LootTables
 269643404fae68d9eefcca6eda556831c083465d data/gardens_of_the_dead/loot_tables/blocks/blightwart_block.json
 bee9a4f8642c3de94956dc565ecf5e0d55d4f068 data/gardens_of_the_dead/loot_tables/blocks/blistercrown.json
+f77e9d4ae2fca0b392b2f4de7d60c6eeb45654e0 data/gardens_of_the_dead/loot_tables/blocks/flare_cane.json
 5e7e8452b3c901444b992c7521140457a783d41b data/gardens_of_the_dead/loot_tables/blocks/glowing_soul_spore.json
 7661fbac75ba2a626fc738a15e6c6407d49f5391 data/gardens_of_the_dead/loot_tables/blocks/potted_blistercrown.json
 0c6ad6141cfcd63ba37c224c0cd3872913572f26 data/gardens_of_the_dead/loot_tables/blocks/potted_glowing_soul_spore.json

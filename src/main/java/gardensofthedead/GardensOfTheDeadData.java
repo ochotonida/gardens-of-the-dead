@@ -21,7 +21,6 @@ public class GardensOfTheDeadData {
 
         BlockStates blockStates = new BlockStates(generator, existingFileHelper);
         generator.addProvider(event.includeClient(), blockStates);
-        generator.addProvider(event.includeClient(), new ItemModels(generator, blockStates.models().existingFileHelper));
 
         BlockTags blockTags = new BlockTags(generator, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTags);
