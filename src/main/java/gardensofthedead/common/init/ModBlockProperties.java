@@ -44,7 +44,7 @@ public class ModBlockProperties {
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ);
 
-    public static BlockBehaviour.Properties FLARE_CANE = BlockBehaviour.Properties.of(Material.VEGETABLE)
+    public static BlockBehaviour.Properties WHISTLECANE = BlockBehaviour.Properties.of(Material.VEGETABLE)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .randomTicks()
             .instabreak()

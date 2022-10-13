@@ -71,7 +71,7 @@
     }
   ],
   "textures": {
-    "cane": "gardens_of_the_dead:block/flare_cane",
+    "cane": "gardens_of_the_dead:block/whistlecane",
     "particle": "#cane"
   }
 }

@@ -33,7 +33,7 @@ public class BlockStates extends BlockStateProvider {
         createCrossModels();
 
         addSoulSpore();
-        addFlareCane();
+        addWhistleCane();
 
         simplePlantWithItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
         simplePlantWithItem(ModBlocks.SOULBLIGHT_SPROUTS.get());
@@ -91,9 +91,9 @@ public class BlockStates extends BlockStateProvider {
         generatedItem(ModBlocks.GLOWING_SOUL_SPORE.get());
     }
 
-    private void addFlareCane() {
-        ModelFile builder = models().withExistingParent(getName(ModBlocks.FLARE_CANE.get()), BLOCK_FOLDER + "/block")
-                .texture("cane", blockTexture(ModBlocks.FLARE_CANE.get()).toString())
+    private void addWhistleCane() {
+        ModelFile builder = models().withExistingParent(getName(ModBlocks.WHISTLECANE.get()), BLOCK_FOLDER + "/block")
+                .texture("cane", blockTexture(ModBlocks.WHISTLECANE.get()).toString())
                 .texture("particle", "#cane")
                 .element()
                 .from(5, 0, 5).to(11, 16, 11)
@@ -106,7 +106,7 @@ public class BlockStates extends BlockStateProvider {
                     faceBuilder.texture("#cane");
                 }).end();
 
-        simpleBlockWithItem(ModBlocks.FLARE_CANE.get(), builder);
+        simpleBlockWithItem(ModBlocks.WHISTLECANE.get(), builder);
     }
 
     private void createCrossModels() {

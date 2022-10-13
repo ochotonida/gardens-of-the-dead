@@ -26,7 +26,7 @@ public class ModItems {
     public static final RegistryObject<Item> SOULBLIGHT_SPROUTS = blockItem(ModBlocks.SOULBLIGHT_SPROUTS);
     public static final RegistryObject<Item> BLISTERCROWN = blockItem(ModBlocks.BLISTERCROWN);
     public static final RegistryObject<Item> TALL_BLISTERCROWN = blockItem(ModBlocks.TALL_BLISTERCROWN);
-    public static final RegistryObject<Item> FLARE_CANE = blockItem(ModBlocks.FLARE_CANE);
+    public static final RegistryObject<Item> WHISTLECANE = blockItem(ModBlocks.WHISTLECANE);
 
     public static final RegistryObject<Item> SOULBLIGHT_STEM = blockItem(ModBlocks.SOULBLIGHT_STEM);
     public static final RegistryObject<Item> STRIPPED_SOULBLIGHT_STEM = blockItem(ModBlocks.STRIPPED_SOULBLIGHT_STEM);
@@ -61,7 +61,7 @@ public class ModItems {
                 TALL_BLISTERCROWN.get()
         );
         addCompostables(0.5F,
-                FLARE_CANE.get()
+                WHISTLECANE.get()
         );
         addCompostables(0.65F,
                 SOULBLIGHT_FUNGUS.get()

@@ -23,14 +23,14 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.ToolActions;
 
-public class FlareCaneBlock extends Block implements IPlantable, BonemealableBlock {
+public class WhistlecaneBlock extends Block implements IPlantable, BonemealableBlock {
 
     protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 16, 11);
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
     public static final int MAX_HEIGHT = 8;
     public static final float GROW_CHANCE = 0.1F;
 
-    public FlareCaneBlock(BlockBehaviour.Properties properties) {
+    public WhistlecaneBlock(BlockBehaviour.Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(GROWING, true));
     }
