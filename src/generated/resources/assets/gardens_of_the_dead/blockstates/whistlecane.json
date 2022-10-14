@@ -1,7 +1,15 @@
 {
   "variants": {
-    "": {
-      "model": "gardens_of_the_dead:block/whistlecane"
-    }
+    "": [
+      {
+        "model": "gardens_of_the_dead:block/whistlecane0"
+      },
+      {
+        "model": "gardens_of_the_dead:block/whistlecane1"
+      },
+      {
+        "model": "gardens_of_the_dead:block/whistlecane2"
+      }
+    ]
   }
 }

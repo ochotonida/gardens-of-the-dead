@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.MaterialColor;
 public class ModBlockProperties {
 
     private static final int GLOWING_SOUL_SPORE_LIGHT = 7;
+    private static final int BLISTERCROWN_LIGHT = 5;
 
     public static BlockBehaviour.Properties SOUL_SPORE = BlockBehaviour.Properties.of(Material.PLANT)
             .color(MaterialColor.COLOR_BROWN)
@@ -42,7 +43,8 @@ public class ModBlockProperties {
             .noCollission()
             .instabreak()
             .sound(SoundType.NETHER_SPROUTS)
-            .offsetType(BlockBehaviour.OffsetType.XZ);
+            .offsetType(BlockBehaviour.OffsetType.XZ)
+            .lightLevel(state -> BLISTERCROWN_LIGHT);
 
     public static BlockBehaviour.Properties WHISTLECANE = BlockBehaviour.Properties.of(Material.VEGETABLE)
             .color(MaterialColor.CRIMSON_NYLIUM)

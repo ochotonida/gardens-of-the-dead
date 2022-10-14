@@ -38,6 +38,7 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> POTTED_SOULBLIGHT_FUNGUS = flowerPot(SOULBLIGHT_FUNGUS);
     public static final RegistryObject<FlowerPotBlock> POTTED_SOULBLIGHT_SPROUTS = flowerPot(SOULBLIGHT_SPROUTS);
     public static final RegistryObject<FlowerPotBlock> POTTED_BLISTERCROWN = flowerPot(BLISTERCROWN);
+    public static final RegistryObject<FlowerPotBlock> POTTED_WHISTLECANE = flowerPot(WHISTLECANE);
 
     public static final RegistryObject<Block> SOULBLIGHT_PLANKS = BLOCKS.register("soulblight_planks", () -> new Block(ModBlockProperties.SOULBLIGHT_PLANKS));
     public static final RegistryObject<SlabBlock> SOULBLIGHT_SLAB = BLOCKS.register("soulblight_slab", () -> new SlabBlock(ModBlockProperties.SOULBLIGHT_PLANKS));

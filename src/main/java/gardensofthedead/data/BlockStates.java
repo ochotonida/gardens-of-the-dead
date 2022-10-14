@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -33,7 +34,7 @@ public class BlockStates extends BlockStateProvider {
         createCrossModels();
 
         addSoulSpore();
-        addWhistleCane();
+        addWhistlecane();
 
         simplePlantWithItem(ModBlocks.SOULBLIGHT_FUNGUS.get());
         simplePlantWithItem(ModBlocks.SOULBLIGHT_SPROUTS.get());
@@ -52,6 +53,12 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get(), "potted_soulblight_sprouts");
         pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
+        String pottedWhistleCane = getName(ModBlocks.POTTED_WHISTLECANE.get());
+        simpleBlock(ModBlocks.POTTED_WHISTLECANE.get(), models()
+                .withExistingParent(pottedWhistleCane, BLOCK_FOLDER + "/potted_cactus")
+                .texture("cactus", blockTexture(pottedWhistleCane + "_side"))
+                .texture("cactus_top", blockTexture(pottedWhistleCane + "_top"))
+        );
 
         ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
         simpleBlockWithItem(ModBlocks.SOULBLIGHT_PLANKS.get());
@@ -91,23 +98,33 @@ public class BlockStates extends BlockStateProvider {
         generatedItem(ModBlocks.GLOWING_SOUL_SPORE.get());
     }
 
-    private void addWhistleCane() {
-        ModelFile builder = models().withExistingParent(getName(ModBlocks.WHISTLECANE.get()), BLOCK_FOLDER + "/block")
-                .texture("cane", blockTexture(ModBlocks.WHISTLECANE.get()).toString())
-                .texture("particle", "#cane")
+    private void addWhistlecane() {
+        String name = getName(ModBlocks.WHISTLECANE.get());
+        ResourceLocation texture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "0");
+        ResourceLocation texture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "1");
+
+        ModelFile model0 = whistlecaneModel(name + "0", 0, texture0, texture0);
+        ModelFile model1 = whistlecaneModel(name + "1", 0, texture0, texture1);
+        ModelFile model2 = whistlecaneModel(name + "2", 6, texture0, texture1);
+
+        simpleBlock(ModBlocks.WHISTLECANE.get(), new ConfiguredModel(model0), new ConfiguredModel(model1), new ConfiguredModel(model2));
+        itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
+    }
+
+    private ModelFile whistlecaneModel(String modelName, int u1, ResourceLocation topTexture, ResourceLocation sideTexture) {
+        return models().withExistingParent(modelName, BLOCK_FOLDER + "/block")
+                .texture("top", topTexture)
+                .texture("side", sideTexture)
+                .texture("particle", "#side")
                 .element()
                 .from(5, 0, 5).to(11, 16, 11)
                 .allFaces((direction, faceBuilder) -> {
                     if (direction.getAxis() == Direction.Axis.Y) {
-                        faceBuilder.uvs(6, 0, 12, 6);
+                        faceBuilder.uvs(6, 0, 12, 6).texture("#top");
                     } else {
-                        faceBuilder.uvs(0, 0, 6, 16);
+                        faceBuilder.uvs(u1, 0, u1 + 6, 16).texture("#side");
                     }
-                    faceBuilder.texture("#cane");
                 }).end();
-
-        simpleBlock(ModBlocks.WHISTLECANE.get(), builder);
-        itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
     }
 
     private void createCrossModels() {

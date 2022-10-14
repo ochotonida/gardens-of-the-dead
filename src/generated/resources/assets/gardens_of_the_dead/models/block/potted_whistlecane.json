@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/potted_cactus",
+  "textures": {
+    "cactus": "gardens_of_the_dead:block/potted_whistlecane_side",
+    "cactus_top": "gardens_of_the_dead:block/potted_whistlecane_top"
+  }
+}

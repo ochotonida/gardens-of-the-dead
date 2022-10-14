@@ -4,7 +4,7 @@
     {
       "faces": {
         "down": {
-          "texture": "#cane",
+          "texture": "#top",
           "uv": [
             6.0,
             0.0,
@@ -13,7 +13,7 @@
           ]
         },
         "east": {
-          "texture": "#cane",
+          "texture": "#side",
           "uv": [
             0.0,
             0.0,
@@ -22,7 +22,7 @@
           ]
         },
         "north": {
-          "texture": "#cane",
+          "texture": "#side",
           "uv": [
             0.0,
             0.0,
@@ -31,7 +31,7 @@
           ]
         },
         "south": {
-          "texture": "#cane",
+          "texture": "#side",
           "uv": [
             0.0,
             0.0,
@@ -40,7 +40,7 @@
           ]
         },
         "up": {
-          "texture": "#cane",
+          "texture": "#top",
           "uv": [
             6.0,
             0.0,
@@ -49,7 +49,7 @@
           ]
         },
         "west": {
-          "texture": "#cane",
+          "texture": "#side",
           "uv": [
             0.0,
             0.0,
@@ -71,7 +71,8 @@
     }
   ],
   "textures": {
-    "cane": "gardens_of_the_dead:block/whistlecane",
-    "particle": "#cane"
+    "particle": "#side",
+    "side": "gardens_of_the_dead:block/whistlecane1",
+    "top": "gardens_of_the_dead:block/whistlecane0"
   }
 }
