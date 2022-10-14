@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
@@ -29,7 +30,7 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
 
     protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 16, 11);
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
-    public static final int MAX_HEIGHT = 8;
+    public static final int MAX_HEIGHT = 6;
     public static final float GROW_CHANCE = 0.1F;
 
     public WhistlecaneBlock(BlockBehaviour.Properties properties) {
@@ -43,7 +44,8 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
 
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE;
+        Vec3 offset = state.getOffset(level, pos);
+        return SHAPE.move(offset.x, offset.y, offset.z);
     }
 
     @SuppressWarnings("deprecation")
@@ -54,7 +56,7 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
     }
 
     public boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(GROWING);
+        return true;
     }
 
     @SuppressWarnings("deprecation")
@@ -69,9 +71,10 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
         }
 
         if (randomSource.nextFloat() < 0.1 && level.isEmptyBlock(pos.above())) {
-            double x = pos.getX() + 0.5;
-            double z = pos.getZ() + 0.5;
-            double y = pos.getY() + 1;
+            Vec3 offset = state.getOffset(level, pos);
+            double x = pos.getX() + offset.x + 0.5;
+            double z = pos.getZ() + offset.z + 0.5;
+            double y = pos.getY() + offset.y + 1;
             float volume = 1;
             float pitch = randomSource.nextFloat() * 0.3F + 0.85F;
             level.playSound(null, x, y, z, ModSoundEvents.WHISTLECANE_WHISTLE.get(), SoundSource.BLOCKS, volume, pitch);

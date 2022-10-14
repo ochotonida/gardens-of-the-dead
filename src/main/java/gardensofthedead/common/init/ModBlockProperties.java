@@ -50,7 +50,9 @@ public class ModBlockProperties {
             .instabreak()
             .strength(1)
             .sound(ModSoundTypes.WHISTLECANE)
-            .noOcclusion();
+            .noOcclusion()
+            .dynamicShape()
+            .offsetType(BlockBehaviour.OffsetType.XZ);
 
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
