@@ -1,4 +1,4 @@
-package gardensofthedead.common.features.configuration;
+package gardensofthedead.common.feature.configuration;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

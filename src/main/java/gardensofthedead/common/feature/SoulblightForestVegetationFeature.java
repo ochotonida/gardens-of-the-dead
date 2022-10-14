@@ -1,4 +1,4 @@
-package gardensofthedead.common.features;
+package gardensofthedead.common.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

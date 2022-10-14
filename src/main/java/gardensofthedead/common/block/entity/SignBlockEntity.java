@@ -1,4 +1,4 @@
-package gardensofthedead.common.blockentities;
+package gardensofthedead.common.block.entity;
 
 import gardensofthedead.common.init.ModBlockEntityTypes;
 import net.minecraft.core.BlockPos;

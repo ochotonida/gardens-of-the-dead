@@ -1,4 +1,4 @@
-package gardensofthedead.common.blocks;
+package gardensofthedead.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;

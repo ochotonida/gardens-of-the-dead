@@ -1,7 +1,7 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.blockentities.SignBlockEntity;
+import gardensofthedead.common.block.entity.SignBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,9 +1,9 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.blocks.SoulSporeBlock;
-import gardensofthedead.common.features.configuration.HugeFlatFungusConfiguration;
-import gardensofthedead.common.features.configuration.SoulSporeColumnConfiguration;
+import gardensofthedead.common.block.SoulSporeBlock;
+import gardensofthedead.common.feature.configuration.HugeFlatFungusConfiguration;
+import gardensofthedead.common.feature.configuration.SoulSporeColumnConfiguration;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.placement.PlacementUtils;

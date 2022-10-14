@@ -1,7 +1,7 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.placementmodifiers.CountOnEveryCeilingPlacement;
+import gardensofthedead.common.placementmodifier.CountOnEveryCeilingPlacement;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.Vec3i;

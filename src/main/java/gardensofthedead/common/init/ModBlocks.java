@@ -1,9 +1,9 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.blocks.StandingSignBlock;
-import gardensofthedead.common.blocks.WallSignBlock;
-import gardensofthedead.common.blocks.*;
+import gardensofthedead.common.block.StandingSignBlock;
+import gardensofthedead.common.block.WallSignBlock;
+import gardensofthedead.common.block.*;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;

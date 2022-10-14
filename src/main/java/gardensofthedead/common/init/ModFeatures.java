@@ -1,11 +1,11 @@
 package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.common.features.HugeFlatFungusFeature;
-import gardensofthedead.common.features.SoulSporeColumnFeature;
-import gardensofthedead.common.features.SoulblightForestVegetationFeature;
-import gardensofthedead.common.features.configuration.HugeFlatFungusConfiguration;
-import gardensofthedead.common.features.configuration.SoulSporeColumnConfiguration;
+import gardensofthedead.common.feature.HugeFlatFungusFeature;
+import gardensofthedead.common.feature.SoulSporeColumnFeature;
+import gardensofthedead.common.feature.SoulblightForestVegetationFeature;
+import gardensofthedead.common.feature.configuration.HugeFlatFungusConfiguration;
+import gardensofthedead.common.feature.configuration.SoulSporeColumnConfiguration;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;

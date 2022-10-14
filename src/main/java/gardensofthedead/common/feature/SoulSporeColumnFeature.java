@@ -1,9 +1,9 @@
-package gardensofthedead.common.features;
+package gardensofthedead.common.feature;
 
 import com.mojang.serialization.Codec;
-import gardensofthedead.common.blocks.SoulSporeBaseBlock;
-import gardensofthedead.common.blocks.SoulSporeBlock;
-import gardensofthedead.common.features.configuration.SoulSporeColumnConfiguration;
+import gardensofthedead.common.block.SoulSporeBaseBlock;
+import gardensofthedead.common.block.SoulSporeBlock;
+import gardensofthedead.common.feature.configuration.SoulSporeColumnConfiguration;
 import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

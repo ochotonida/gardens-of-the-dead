@@ -1,4 +1,4 @@
-package gardensofthedead.common.placementmodifiers;
+package gardensofthedead.common.placementmodifier;
 
 import com.mojang.serialization.Codec;
 import gardensofthedead.common.init.ModPlacementModifiers;

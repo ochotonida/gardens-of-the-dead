@@ -1,7 +1,7 @@
-package gardensofthedead.common.features;
+package gardensofthedead.common.feature;
 
 import com.mojang.serialization.Codec;
-import gardensofthedead.common.features.configuration.HugeFlatFungusConfiguration;
+import gardensofthedead.common.feature.configuration.HugeFlatFungusConfiguration;
 import gardensofthedead.common.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
