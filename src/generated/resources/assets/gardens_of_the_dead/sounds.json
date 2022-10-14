@@ -1,0 +1,18 @@
+{
+  "whistlecane_whistle": {
+    "sounds": [
+      {
+        "attenuation_distance": 32,
+        "name": "gardens_of_the_dead:whistlecane_whistle0",
+        "volume": 0.6
+      },
+      {
+        "attenuation_distance": 32,
+        "name": "gardens_of_the_dead:whistlecane_whistle1",
+        "volume": 0.6,
+        "weight": 2
+      }
+    ],
+    "subtitle": "gardens_of_the_dead.subtitle.whistlecane_whistles"
+  }
+}

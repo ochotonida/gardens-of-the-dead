@@ -49,7 +49,7 @@ public class ModBlockProperties {
             .randomTicks()
             .instabreak()
             .strength(1)
-            .sound(SoundType.BAMBOO)
+            .sound(ModSoundTypes.WHISTLECANE)
             .noOcclusion();
 
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)

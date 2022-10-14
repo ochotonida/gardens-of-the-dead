@@ -28,5 +28,6 @@ public class GardensOfTheDeadData {
         generator.addProvider(event.includeClient(), new BiomeTags(generator, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTables(generator));
         generator.addProvider(event.includeServer(), new Recipes(generator));
+        generator.addProvider(event.includeServer(), new SoundDefinitions(generator, existingFileHelper));
     }
 }

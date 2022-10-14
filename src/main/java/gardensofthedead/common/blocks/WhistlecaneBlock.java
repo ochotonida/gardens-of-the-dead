@@ -1,8 +1,10 @@
 package gardensofthedead.common.blocks;
 
+import gardensofthedead.common.init.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
@@ -57,14 +59,22 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
 
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
-        if (state.getValue(GROWING)) {
-            if (level.isEmptyBlock(pos.above()) && level.getRawBrightness(pos.above(), 0) >= 9) {
-                int height = getHeightBelowUpToMax(level, pos) + 1;
-                if (height < MAX_HEIGHT && ForgeHooks.onCropsGrowPre(level, pos, state, randomSource.nextFloat() < GROW_CHANCE)) {
-                    growCane(level, pos, randomSource, height);
-                    ForgeHooks.onCropsGrowPost(level, pos, state);
-                }
+        if (state.getValue(GROWING) && level.isEmptyBlock(pos.above())) {
+            int height = getHeightBelowUpToMax(level, pos) + 1;
+            if (height < MAX_HEIGHT && ForgeHooks.onCropsGrowPre(level, pos, state, randomSource.nextFloat() < GROW_CHANCE)) {
+                growCane(level, pos, randomSource, height);
+                ForgeHooks.onCropsGrowPost(level, pos, state);
+                return;
             }
+        }
+
+        if (randomSource.nextFloat() < 0.1 && level.isEmptyBlock(pos.above())) {
+            double x = pos.getX() + 0.5;
+            double z = pos.getZ() + 0.5;
+            double y = pos.getY() + 1;
+            float volume = 1;
+            float pitch = randomSource.nextFloat() * 0.3F + 0.85F;
+            level.playSound(null, x, y, z, ModSoundEvents.WHISTLECANE_WHISTLE.get(), SoundSource.BLOCKS, volume, pitch);
         }
     }
 
@@ -120,7 +130,7 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
 
     protected void growCane(Level level, BlockPos pos, RandomSource randomSource, int currentHeight) {
         boolean continueGrowing = (currentHeight < MAX_HEIGHT - 5 || !(randomSource.nextFloat() < 0.25)) && currentHeight != MAX_HEIGHT - 1;
-        level.setBlock(pos.above(), defaultBlockState().setValue(GROWING, continueGrowing), 3);
+        level.setBlock(pos.above(), defaultBlockState().setValue(GROWING, continueGrowing), Block.UPDATE_ALL);
     }
 
     protected int getHeightAboveUpToMax(BlockGetter level, BlockPos pos) {
