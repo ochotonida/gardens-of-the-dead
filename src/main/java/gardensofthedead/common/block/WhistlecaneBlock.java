@@ -1,5 +1,7 @@
 package gardensofthedead.common.block;
 
+import gardensofthedead.common.block.entity.WhistlecaneBlockEntity;
+import gardensofthedead.common.init.ModBlockEntityTypes;
 import gardensofthedead.common.init.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +17,10 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -25,21 +31,23 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.Nullable;
 
-public class WhistlecaneBlock extends Block implements IPlantable, BonemealableBlock {
+public class WhistlecaneBlock extends Block implements IPlantable, BonemealableBlock, EntityBlock {
 
     protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 16, 11);
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
+    public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final int MAX_HEIGHT = 6;
     public static final float GROW_CHANCE = 0.1F;
 
     public WhistlecaneBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(GROWING, true));
+        registerDefaultState(stateDefinition.any().setValue(GROWING, true).setValue(TOP, true));
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(GROWING);
+        builder.add(GROWING, TOP);
     }
 
     @SuppressWarnings("deprecation")
@@ -56,7 +64,7 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
     }
 
     public boolean isRandomlyTicking(BlockState state) {
-        return true;
+        return state.getValue(TOP);
     }
 
     @SuppressWarnings("deprecation")
@@ -71,14 +79,20 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
         }
 
         if (randomSource.nextFloat() < 0.1 && level.isEmptyBlock(pos.above())) {
-            Vec3 offset = state.getOffset(level, pos);
-            double x = pos.getX() + offset.x + 0.5;
-            double z = pos.getZ() + offset.z + 0.5;
-            double y = pos.getY() + offset.y + 1;
-            float volume = 1;
-            float pitch = randomSource.nextFloat() * 0.3F + 0.85F;
-            level.playSound(null, x, y, z, ModSoundEvents.WHISTLECANE_WHISTLE.get(), SoundSource.BLOCKS, volume, pitch);
+            whistle(state, level, pos, randomSource);
         }
+    }
+
+    private void whistle(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
+        Vec3 offset = state.getOffset(level, pos);
+        double x = pos.getX() + offset.x + 0.5;
+        double z = pos.getZ() + offset.z + 0.5;
+        double y = pos.getY() + offset.y + 1;
+        float volume = 1;
+        float pitch = randomSource.nextFloat() * 0.3F + 0.85F;
+        level.playSound(null, x, y, z, ModSoundEvents.WHISTLECANE_WHISTLE.get(), SoundSource.BLOCKS, volume, pitch);
+        level.getBlockEntity(pos, ModBlockEntityTypes.WHISTLECANE.get())
+                .ifPresent(WhistlecaneBlockEntity::sendWhistlePacket);
     }
 
     @SuppressWarnings("deprecation")
@@ -91,6 +105,11 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
         if (!state.canSurvive(level, pos)) {
             level.scheduleTick(pos, this, 1);
+        }
+
+        boolean isTop = !level.getBlockState(pos.above()).is(this);
+        if (isTop ^ state.getValue(TOP)) {
+            return state.setValue(TOP, isTop);
         }
 
         return super.updateShape(state, direction, newState, level, pos, updatedPos);
@@ -161,5 +180,23 @@ public class WhistlecaneBlock extends Block implements IPlantable, BonemealableB
             return defaultBlockState();
         }
         return state;
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        if (state.getValue(TOP)) {
+            return ModBlockEntityTypes.WHISTLECANE.get().create(pos, state);
+        }
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        if (state.getValue(TOP) && level.isClientSide()) {
+            return WhistlecaneBlockEntity::tick;
+        }
+        return null;
     }
 }
