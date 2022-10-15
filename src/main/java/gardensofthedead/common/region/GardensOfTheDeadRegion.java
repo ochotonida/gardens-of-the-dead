@@ -26,7 +26,7 @@ public class GardensOfTheDeadRegion extends Region {
         );
         addBiome(mapper,
                 Climate.parameters(-0.4F, 0, 0, 0, 0, 0, 0),
-                ModBiomes.WHISTLECANE_WOODS
+                ModBiomes.WHISTLING_WOODS
         );
     }
 }

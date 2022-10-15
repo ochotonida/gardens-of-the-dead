@@ -100,7 +100,7 @@ public class ModSurfaceRules {
                                         SurfaceRules.ifTrue(hole, LAVA)
                                 ),
                                 SurfaceRules.ifTrue(
-                                        SurfaceRules.isBiome(ModBiomes.WHISTLECANE_WOODS),
+                                        SurfaceRules.isBiome(ModBiomes.WHISTLING_WOODS),
                                         SurfaceRules.ifTrue(
                                                 SurfaceRules.not(netherrackNoise),
                                                 SurfaceRules.ifTrue(aboveOrAtLava,

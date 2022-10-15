@@ -25,7 +25,7 @@ public class ModBiomes {
     public static DeferredRegister<Biome> BIOME_REGISTER = DeferredRegister.create(Registry.BIOME_REGISTRY, GardensOfTheDead.MODID);
 
     public static final ResourceKey<Biome> SOULBLIGHT_FOREST = register("soulblight_forest", ModBiomes::soulblightForest);
-    public static final ResourceKey<Biome> WHISTLECANE_WOODS = register("whistlecane_woods", ModBiomes::whistlecaneWoods);
+    public static final ResourceKey<Biome> WHISTLING_WOODS = register("whistling_woods", ModBiomes::whistlingWoods);
 
     private static ResourceKey<Biome> register(String name, Supplier<Biome> biomeSupplier) {
         ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, GardensOfTheDead.id(name));
@@ -40,7 +40,7 @@ public class ModBiomes {
         return Mth.hsvToRgb(0.62222224F - $$1 * 0.05F, 0.5F + $$1 * 0.1F, 1);
     }
 
-    public static Biome whistlecaneWoods() {
+    public static Biome whistlingWoods() {
         MobSpawnSettings spawnSettings = new MobSpawnSettings.Builder()
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 1, 2, 4))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.HOGLIN, 9, 3, 4))

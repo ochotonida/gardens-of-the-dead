@@ -29,7 +29,7 @@ public class BiomeTags extends BiomeTagsProvider {
 
         tag(net.minecraft.tags.BiomeTags.HAS_BASTION_REMNANT).add(
                 ModBiomes.SOULBLIGHT_FOREST,
-                ModBiomes.WHISTLECANE_WOODS
+                ModBiomes.WHISTLING_WOODS
         );
 
         tag(net.minecraft.tags.BiomeTags.HAS_NETHER_FOSSIL).add(

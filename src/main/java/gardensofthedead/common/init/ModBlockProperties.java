@@ -46,7 +46,7 @@ public class ModBlockProperties {
             .offsetType(BlockBehaviour.OffsetType.XZ)
             .lightLevel(state -> BLISTERCROWN_LIGHT);
 
-    public static BlockBehaviour.Properties WHISTLECANE = BlockBehaviour.Properties.of(Material.VEGETABLE)
+    public static BlockBehaviour.Properties WHISTLECANE_BASE = BlockBehaviour.Properties.of(Material.VEGETABLE)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .randomTicks()
             .instabreak()
@@ -55,6 +55,9 @@ public class ModBlockProperties {
             .noOcclusion()
             .dynamicShape()
             .offsetType(BlockBehaviour.OffsetType.XZ);
+
+    public static BlockBehaviour.Properties WHISTLECANE = copy(WHISTLECANE_BASE)
+            .randomTicks();
 
     public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)

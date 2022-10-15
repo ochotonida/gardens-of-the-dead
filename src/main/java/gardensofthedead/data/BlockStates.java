@@ -130,6 +130,7 @@ public class BlockStates extends BlockStateProvider {
                 .modelFile(model2).rotationY(270).build();
 
         simpleBlock(ModBlocks.WHISTLECANE.get(), models);
+        simpleBlock(ModBlocks.WHISTLECANE_PLANT.get(), models);
         itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
     }
 

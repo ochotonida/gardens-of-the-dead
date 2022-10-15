@@ -52,6 +52,8 @@ public class LootTables extends LootTableProvider {
                 ModBlocks.TALL_BLISTERCROWN.get()
         );
 
+        addDefaultDrops(ModBlocks.WHISTLECANE_PLANT.get(), ModBlocks.WHISTLECANE.get());
+
         for (Block block : ForgeRegistries.BLOCKS.getValues()) {
             // noinspection ConstantConditions
             if (!blocksWithLootAdded.contains(block) && ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(GardensOfTheDead.MODID)) {
@@ -95,10 +97,12 @@ public class LootTables extends LootTableProvider {
         }
     }
 
-    private void addDefaultDrops(Block... blocks) {
-        for (Block block : blocks) {
-            addBlockLootTable(block, LootTable.lootTable().withPool(defaultDrops(block)));
-        }
+    private void addDefaultDrops(Block block) {
+        addDefaultDrops(block, block);
+    }
+
+    private void addDefaultDrops(Block block, ItemLike loot) {
+        addBlockLootTable(block, LootTable.lootTable().withPool(defaultDrops(loot)));
     }
 
     private LootPool.Builder defaultDrops(ItemLike itemProvider) {

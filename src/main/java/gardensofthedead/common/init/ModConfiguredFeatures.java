@@ -90,11 +90,11 @@ public class ModConfiguredFeatures {
                     List.of(
                         BlockColumnConfiguration.layer(
                                 UniformInt.of(WhistlecaneBlock.MAX_HEIGHT - 5, WhistlecaneBlock.MAX_HEIGHT - 1),
-                                BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.TOP, false))
+                                BlockStateProvider.simple(ModBlocks.WHISTLECANE_PLANT.get().defaultBlockState())
                         ),
                         BlockColumnConfiguration.layer(
                                 ConstantInt.of(1),
-                                BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.GROWING, false).setValue(WhistlecaneBlock.TOP, true))
+                                BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.GROWING, false))
                         )
                     ),
                     Direction.UP,

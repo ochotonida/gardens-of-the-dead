@@ -32,6 +32,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> TALL_BLISTERCROWN = BLOCKS.register("tall_blistercrown", () -> new TallBlistercrownBlock(ModBlockProperties.BLISTERCROWN));
 
     public static final RegistryObject<Block> WHISTLECANE = BLOCKS.register("whistlecane", () -> new WhistlecaneBlock(ModBlockProperties.WHISTLECANE));
+    public static final RegistryObject<Block> WHISTLECANE_PLANT = BLOCKS.register("whistlecane_plant", () -> new WhistlecanePlantBlock(ModBlockProperties.WHISTLECANE_BASE));
 
     public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_SPORE = flowerPot(SOUL_SPORE);
     public static final RegistryObject<FlowerPotBlock> POTTED_GLOWING_SOUL_SPORE = flowerPot(GLOWING_SOUL_SPORE, ModBlockProperties.POTTED_GLOWING_SOUL_SPORE);
