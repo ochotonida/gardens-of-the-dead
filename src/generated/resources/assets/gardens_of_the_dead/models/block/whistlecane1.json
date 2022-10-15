@@ -68,9 +68,54 @@
         16,
         11
       ]
+    },
+    {
+      "faces": {
+        "north": {
+          "ambientocclusion": false,
+          "texture": "#leaf",
+          "uv": [
+            8.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "south": {
+          "ambientocclusion": false,
+          "texture": "#leaf",
+          "uv": [
+            16.0,
+            0.0,
+            8.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        4,
+        9,
+        5
+      ],
+      "rotation": {
+        "angle": -22.5,
+        "axis": "x",
+        "origin": [
+          4,
+          9,
+          5
+        ]
+      },
+      "to": [
+        12,
+        25,
+        5
+      ]
     }
   ],
+  "render_type": "minecraft:cutout",
   "textures": {
+    "leaf": "gardens_of_the_dead:block/whistlecane_leaves1",
     "particle": "#side",
     "side": "gardens_of_the_dead:block/whistlecane1",
     "top": "gardens_of_the_dead:block/whistlecane0"

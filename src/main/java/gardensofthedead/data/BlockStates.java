@@ -10,10 +10,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.ModelProvider;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -102,16 +99,41 @@ public class BlockStates extends BlockStateProvider {
         String name = getName(ModBlocks.WHISTLECANE.get());
         ResourceLocation texture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "0");
         ResourceLocation texture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "1");
+        ResourceLocation leafTexture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "0");
+        ResourceLocation leafTexture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "1");
 
-        ModelFile model0 = whistlecaneModel(name + "0", 0, texture0, texture0);
-        ModelFile model1 = whistlecaneModel(name + "1", 0, texture0, texture1);
-        ModelFile model2 = whistlecaneModel(name + "2", 6, texture0, texture1);
+        BlockModelBuilder model0 = whistlecaneModel(name + "0", 0, texture0, texture0);
+        BlockModelBuilder model1 = whistlecaneModel(name + "1", 0, texture0, texture1);
+        BlockModelBuilder model2 = whistlecaneModel(name + "2", 6, texture0, texture1);
 
-        simpleBlock(ModBlocks.WHISTLECANE.get(), new ConfiguredModel(model0), new ConfiguredModel(model1), new ConfiguredModel(model2));
+        model0.texture("leaf", leafTexture0);
+        model0 = addWhistlecaneLeaf(model0, Direction.NORTH, 5, 0);
+        model0 = addWhistlecaneLeaf(model0, Direction.EAST, 13, 8);
+        model1.texture("leaf", leafTexture1);
+        model1 = addWhistlecaneLeaf(model1, Direction.NORTH, 9, 8);
+        model2.texture("leaf", leafTexture1);
+        model2 = addWhistlecaneLeaf(model2, Direction.NORTH, 8, 0);
+        model2 = addWhistlecaneLeaf(model2, Direction.SOUTH, 11, 8);
+
+        ConfiguredModel[] models = ConfiguredModel.builder()
+                .modelFile(model0).rotationY(0).nextModel()
+                .modelFile(model0).rotationY(90).nextModel()
+                .modelFile(model0).rotationY(180).nextModel()
+                .modelFile(model0).rotationY(270).nextModel()
+                .modelFile(model1).rotationY(0).nextModel()
+                .modelFile(model1).rotationY(90).nextModel()
+                .modelFile(model1).rotationY(180).nextModel()
+                .modelFile(model1).rotationY(270).nextModel()
+                .modelFile(model2).rotationY(0).nextModel()
+                .modelFile(model2).rotationY(90).nextModel()
+                .modelFile(model2).rotationY(180).nextModel()
+                .modelFile(model2).rotationY(270).build();
+
+        simpleBlock(ModBlocks.WHISTLECANE.get(), models);
         itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
     }
 
-    private ModelFile whistlecaneModel(String modelName, int u1, ResourceLocation topTexture, ResourceLocation sideTexture) {
+    private BlockModelBuilder whistlecaneModel(String modelName, int u1, ResourceLocation topTexture, ResourceLocation sideTexture) {
         return models().withExistingParent(modelName, BLOCK_FOLDER + "/block")
                 .texture("top", topTexture)
                 .texture("side", sideTexture)
@@ -124,7 +146,28 @@ public class BlockStates extends BlockStateProvider {
                     } else {
                         faceBuilder.uvs(u1, 0, u1 + 6, 16).texture("#side");
                     }
-                }).end();
+                }).end()
+                .renderType(CUTOUT);
+    }
+
+    private BlockModelBuilder addWhistlecaneLeaf(BlockModelBuilder model, Direction direction, int height, int u1) {
+        Direction.Axis axis = direction.getAxis();
+        Direction.AxisDirection axisDirection = direction.getAxisDirection();
+        float angle = 22.5F;
+
+        int a = 8 + axisDirection.getStep() * 3;
+        int x1 = axis == Direction.Axis.Z ? 4 : a;
+        int z1 = axis == Direction.Axis.X ? 4 : a;
+        int x2 = axis == Direction.Axis.Z ? 12 : a;
+        int z2 = axis == Direction.Axis.X ? 12 : a;
+        return model
+                .element()
+                .from(x1, height, z1)
+                .to(x2, height + 16, z2)
+                .face(direction).texture("#leaf").uvs(u1, 0, u1 + 8, 16).ao(false).end()
+                .face(direction.getOpposite()).texture("#leaf").uvs(u1 + 8, 0, u1, 16).ao(false).end()
+                .rotation().origin(x1, height, z1).axis(direction.getClockWise().getAxis()).angle(axisDirection.getStep() * (axis == Direction.Axis.X ? -1 : 1) * angle).end()
+                .end();
     }
 
     private void createCrossModels() {
