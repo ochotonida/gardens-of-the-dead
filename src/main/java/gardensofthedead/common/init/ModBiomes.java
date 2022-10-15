@@ -2,6 +2,7 @@ package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
 import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
@@ -23,18 +24,13 @@ public class ModBiomes {
 
     public static DeferredRegister<Biome> BIOME_REGISTER = DeferredRegister.create(Registry.BIOME_REGISTRY, GardensOfTheDead.MODID);
 
-    public static final ResourceKey<Biome> SOULBLIGHT_FOREST = register("soulblight_forest");
+    public static final ResourceKey<Biome> SOULBLIGHT_FOREST = register("soulblight_forest", ModBiomes::soulblightForest);
+    public static final ResourceKey<Biome> WHISTLECANE_WOODS = register("whistlecane_woods", ModBiomes::whistlecaneWoods);
 
-    private static ResourceKey<Biome> register(String name) {
-        return ResourceKey.create(Registry.BIOME_REGISTRY, GardensOfTheDead.id(name));
-    }
-
-    static {
-        register(SOULBLIGHT_FOREST, ModBiomes::soulblightForest);
-    }
-
-    public static void register(ResourceKey<Biome> key, Supplier<Biome> biomeSupplier) {
+    private static ResourceKey<Biome> register(String name, Supplier<Biome> biomeSupplier) {
+        ResourceKey<Biome> key = ResourceKey.create(Registry.BIOME_REGISTRY, GardensOfTheDead.id(name));
         BIOME_REGISTER.register(key.location().getPath(), biomeSupplier);
+        return key;
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -44,11 +40,56 @@ public class ModBiomes {
         return Mth.hsvToRgb(0.62222224F - $$1 * 0.05F, 0.5F + $$1 * 0.1F, 1);
     }
 
+    public static Biome whistlecaneWoods() {
+        MobSpawnSettings spawnSettings = new MobSpawnSettings.Builder()
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 1, 2, 4))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.HOGLIN, 9, 3, 4))
+                .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.PIGLIN, 5, 3, 4))
+                .addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 60, 1, 2))
+                .build();
+
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder()
+                .addCarver(GenerationStep.Carving.AIR, Carvers.NETHER_CAVE)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MiscOverworldPlacements.SPRING_LAVA);
+        BiomeDefaultFeatures.addDefaultMushrooms(generationSettings);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.SPRING_OPEN)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.PATCH_FIRE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE_EXTRA)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, OrePlacements.ORE_MAGMA)
+                .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.SPRING_CLOSED)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.DENSE_WEEPING_VINES.get()))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.NOISY_CRIMSON_FUNGI.get()))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.WHISTLECANE_COLUMN.get()))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.TALL_BLISTERCROWN_PATCH.get()))
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.WHISTLING_WOODS_VEGETATION.get()));
+        BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
+
+        return new Biome.BiomeBuilder()
+                .precipitation(Biome.Precipitation.NONE)
+                .temperature(2)
+                .downfall(0)
+                .specialEffects(
+                        new BiomeSpecialEffects.Builder()
+                                .waterColor(4159204)
+                                .waterFogColor(329011)
+                                .fogColor(0x480314)
+                                .skyColor(calculateSkyColor(2))
+                                .ambientParticle(new AmbientParticleSettings(ParticleTypes.CRIMSON_SPORE, 0.01F))
+                                .ambientLoopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP)
+                                .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2))
+                                .ambientAdditionsSound(new AmbientAdditionsSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111))
+                                .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_CRIMSON_FOREST)).build())
+                .mobSpawnSettings(spawnSettings)
+                .generationSettings(generationSettings.build())
+                .build();
+    }
+
     public static Biome soulblightForest() {
         double energyBudget = 1D;
         double charge = 0.8D;
 
-        MobSpawnSettings spawnSettings = (new MobSpawnSettings.Builder())
+        MobSpawnSettings spawnSettings = new MobSpawnSettings.Builder()
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 3, 5, 5))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 1, 4, 4))
                 .addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 5, 2, 4))
@@ -63,7 +104,7 @@ public class ModBiomes {
                 .addMobCharge(EntityType.STRIDER, energyBudget, charge)
                 .build();
 
-        BiomeGenerationSettings.Builder generationSettings = (new BiomeGenerationSettings.Builder())
+        BiomeGenerationSettings.Builder generationSettings = new BiomeGenerationSettings.Builder()
                 .addCarver(GenerationStep.Carving.AIR, Carvers.NETHER_CAVE)
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, MiscOverworldPlacements.SPRING_LAVA)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.SPRING_OPEN)
@@ -84,12 +125,12 @@ public class ModBiomes {
         BiomeDefaultFeatures.addDefaultMushrooms(generationSettings);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
-        return (new Biome.BiomeBuilder())
+        return new Biome.BiomeBuilder()
                 .precipitation(Biome.Precipitation.NONE)
                 .temperature(2)
                 .downfall(0)
                 .specialEffects(
-                        (new BiomeSpecialEffects.Builder())
+                        new BiomeSpecialEffects.Builder()
                                 .waterColor(4159204)
                                 .waterFogColor(329011)
                                 .fogColor(0x593a21)

@@ -1,6 +1,6 @@
-// 1.19.2	2022-10-09T14:52:42.1375959	Tags for minecraft:worldgen/biome
-ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/forge/tags/worldgen/biome/is_dry/nether.json
-ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/forge/tags/worldgen/biome/is_hot/nether.json
-ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json
+// 1.19.2	2022-10-15T12:47:04.9810328	Tags for minecraft:worldgen/biome
+2dd45a9657399e1ee7f6b2d93ffd938be82a148c data/forge/tags/worldgen/biome/is_dry/nether.json
+2dd45a9657399e1ee7f6b2d93ffd938be82a148c data/forge/tags/worldgen/biome/is_hot/nether.json
+2dd45a9657399e1ee7f6b2d93ffd938be82a148c data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json
 ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/has_structure/nether_fossil.json
-ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/is_nether.json
+2dd45a9657399e1ee7f6b2d93ffd938be82a148c data/minecraft/tags/worldgen/biome/is_nether.json

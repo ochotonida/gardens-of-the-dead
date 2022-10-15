@@ -2,12 +2,15 @@ package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.block.SoulSporeBlock;
+import gardensofthedead.common.block.WhistlecaneBlock;
 import gardensofthedead.common.feature.configuration.HugeFlatFungusConfiguration;
 import gardensofthedead.common.feature.configuration.SoulSporeColumnConfiguration;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -15,13 +18,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 public class ModConfiguredFeatures {
@@ -80,11 +83,57 @@ public class ModConfiguredFeatures {
             () -> new NetherForestVegetationConfig(soulblightVegetationProvider(), 8, 4)
     );
 
+    public static final RegistryObject<ConfiguredFeature<BlockColumnConfiguration, ?>> WHISTLECANE_COLUMN = ModConfiguredFeatures.register(
+            "whistlecane_column",
+            () -> Feature.BLOCK_COLUMN,
+            () -> new BlockColumnConfiguration(
+                    List.of(
+                        BlockColumnConfiguration.layer(
+                                UniformInt.of(WhistlecaneBlock.MAX_HEIGHT - 5, WhistlecaneBlock.MAX_HEIGHT - 1),
+                                BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.TOP, false))
+                        ),
+                        BlockColumnConfiguration.layer(
+                                ConstantInt.of(1),
+                                BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.GROWING, false).setValue(WhistlecaneBlock.TOP, true))
+                        )
+                    ),
+                    Direction.UP,
+                    BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                    true
+            )
+    );
+
+    public static final RegistryObject<ConfiguredFeature<NetherForestVegetationConfig, ?>> WHISTLING_WOODS_VEGETATION = register(
+            "whistling_woods_vegetation",
+            () -> Feature.NETHER_FOREST_VEGETATION,
+            () -> new NetherForestVegetationConfig(whistlingWoodsVegetationProvider(), 8, 4)
+    );
+
+    public static final RegistryObject<ConfiguredFeature<RandomPatchConfiguration, ?>> TALL_BLISTERCROWN_PATCH = register(
+            "tall_blistercrown_patch",
+            () -> Feature.RANDOM_PATCH,
+            () -> FeatureUtils.simplePatchConfiguration(
+                    Feature.SIMPLE_BLOCK,
+                    new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.TALL_BLISTERCROWN.get())),
+                    List.of(),
+                    32
+            )
+    );
+
     private static WeightedStateProvider soulblightVegetationProvider() {
         return new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
                 .add(ModBlocks.SOULBLIGHT_SPROUTS.get().defaultBlockState(), 48)
                 .add(ModBlocks.SOULBLIGHT_FUNGUS.get().defaultBlockState(), 48)
                 .add(Blocks.CRIMSON_FUNGUS.defaultBlockState(), 2)
+                .add(Blocks.WARPED_FUNGUS.defaultBlockState(), 2)
+        );
+    }
+
+    private static WeightedStateProvider whistlingWoodsVegetationProvider() {
+        return new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 70)
+                .add(ModBlocks.BLISTERCROWN.get().defaultBlockState(), 18)
+                .add(Blocks.CRIMSON_FUNGUS.defaultBlockState(), 10)
                 .add(Blocks.WARPED_FUNGUS.defaultBlockState(), 2)
         );
     }

@@ -21,8 +21,12 @@ public class GardensOfTheDeadRegion extends Region {
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         addBiome(mapper,
-                Climate.parameters(0, 0, 0, 0, 0, 0, 0),
+                Climate.parameters(0.4F, 0, 0, 0, 0, 0, 0),
                 ModBiomes.SOULBLIGHT_FOREST
+        );
+        addBiome(mapper,
+                Climate.parameters(-0.4F, 0, 0, 0, 0, 0, 0),
+                ModBiomes.WHISTLECANE_WOODS
         );
     }
 }

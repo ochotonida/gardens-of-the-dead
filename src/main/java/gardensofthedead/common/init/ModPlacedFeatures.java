@@ -6,6 +6,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.data.worldgen.features.NetherFeatures;
+import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -16,6 +19,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @SuppressWarnings("deprecation")
 public class ModPlacedFeatures {
@@ -64,10 +68,53 @@ public class ModPlacedFeatures {
             BiomeFilter.biome()
     );
 
+    public static final RegistryObject<PlacedFeature> NOISY_CRIMSON_FUNGI = register(
+            "noisy_crimson_fungi",
+            TreeFeatures.CRIMSON_FUNGUS,
+            NoiseBasedCountPlacement.of(6, 180, 0),
+            CountOnEveryLayerPlacement.of(1),
+            BiomeFilter.biome()
+    );
 
+    public static final RegistryObject<PlacedFeature> DENSE_WEEPING_VINES = register(
+            "dense_weeping_vines",
+            NetherFeatures.WEEPING_VINES,
+            CountPlacement.of(40),
+            InSquarePlacement.spread(),
+            PlacementUtils.FULL_RANGE,
+            BiomeFilter.biome()
+    );
 
-    private static <T extends FeatureConfiguration> RegistryObject<PlacedFeature> register(String name, RegistryObject<ConfiguredFeature<T, ?>> feature, PlacementModifier... modifiers) {
-        return PLACED_FEATURES.register(name, () -> new PlacedFeature(getHolder(feature.get()), List.of(modifiers)));
+    public static final RegistryObject<PlacedFeature> WHISTLECANE_COLUMN = register(
+            "whistlecane_column",
+            ModConfiguredFeatures.WHISTLECANE_COLUMN,
+            () -> List.of(
+                    CountOnEveryLayerPlacement.of(20),
+                    PlacementUtils.filteredByBlockSurvival(ModBlocks.WHISTLECANE.get()),
+                    BiomeFilter.biome()
+            )
+    );
+
+    public static final RegistryObject<PlacedFeature> WHISTLING_WOODS_VEGETATION = register(
+            "whistling_woods_vegetation",
+            ModConfiguredFeatures.WHISTLING_WOODS_VEGETATION,
+            CountOnEveryLayerPlacement.of(10),
+            BiomeFilter.biome()
+    );
+
+    public static final RegistryObject<PlacedFeature> TALL_BLISTERCROWN_PATCH = register(
+            "tall_blistercrown_patch",
+            ModConfiguredFeatures.TALL_BLISTERCROWN_PATCH,
+            CountOnEveryLayerPlacement.of(1),
+            BiomeFilter.biome()
+    );
+
+    private static <T extends FeatureConfiguration> RegistryObject<PlacedFeature> register(String name, Supplier<ConfiguredFeature<T, ?>> feature, PlacementModifier... modifiers) {
+        return register(name, feature, () -> List.of(modifiers));
+    }
+
+    private static <T extends FeatureConfiguration> RegistryObject<PlacedFeature> register(String name, Supplier<ConfiguredFeature<T, ?>> feature, Supplier<List<PlacementModifier>> modifiers) {
+        return PLACED_FEATURES.register(name, () -> new PlacedFeature(getHolder(feature.get()), modifiers.get()));
     }
 
     private static Holder<ConfiguredFeature<?, ?>> getHolder(ConfiguredFeature<?, ?> feature) {
