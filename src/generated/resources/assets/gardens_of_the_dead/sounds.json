@@ -3,13 +3,11 @@
     "sounds": [
       {
         "attenuation_distance": 32,
-        "name": "gardens_of_the_dead:whistlecane_whistle0",
-        "volume": 0.6
+        "name": "gardens_of_the_dead:whistlecane_whistle0"
       },
       {
         "attenuation_distance": 32,
         "name": "gardens_of_the_dead:whistlecane_whistle1",
-        "volume": 0.6,
         "weight": 2
       }
     ],

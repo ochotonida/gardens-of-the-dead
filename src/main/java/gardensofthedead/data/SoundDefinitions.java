@@ -16,8 +16,8 @@ public class SoundDefinitions extends SoundDefinitionsProvider {
     public void registerSounds() {
         add(ModSoundEvents.WHISTLECANE_WHISTLE.get(), definition()
                 .subtitle("%s.subtitle.whistlecane_whistles".formatted(GardensOfTheDead.MODID))
-                .with(sound(GardensOfTheDead.id("whistlecane_whistle0")).volume(0.6).attenuationDistance(32).weight(1))
-                .with(sound(GardensOfTheDead.id("whistlecane_whistle1")).volume(0.6).attenuationDistance(32).weight(2))
+                .with(sound(GardensOfTheDead.id("whistlecane_whistle0")).attenuationDistance(ModSoundEvents.WHISTLECANE_RANGE).weight(1))
+                .with(sound(GardensOfTheDead.id("whistlecane_whistle1")).attenuationDistance(ModSoundEvents.WHISTLECANE_RANGE).weight(2))
         );
     }
 }

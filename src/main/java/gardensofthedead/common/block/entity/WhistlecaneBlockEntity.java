@@ -55,7 +55,7 @@ public class WhistlecaneBlockEntity extends BlockEntity {
         double y = pos.getY() + offset.y + 1;
         double xSpeed = randomsource.nextDouble() * horizontalSpeed - horizontalSpeed / 2;
         double zSpeed = randomsource.nextDouble() * horizontalSpeed - horizontalSpeed / 2;
-        level.addAlwaysVisibleParticle(ModParticleTypes.WHISTLECANE_SMOKE.get(), x, y, z, xSpeed, verticalSpeed, zSpeed);
+        level.addAlwaysVisibleParticle(ModParticleTypes.WHISTLECANE_SMOKE.get(), true, x, y, z, xSpeed, verticalSpeed, zSpeed);
     }
 
     public void sendWhistlePacket() {
