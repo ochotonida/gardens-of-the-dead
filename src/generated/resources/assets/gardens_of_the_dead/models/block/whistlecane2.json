@@ -4,6 +4,7 @@
     {
       "faces": {
         "down": {
+          "cullface": "down",
           "texture": "#top",
           "uv": [
             6.0,
@@ -40,6 +41,7 @@
           ]
         },
         "up": {
+          "cullface": "up",
           "texture": "#top",
           "uv": [
             6.0,
@@ -114,45 +116,45 @@
     },
     {
       "faces": {
-        "north": {
+        "east": {
           "ambientocclusion": false,
           "texture": "#leaf",
           "uv": [
-            16.0,
-            0.0,
             8.0,
+            0.0,
+            16.0,
             16.0
           ]
         },
-        "south": {
+        "west": {
           "ambientocclusion": false,
           "texture": "#leaf",
           "uv": [
-            8.0,
-            0.0,
             16.0,
+            0.0,
+            8.0,
             16.0
           ]
         }
       },
       "from": [
-        4,
         11,
-        11
+        11,
+        4
       ],
       "rotation": {
-        "angle": 22.5,
-        "axis": "x",
+        "angle": -22.5,
+        "axis": "z",
         "origin": [
-          4,
           11,
-          11
+          11,
+          4
         ]
       },
       "to": [
-        12,
+        11,
         27,
-        11
+        12
       ]
     }
   ],

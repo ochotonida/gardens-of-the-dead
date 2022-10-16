@@ -1,7 +1,129 @@
 {
-  "parent": "minecraft:block/potted_cactus",
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#flowerpot",
+          "uv": [
+            5.0,
+            5.0,
+            6.0,
+            11.0
+          ]
+        },
+        "east": {
+          "texture": "#flowerpot"
+        },
+        "north": {
+          "texture": "#flowerpot"
+        },
+        "south": {
+          "texture": "#flowerpot"
+        },
+        "up": {
+          "texture": "#flowerpot"
+        },
+        "west": {
+          "texture": "#flowerpot"
+        }
+      },
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        6,
+        11
+      ]
+    },
+    {
+      "faces": {
+        "east": {
+          "texture": "#whistlecane"
+        },
+        "north": {
+          "texture": "#whistlecane"
+        },
+        "south": {
+          "texture": "#whistlecane"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#whistlecane",
+          "uv": [
+            10.0,
+            0.0,
+            14.0,
+            4.0
+          ]
+        },
+        "west": {
+          "texture": "#whistlecane"
+        }
+      },
+      "from": [
+        6,
+        6,
+        6
+      ],
+      "to": [
+        10,
+        16,
+        10
+      ]
+    },
+    {
+      "faces": {
+        "north": {
+          "ambientocclusion": false,
+          "texture": "#leaf",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "south": {
+          "ambientocclusion": false,
+          "texture": "#leaf",
+          "uv": [
+            6.0,
+            0.0,
+            0.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        9,
+        6
+      ],
+      "rotation": {
+        "angle": -22.5,
+        "axis": "x",
+        "origin": [
+          5,
+          9,
+          6
+        ]
+      },
+      "to": [
+        11,
+        25,
+        6
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
   "textures": {
-    "cactus": "gardens_of_the_dead:block/potted_whistlecane_side",
-    "cactus_top": "gardens_of_the_dead:block/potted_whistlecane_top"
+    "flowerpot": "minecraft:block/flower_pot",
+    "leaf": "#whistlecane",
+    "whistlecane": "gardens_of_the_dead:block/potted_whistlecane"
   }
 }

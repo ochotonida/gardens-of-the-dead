@@ -50,12 +50,7 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get(), "potted_soulblight_sprouts");
         pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
-        String pottedWhistleCane = getName(ModBlocks.POTTED_WHISTLECANE.get());
-        simpleBlock(ModBlocks.POTTED_WHISTLECANE.get(), models()
-                .withExistingParent(pottedWhistleCane, BLOCK_FOLDER + "/potted_cactus")
-                .texture("cactus", blockTexture(pottedWhistleCane + "_side"))
-                .texture("cactus_top", blockTexture(pottedWhistleCane + "_top"))
-        );
+        addPottedWhistleCane();
 
         ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
         simpleBlockWithItem(ModBlocks.SOULBLIGHT_PLANKS.get());
@@ -102,18 +97,21 @@ public class BlockStates extends BlockStateProvider {
         ResourceLocation leafTexture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "0");
         ResourceLocation leafTexture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "1");
 
-        BlockModelBuilder model0 = whistlecaneModel(name + "0", 0, texture0, texture0);
-        BlockModelBuilder model1 = whistlecaneModel(name + "1", 0, texture0, texture1);
-        BlockModelBuilder model2 = whistlecaneModel(name + "2", 6, texture0, texture1);
+        String model0Name = name + "0";
+        String model1Name = name + "1";
+        String model2Name = name + "2";
+        BlockModelBuilder model0 = whistlecaneModel(model0Name, 0, texture0, texture0);
+        BlockModelBuilder model1 = whistlecaneModel(model1Name, 0, texture0, texture1);
+        BlockModelBuilder model2 = whistlecaneModel(model2Name, 6, texture0, texture1);
 
         model0.texture("leaf", leafTexture0);
-        model0 = addWhistlecaneLeaf(model0, Direction.NORTH, 5, 0);
-        model0 = addWhistlecaneLeaf(model0, Direction.EAST, 13, 8);
-        model1.texture("leaf", leafTexture1);
-        model1 = addWhistlecaneLeaf(model1, Direction.NORTH, 9, 8);
+        addWhistlecaneLeaf(model0, Direction.SOUTH, 5, 0);
+        model1.texture("leaf", leafTexture0);
+        addWhistlecaneLeaf(model1, Direction.NORTH, 9, 0);
+        addWhistlecaneLeaf(model1, Direction.SOUTH, 15, 8);
         model2.texture("leaf", leafTexture1);
-        model2 = addWhistlecaneLeaf(model2, Direction.NORTH, 8, 0);
-        model2 = addWhistlecaneLeaf(model2, Direction.SOUTH, 11, 8);
+        addWhistlecaneLeaf(model2, Direction.NORTH, 8, 0);
+        addWhistlecaneLeaf(model2, Direction.EAST, 11, 8);
 
         ConfiguredModel[] models = ConfiguredModel.builder()
                 .modelFile(model0).rotationY(0).nextModel()
@@ -131,7 +129,38 @@ public class BlockStates extends BlockStateProvider {
 
         simpleBlock(ModBlocks.WHISTLECANE.get(), models);
         simpleBlock(ModBlocks.WHISTLECANE_PLANT.get(), models);
-        itemModels().basicItem(ModBlocks.WHISTLECANE.get().asItem());
+
+        itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + model0Name));
+    }
+
+    private void addPottedWhistleCane() {
+        String pottedWhistleCane = getName(ModBlocks.POTTED_WHISTLECANE.get());
+        ResourceLocation whistlecaneTexture = blockTexture(pottedWhistleCane);
+        ResourceLocation flowerpotTexture = blockTexture(Blocks.FLOWER_POT);
+
+        BlockModelBuilder model = models().getBuilder(pottedWhistleCane)
+                .texture("whistlecane", whistlecaneTexture)
+                .texture("flowerpot", flowerpotTexture)
+                .ao(false)
+                .element().from(5, 0, 5).to(11, 6, 11)
+                .face(Direction.DOWN).uvs(5, 5, 6, 11).cullface(Direction.DOWN).end()
+                .textureAll("#flowerpot")
+                .end()
+                .element().from(6, 6, 6).to(10, 16, 10)
+                .face(Direction.NORTH).end()
+                .face(Direction.EAST).end()
+                .face(Direction.SOUTH).end()
+                .face(Direction.WEST).end()
+                .faces((direction, faceBuilder) -> faceBuilder.uvs(6, 0, 10, 10))
+                .face(Direction.UP).uvs(10, 0, 14, 4).cullface(Direction.UP).end()
+                .faces((direction, faceBuilder) -> faceBuilder.texture("#whistlecane"))
+                .end();
+
+        model.texture("leaf", "#whistlecane");
+        addWhistlecaneLeaf(model, Direction.NORTH, 9, 0, 2);
+        model.renderType(CUTOUT);
+
+        simpleBlock(ModBlocks.POTTED_WHISTLECANE.get(), model);
     }
 
     private BlockModelBuilder whistlecaneModel(String modelName, int u1, ResourceLocation topTexture, ResourceLocation sideTexture) {
@@ -143,7 +172,7 @@ public class BlockStates extends BlockStateProvider {
                 .from(5, 0, 5).to(11, 16, 11)
                 .allFaces((direction, faceBuilder) -> {
                     if (direction.getAxis() == Direction.Axis.Y) {
-                        faceBuilder.uvs(6, 0, 12, 6).texture("#top");
+                        faceBuilder.uvs(6, 0, 12, 6).cullface(direction).texture("#top");
                     } else {
                         faceBuilder.uvs(u1, 0, u1 + 6, 16).texture("#side");
                     }
@@ -151,22 +180,26 @@ public class BlockStates extends BlockStateProvider {
                 .renderType(CUTOUT);
     }
 
-    private BlockModelBuilder addWhistlecaneLeaf(BlockModelBuilder model, Direction direction, int height, int u1) {
+    private void addWhistlecaneLeaf(BlockModelBuilder model, Direction direction, int height, int u1) {
+        addWhistlecaneLeaf(model, direction, height, u1, 3);
+    }
+
+    private void addWhistlecaneLeaf(BlockModelBuilder model, Direction direction, int height, int u1, int caneWidth) {
         Direction.Axis axis = direction.getAxis();
         Direction.AxisDirection axisDirection = direction.getAxisDirection();
         float angle = 22.5F;
+        int textureWidth = caneWidth + 1;
 
-        int a = 8 + axisDirection.getStep() * 3;
-        int x1 = axis == Direction.Axis.Z ? 4 : a;
-        int z1 = axis == Direction.Axis.X ? 4 : a;
-        int x2 = axis == Direction.Axis.Z ? 12 : a;
-        int z2 = axis == Direction.Axis.X ? 12 : a;
-        return model
-                .element()
+        int pivot = 8 + axisDirection.getStep() * caneWidth;
+        int x1 = axis == Direction.Axis.Z ? 8 - textureWidth : pivot;
+        int z1 = axis == Direction.Axis.X ? 8 - textureWidth : pivot;
+        int x2 = axis == Direction.Axis.Z ? 8 + textureWidth : pivot;
+        int z2 = axis == Direction.Axis.X ? 8 + textureWidth : pivot;
+        model.element()
                 .from(x1, height, z1)
                 .to(x2, height + 16, z2)
-                .face(direction).texture("#leaf").uvs(u1, 0, u1 + 8, 16).ao(false).end()
-                .face(direction.getOpposite()).texture("#leaf").uvs(u1 + 8, 0, u1, 16).ao(false).end()
+                .face(direction).texture("#leaf").uvs(u1, 0, u1 + textureWidth * 2, 16).ao(false).end()
+                .face(direction.getOpposite()).texture("#leaf").uvs(u1 + textureWidth * 2, 0, u1, 16).ao(false).end()
                 .rotation().origin(x1, height, z1).axis(direction.getClockWise().getAxis()).angle(axisDirection.getStep() * (axis == Direction.Axis.X ? -1 : 1) * angle).end()
                 .end();
     }
@@ -317,11 +350,6 @@ public class BlockStates extends BlockStateProvider {
 
     private void simpleBlockWithItem(Block block) {
         simpleBlock(block);
-        simpleBlockItem(block);
-    }
-
-    private void simpleBlockWithItem(Block block, ModelFile modelFile) {
-        simpleBlock(block, modelFile);
         simpleBlockItem(block);
     }
 
