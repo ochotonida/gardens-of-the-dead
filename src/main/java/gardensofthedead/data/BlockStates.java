@@ -63,6 +63,20 @@ public class BlockStates extends BlockStateProvider {
         signWithItem(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
         doorWithItem(ModBlocks.SOULBLIGHT_DOOR.get());
         trapdoorWithItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
+
+        logWithItem(ModBlocks.WHISTLECANE_BLOCK.get());
+        ResourceLocation whistlecaneTexture = blockTexture("whistlecane_block");
+        ResourceLocation whistlecaneTopTexture = blockTexture("whistlecane_block_top");
+
+        slabWithItem(ModBlocks.WHISTLECANE_SLAB.get(), whistlecaneTexture, whistlecaneTopTexture);
+        stairsWithItem(ModBlocks.WHISTLECANE_STAIRS.get(), whistlecaneTexture, whistlecaneTopTexture);
+        buttonWithItem(ModBlocks.WHISTLECANE_BUTTON.get(), whistlecaneTexture);
+        pressurePlateWithItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistlecaneTexture);
+        fenceWithItem(ModBlocks.WHISTLECANE_FENCE.get(), whistlecaneTexture); // TODO
+        fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneTexture);
+        signWithItem(ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get(), whistlecaneTexture);
+        doorWithItem(ModBlocks.WHISTLECANE_DOOR.get());
+        trapdoorWithItem(ModBlocks.WHISTLECANE_TRAPDOOR.get());
     }
 
     private void addSoulSpore() {
@@ -249,12 +263,20 @@ public class BlockStates extends BlockStateProvider {
     }
 
     public void slabWithItem(SlabBlock block, ResourceLocation texture) {
-        slabBlock(block, texture, texture);
+        slabWithItem(block, texture, texture);
+    }
+
+    public void slabWithItem(SlabBlock block, ResourceLocation sideTexture, ResourceLocation topTexture) {
+        slabBlock(block, sideTexture, sideTexture, topTexture, topTexture);
         simpleBlockItem(block);
     }
 
     public void stairsWithItem(StairBlock block, ResourceLocation texture) {
-        stairsBlock(block, texture);
+        stairsWithItem(block, texture, texture);
+    }
+
+    public void stairsWithItem(StairBlock block, ResourceLocation sideTexture, ResourceLocation topTexture) {
+        stairsBlock(block, sideTexture, topTexture, topTexture);
         simpleBlockItem(block);
     }
 

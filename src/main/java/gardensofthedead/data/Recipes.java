@@ -13,6 +13,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
@@ -35,17 +36,41 @@ public class Recipes extends RecipeProvider {
         woodFromLogs(consumer, ModBlocks.SOULBLIGHT_HYPHAE.get(), ModBlocks.SOULBLIGHT_STEM.get());
         woodFromLogs(consumer, ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get(), ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
 
-        planksFromLogs(consumer, ModBlocks.SOULBLIGHT_PLANKS.get(), ModTags.Items.SOULBlIGHT_STEMS);
+        Block soulblightPlanks = ModBlocks.SOULBLIGHT_PLANKS.get();
+        planksFromLogs(consumer, soulblightPlanks, ModTags.Items.SOULBLIGHT_STEMS);
 
-        woodenSlab(consumer, ModBlocks.SOULBLIGHT_SLAB.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        woodenStairs(consumer, ModBlocks.SOULBLIGHT_STAIRS.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        door(consumer, ModBlocks.SOULBLIGHT_DOOR.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        trapdoor(consumer, ModBlocks.SOULBLIGHT_TRAPDOOR.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        fence(consumer, ModBlocks.SOULBLIGHT_FENCE.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        fenceGate(consumer, ModBlocks.SOULBLIGHT_FENCE_GATE.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        button(consumer, ModBlocks.SOULBLIGHT_BUTTON.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        pressurePlate(consumer, ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
-        sign(consumer, ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_PLANKS.get());
+        woodenSlab(consumer, ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanks);
+        woodenStairs(consumer, ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanks);
+        fence(consumer, ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanks);
+        fenceGate(consumer, ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanks);
+        button(consumer, ModBlocks.SOULBLIGHT_BUTTON.get(), soulblightPlanks);
+        pressurePlate(consumer, ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), soulblightPlanks);
+        door(consumer, ModBlocks.SOULBLIGHT_DOOR.get(), soulblightPlanks);
+        trapdoor(consumer, ModBlocks.SOULBLIGHT_TRAPDOOR.get(), soulblightPlanks);
+        sign(consumer, ModBlocks.SOULBLIGHT_SIGN.get(), soulblightPlanks);
+
+        whistleCaneBlock(consumer);
+
+        Block whistleCaneBlock = ModBlocks.WHISTLECANE_BLOCK.get();
+        woodenSlab(consumer, ModBlocks.WHISTLECANE_SLAB.get(), whistleCaneBlock);
+        woodenStairs(consumer, ModBlocks.WHISTLECANE_STAIRS.get(), whistleCaneBlock);
+        fence(consumer, ModBlocks.WHISTLECANE_FENCE.get(), whistleCaneBlock);
+        fenceGate(consumer, ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistleCaneBlock);
+        button(consumer, ModBlocks.WHISTLECANE_BUTTON.get(), whistleCaneBlock);
+        pressurePlate(consumer, ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistleCaneBlock);
+        door(consumer, ModBlocks.WHISTLECANE_DOOR.get(), whistleCaneBlock);
+        trapdoor(consumer, ModBlocks.WHISTLECANE_TRAPDOOR.get(), whistleCaneBlock);
+        sign(consumer, ModBlocks.WHISTLECANE_SIGN.get(), whistleCaneBlock);
+    }
+
+    protected static void whistleCaneBlock(Consumer<FinishedRecipe> consumer) {
+        Block whistleCane = ModBlocks.WHISTLECANE.get();
+        ShapedRecipeBuilder.shaped(ModBlocks.WHISTLECANE_BLOCK.get(), 2)
+                .define('#', whistleCane)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_whistlecane", has(whistleCane))
+                .save(consumer, getRecipeLocation(whistleCane, CRAFTING_SHAPED));
     }
 
     protected static void woodFromLogs(Consumer<FinishedRecipe> consumer, ItemLike wood, ItemLike log) {

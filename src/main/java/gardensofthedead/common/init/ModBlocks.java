@@ -26,7 +26,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> SOULBLIGHT_STEM = soulblightStem("soulblight_stem", STRIPPED_SOULBLIGHT_STEM);
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_SOULBLIGHT_HYPHAE = strippedSoulblightStem("stripped_soulblight_hyphae");
     public static final RegistryObject<RotatedPillarBlock> SOULBLIGHT_HYPHAE = soulblightStem("soulblight_hyphae", STRIPPED_SOULBLIGHT_HYPHAE);
-    public static final RegistryObject<Block> BLIGHTWART_BLOCK = BLOCKS.register("blightwart_block", () -> new Block(ModBlockProperties.BLIGHTWART_BLOCK));
+    public static final RegistryObject<Block> BLIGHTWART_BLOCK = block("blightwart_block", ModBlockProperties.BLIGHTWART_BLOCK);
 
     public static final RegistryObject<Block> BLISTERCROWN = BLOCKS.register("blistercrown", () -> new BlistercrownBlock(ModBlockProperties.BLISTERCROWN));
     public static final RegistryObject<Block> TALL_BLISTERCROWN = BLOCKS.register("tall_blistercrown", () -> new TallBlistercrownBlock(ModBlockProperties.BLISTERCROWN));
@@ -41,17 +41,29 @@ public class ModBlocks {
     public static final RegistryObject<FlowerPotBlock> POTTED_BLISTERCROWN = flowerPot(BLISTERCROWN);
     public static final RegistryObject<FlowerPotBlock> POTTED_WHISTLECANE = flowerPot(WHISTLECANE);
 
-    public static final RegistryObject<Block> SOULBLIGHT_PLANKS = BLOCKS.register("soulblight_planks", () -> new Block(ModBlockProperties.SOULBLIGHT_PLANKS));
+    public static final RegistryObject<Block> SOULBLIGHT_PLANKS = block("soulblight_planks", ModBlockProperties.SOULBLIGHT_PLANKS);
     public static final RegistryObject<SlabBlock> SOULBLIGHT_SLAB = BLOCKS.register("soulblight_slab", () -> new SlabBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
-    public static final RegistryObject<PressurePlateBlock> SOULBLIGHT_PRESSURE_PLATE = BLOCKS.register("soulblight_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, ModBlockProperties.SOULBLIGHT_BUTTONS));
+    public static final RegistryObject<StairBlock> SOULBLIGHT_STAIRS = stairs("soulblight_stairs", SOULBLIGHT_PLANKS, ModBlockProperties.SOULBLIGHT_PLANKS);
     public static final RegistryObject<FenceBlock> SOULBLIGHT_FENCE = BLOCKS.register("soulblight_fence", () -> new FenceBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
-    public static final RegistryObject<TrapDoorBlock> SOULBLIGHT_TRAPDOOR = BLOCKS.register("soulblight_trapdoor", () -> new TrapDoorBlock(ModBlockProperties.SOULBLIGHT_TRAPDOOR));
     public static final RegistryObject<FenceGateBlock> SOULBLIGHT_FENCE_GATE = BLOCKS.register("soulblight_fence_gate", () -> new FenceGateBlock(ModBlockProperties.SOULBLIGHT_PLANKS));
-    public static final RegistryObject<StairBlock> SOULBLIGHT_STAIRS = BLOCKS.register("soulblight_stairs", () -> new StairBlock(() -> SOULBLIGHT_PLANKS.get().defaultBlockState(), ModBlockProperties.SOULBLIGHT_PLANKS));
     public static final RegistryObject<ButtonBlock> SOULBLIGHT_BUTTON = BLOCKS.register("soulblight_button", () -> new WoodButtonBlock(ModBlockProperties.SOULBLIGHT_BUTTONS));
+    public static final RegistryObject<PressurePlateBlock> SOULBLIGHT_PRESSURE_PLATE = BLOCKS.register("soulblight_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, ModBlockProperties.SOULBLIGHT_BUTTONS));
     public static final RegistryObject<DoorBlock> SOULBLIGHT_DOOR = BLOCKS.register("soulblight_door", () -> new DoorBlock(ModBlockProperties.SOULBLIGHT_DOOR));
+    public static final RegistryObject<TrapDoorBlock> SOULBLIGHT_TRAPDOOR = BLOCKS.register("soulblight_trapdoor", () -> new TrapDoorBlock(ModBlockProperties.SOULBLIGHT_TRAPDOOR));
     public static final RegistryObject<StandingSignBlock> SOULBLIGHT_SIGN = BLOCKS.register("soulblight_sign", () -> new StandingSignBlock(ModBlockProperties.SOULBLIGHT_SIGN, ModWoodTypes.SOULBLIGHT));
     public static final RegistryObject<WallSignBlock> SOULBLIGHT_WALL_SIGN = BLOCKS.register("soulblight_wall_sign", () -> new WallSignBlock(ModBlockProperties.SOULBLIGHT_WALL_SIGN, ModWoodTypes.SOULBLIGHT));
+
+    public static final RegistryObject<RotatedPillarBlock> WHISTLECANE_BLOCK = BLOCKS.register("whistlecane_block", () -> new RotatedPillarBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistryObject<SlabBlock> WHISTLECANE_SLAB = BLOCKS.register("whistlecane_slab", () -> new SlabBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistryObject<StairBlock> WHISTLECANE_STAIRS = stairs("whistlecane_stairs", WHISTLECANE_BLOCK, ModBlockProperties.WHISTLECANE_BLOCK);
+    public static final RegistryObject<FenceBlock> WHISTLECANE_FENCE = BLOCKS.register("whistlecane_fence", () -> new FenceBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistryObject<FenceGateBlock> WHISTLECANE_FENCE_GATE = BLOCKS.register("whistlecane_fence_gate", () -> new FenceGateBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistryObject<ButtonBlock> WHISTLECANE_BUTTON = BLOCKS.register("whistlecane_button", () -> new WoodButtonBlock(ModBlockProperties.WHISTLECANE_BUTTONS));
+    public static final RegistryObject<PressurePlateBlock> WHISTLECANE_PRESSURE_PLATE = BLOCKS.register("whistlecane_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, ModBlockProperties.WHISTLECANE_BUTTONS));
+    public static final RegistryObject<DoorBlock> WHISTLECANE_DOOR = BLOCKS.register("whistlecane_door", () -> new DoorBlock(ModBlockProperties.WHISTLECANE_DOOR));
+    public static final RegistryObject<TrapDoorBlock> WHISTLECANE_TRAPDOOR = BLOCKS.register("whistlecane_trapdoor", () -> new TrapDoorBlock(ModBlockProperties.WHISTLECANE_TRAPDOOR));
+    public static final RegistryObject<StandingSignBlock> WHISTLECANE_SIGN = BLOCKS.register("whistlecane_sign", () -> new StandingSignBlock(ModBlockProperties.WHISTLECANE_SIGN, ModWoodTypes.WHISTLECANE));
+    public static final RegistryObject<WallSignBlock> WHISTLECANE_WALL_SIGN = BLOCKS.register("whistlecane_wall_sign", () -> new WallSignBlock(ModBlockProperties.WHISTLECANE_WALL_SIGN, ModWoodTypes.WHISTLECANE));
 
     private static RegistryObject<RotatedPillarBlock> soulblightStem(String name, Supplier<? extends Block> strippedLogBlock) {
         return BLOCKS.register(name, () -> new StrippableLogBlock(ModBlockProperties.SOULBLIGHT_STEM, strippedLogBlock));
@@ -69,5 +81,13 @@ public class ModBlocks {
         RegistryObject<FlowerPotBlock> result = BLOCKS.register("potted_" + plant.getId().getPath(), () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, properties));
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getId(), result);
         return result;
+    }
+
+    private static RegistryObject<StairBlock> stairs(String name, Supplier<? extends Block> baseBlock, BlockBehaviour.Properties properties) {
+        return BLOCKS.register(name, () -> new StairBlock(() -> baseBlock.get().defaultBlockState(), properties));
+    }
+
+    private static RegistryObject<Block> block(String name, BlockBehaviour.Properties properties) {
+        return BLOCKS.register(name, () -> new Block(properties));
     }
 }

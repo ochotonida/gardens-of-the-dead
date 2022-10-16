@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gardens_of_the_dead:item/whistlecane_door"
+  }
+}

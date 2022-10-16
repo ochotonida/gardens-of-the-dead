@@ -61,7 +61,8 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
         return stateBelow.is(getBodyBlock())
                 || stateBelow.is(getHeadBlock())
                 || stateBelow.is(BlockTags.NYLIUM)
-                || stateBelow.is(Blocks.SOUL_SAND);
+                || stateBelow.is(Blocks.SOUL_SAND)
+                || stateBelow.is(Blocks.SOUL_SOIL);
     }
 
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {

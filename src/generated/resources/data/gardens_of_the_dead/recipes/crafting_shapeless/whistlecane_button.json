@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "gardens_of_the_dead:whistlecane_block"
+    }
+  ],
+  "result": {
+    "item": "gardens_of_the_dead:whistlecane_button"
+  }
+}

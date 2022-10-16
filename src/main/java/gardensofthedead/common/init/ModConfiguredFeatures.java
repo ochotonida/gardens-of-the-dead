@@ -6,6 +6,7 @@ import gardensofthedead.common.block.WhistlecaneBlock;
 import gardensofthedead.common.feature.configuration.HugeFlatFungusConfiguration;
 import gardensofthedead.common.feature.configuration.SoulSporeColumnConfiguration;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -119,6 +120,19 @@ public class ModConfiguredFeatures {
                     32
             )
     );
+
+    public static final RegistryObject<ConfiguredFeature<BlockPileConfiguration, ?>> NETHER_WART_BLOCK_PILE = register(
+            "nether_wart_block_pile",
+            () -> Feature.BLOCK_PILE,
+            () -> new BlockPileConfiguration(
+                    new WeightedStateProvider(
+                            SimpleWeightedRandomList.<BlockState>builder()
+                                    .add(Blocks.NETHER_WART_BLOCK.defaultBlockState(), 10)
+                                    .add(Blocks.SHROOMLIGHT.defaultBlockState(), 1)
+                    )
+            )
+    );
+
 
     private static WeightedStateProvider soulblightVegetationProvider() {
         return new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()

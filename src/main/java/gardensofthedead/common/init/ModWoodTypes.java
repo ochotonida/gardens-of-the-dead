@@ -16,6 +16,7 @@ public class ModWoodTypes {
     public static final Set<WoodType> VALUES = new HashSet<>();
 
     public static final WoodType SOULBLIGHT = create("soulblight");
+    public static final WoodType WHISTLECANE = create("whistlecane");
 
     @SuppressWarnings("SameParameterValue")
     private static WoodType create(String id) {
@@ -25,7 +26,6 @@ public class ModWoodTypes {
     }
 
     public static void register() {
-        //VALUES.forEach(Sheets::addWoodType);
         VALUES.forEach(woodType -> Sheets.SIGN_MATERIALS.put(woodType, new Material(SIGN_SHEET, GardensOfTheDead.id("entity/signs/" + new ResourceLocation(woodType.name()).getPath()))));
     }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "gardens_of_the_dead:block/whistlecane_block_top",
+    "side": "gardens_of_the_dead:block/whistlecane_block"
+  }
+}

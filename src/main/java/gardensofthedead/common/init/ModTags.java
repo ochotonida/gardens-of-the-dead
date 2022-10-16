@@ -19,7 +19,7 @@ public class ModTags {
 
     public static class Items {
 
-        public static final TagKey<Item> SOULBlIGHT_STEMS = tag("soulblight_stems");
+        public static final TagKey<Item> SOULBLIGHT_STEMS = tag("soulblight_stems");
 
         private static TagKey<Item> tag(String path) {
             return TagKey.create(Registry.ITEM_REGISTRY, GardensOfTheDead.id(path));

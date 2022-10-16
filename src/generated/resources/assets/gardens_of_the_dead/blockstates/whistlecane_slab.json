@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gardens_of_the_dead:block/whistlecane_slab"
+    },
+    "type=double": {
+      "model": "gardens_of_the_dead:block/whistlecane_block"
+    },
+    "type=top": {
+      "model": "gardens_of_the_dead:block/whistlecane_slab_top"
+    }
+  }
+}

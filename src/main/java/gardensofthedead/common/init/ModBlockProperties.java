@@ -96,6 +96,30 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties SOULBLIGHT_WALL_SIGN = copy(SOULBLIGHT_SIGN)
             .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get());
 
+    public static BlockBehaviour.Properties WHISTLECANE_BLOCK = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
+            .color(MaterialColor.CRIMSON_NYLIUM)
+            .strength(2, 3)
+            .sound(ModSoundTypes.WHISTLECANE);
+
+    public static BlockBehaviour.Properties WHISTLECANE_BUTTONS = copy(WHISTLECANE_BLOCK)
+            .noCollission()
+            .strength(0.5F);
+
+    public static BlockBehaviour.Properties WHISTLECANE_DOOR = copy(WHISTLECANE_BLOCK)
+            .strength(3)
+            .noOcclusion();
+
+    public static BlockBehaviour.Properties WHISTLECANE_TRAPDOOR = copy(WHISTLECANE_DOOR)
+            .isValidSpawn(ModBlockProperties::never);
+
+    public static BlockBehaviour.Properties WHISTLECANE_SIGN = copy(WHISTLECANE_BLOCK)
+            .noCollission()
+            .strength(1);
+
+    @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
+    public static BlockBehaviour.Properties WHISTLECANE_WALL_SIGN = copy(WHISTLECANE_SIGN)
+            .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get());
+
     public static BlockBehaviour.Properties pottedPlant() {
         return BlockBehaviour.Properties.of(Material.DECORATION)
                 .instabreak()

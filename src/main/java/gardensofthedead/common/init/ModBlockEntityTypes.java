@@ -13,6 +13,13 @@ public class ModBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registry.BLOCK_ENTITY_TYPE_REGISTRY, GardensOfTheDead.MODID);
 
-    public static final RegistryObject<BlockEntityType<SignBlockEntity>> SIGN = BLOCK_ENTITY_TYPES.register("sign", () -> BlockEntityType.Builder.of(SignBlockEntity::new, ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SignBlockEntity>> SIGN = BLOCK_ENTITY_TYPES.register("sign", () -> BlockEntityType.Builder.of(
+            SignBlockEntity::new,
+            ModBlocks.SOULBLIGHT_SIGN.get(),
+            ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
+            ModBlocks.WHISTLECANE_SIGN.get(),
+            ModBlocks.WHISTLECANE_WALL_SIGN.get()
+    ).build(null));
+
     public static final RegistryObject<BlockEntityType<WhistlecaneBlockEntity>> WHISTLECANE = BLOCK_ENTITY_TYPES.register("whistlecane", () -> BlockEntityType.Builder.of(WhistlecaneBlockEntity::new, ModBlocks.WHISTLECANE.get()).build(null));
 }

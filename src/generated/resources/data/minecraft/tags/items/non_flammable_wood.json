@@ -1,18 +1,24 @@
 {
   "values": [
-    "gardens_of_the_dead:soulblight_stem",
-    "gardens_of_the_dead:stripped_soulblight_stem",
-    "gardens_of_the_dead:soulblight_hyphae",
-    "gardens_of_the_dead:stripped_soulblight_hyphae",
     "gardens_of_the_dead:soulblight_planks",
     "gardens_of_the_dead:soulblight_slab",
-    "gardens_of_the_dead:soulblight_pressure_plate",
-    "gardens_of_the_dead:soulblight_fence",
-    "gardens_of_the_dead:soulblight_trapdoor",
-    "gardens_of_the_dead:soulblight_fence_gate",
     "gardens_of_the_dead:soulblight_stairs",
+    "gardens_of_the_dead:soulblight_fence",
+    "gardens_of_the_dead:soulblight_fence_gate",
     "gardens_of_the_dead:soulblight_button",
+    "gardens_of_the_dead:soulblight_pressure_plate",
     "gardens_of_the_dead:soulblight_door",
-    "gardens_of_the_dead:soulblight_sign"
+    "gardens_of_the_dead:soulblight_trapdoor",
+    "gardens_of_the_dead:soulblight_sign",
+    "gardens_of_the_dead:whistlecane_block",
+    "gardens_of_the_dead:whistlecane_slab",
+    "gardens_of_the_dead:whistlecane_stairs",
+    "gardens_of_the_dead:whistlecane_fence",
+    "gardens_of_the_dead:whistlecane_fence_gate",
+    "gardens_of_the_dead:whistlecane_button",
+    "gardens_of_the_dead:whistlecane_pressure_plate",
+    "gardens_of_the_dead:whistlecane_door",
+    "gardens_of_the_dead:whistlecane_trapdoor",
+    "gardens_of_the_dead:whistlecane_sign"
   ]
 }

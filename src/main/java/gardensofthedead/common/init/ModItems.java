@@ -36,14 +36,25 @@ public class ModItems {
 
     public static final RegistryObject<Item> SOULBLIGHT_PLANKS = blockItem(ModBlocks.SOULBLIGHT_PLANKS);
     public static final RegistryObject<Item> SOULBLIGHT_SLAB = blockItem(ModBlocks.SOULBLIGHT_SLAB);
-    public static final RegistryObject<Item> SOULBLIGHT_FENCE = blockItem(ModBlocks.SOULBLIGHT_FENCE);
     public static final RegistryObject<Item> SOULBLIGHT_STAIRS = blockItem(ModBlocks.SOULBLIGHT_STAIRS);
+    public static final RegistryObject<Item> SOULBLIGHT_FENCE = blockItem(ModBlocks.SOULBLIGHT_FENCE);
+    public static final RegistryObject<Item> SOULBLIGHT_FENCE_GATE = blockItem(ModBlocks.SOULBLIGHT_FENCE_GATE);
     public static final RegistryObject<Item> SOULBLIGHT_BUTTON = blockItem(ModBlocks.SOULBLIGHT_BUTTON);
     public static final RegistryObject<Item> SOULBLIGHT_PRESSURE_PLATE = blockItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE);
     public static final RegistryObject<Item> SOULBLIGHT_DOOR = ITEMS.register("soulblight_door", () -> new DoubleHighBlockItem(ModBlocks.SOULBLIGHT_DOOR.get(), properties()));
     public static final RegistryObject<Item> SOULBLIGHT_TRAPDOOR = blockItem(ModBlocks.SOULBLIGHT_TRAPDOOR);
-    public static final RegistryObject<Item> SOULBLIGHT_FENCE_GATE = blockItem(ModBlocks.SOULBLIGHT_FENCE_GATE);
     public static final RegistryObject<Item> SOULBLIGHT_SIGN = ITEMS.register("soulblight_sign", () -> new SignItem(properties().stacksTo(16), ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get()));
+
+    public static final RegistryObject<Item> WHISTLECANE_BLOCK = blockItem(ModBlocks.WHISTLECANE_BLOCK);
+    public static final RegistryObject<Item> WHISTLECANE_SLAB = blockItem(ModBlocks.WHISTLECANE_SLAB);
+    public static final RegistryObject<Item> WHISTLECANE_STAIRS = blockItem(ModBlocks.WHISTLECANE_STAIRS);
+    public static final RegistryObject<Item> WHISTLECANE_FENCE = blockItem(ModBlocks.WHISTLECANE_FENCE);
+    public static final RegistryObject<Item> WHISTLECANE_FENCE_GATE = blockItem(ModBlocks.WHISTLECANE_FENCE_GATE);
+    public static final RegistryObject<Item> WHISTLECANE_BUTTON = blockItem(ModBlocks.WHISTLECANE_BUTTON);
+    public static final RegistryObject<Item> WHISTLECANE_PRESSURE_PLATE = blockItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE);
+    public static final RegistryObject<Item> WHISTLECANE_DOOR = ITEMS.register("whistlecane_door", () -> new DoubleHighBlockItem(ModBlocks.WHISTLECANE_DOOR.get(), properties()));
+    public static final RegistryObject<Item> WHISTLECANE_TRAPDOOR = blockItem(ModBlocks.WHISTLECANE_TRAPDOOR);
+    public static final RegistryObject<Item> WHISTLECANE_SIGN = ITEMS.register("whistlecane_sign", () -> new SignItem(properties().stacksTo(16), ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get()));
 
     private static RegistryObject<Item> blockItem(RegistryObject<? extends Block> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties()));

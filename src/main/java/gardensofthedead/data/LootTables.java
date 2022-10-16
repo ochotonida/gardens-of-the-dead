@@ -41,7 +41,8 @@ public class LootTables extends LootTableProvider {
         blocksWithLootAdded.clear();
 
         noLoot(
-                ModBlocks.SOULBLIGHT_WALL_SIGN.get()
+                ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
+                ModBlocks.WHISTLECANE_WALL_SIGN.get()
         );
 
         addShearHarvestables(

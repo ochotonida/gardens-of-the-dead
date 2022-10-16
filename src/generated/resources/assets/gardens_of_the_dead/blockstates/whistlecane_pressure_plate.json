@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "gardens_of_the_dead:block/whistlecane_pressure_plate"
+    },
+    "powered=true": {
+      "model": "gardens_of_the_dead:block/whistlecane_pressure_plate_down"
+    }
+  }
+}

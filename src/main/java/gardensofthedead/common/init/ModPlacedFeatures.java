@@ -109,6 +109,14 @@ public class ModPlacedFeatures {
             BiomeFilter.biome()
     );
 
+    public static final RegistryObject<PlacedFeature> NETHER_WART_BLOCK_PILE = register(
+            "nether_wart_block_pile",
+            ModConfiguredFeatures.NETHER_WART_BLOCK_PILE,
+            CountOnEveryLayerPlacement.of(1),
+            RarityFilter.onAverageOnceEvery(2),
+            BiomeFilter.biome()
+    );
+
     private static <T extends FeatureConfiguration> RegistryObject<PlacedFeature> register(String name, Supplier<ConfiguredFeature<T, ?>> feature, PlacementModifier... modifiers) {
         return register(name, feature, () -> List.of(modifiers));
     }

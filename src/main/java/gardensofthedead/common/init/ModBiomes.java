@@ -118,6 +118,7 @@ public class ModBiomes {
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.GLOWSTONE)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, OrePlacements.ORE_MAGMA)
                 .addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherPlacements.SPRING_CLOSED)
+                .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.NETHER_WART_BLOCK_PILE.get()))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.DENSE_WEEPING_VINES.get()))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.NOISY_CRIMSON_FUNGI.get()))
                 .addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.getHolder(ModPlacedFeatures.WHISTLECANE_COLUMN.get()))

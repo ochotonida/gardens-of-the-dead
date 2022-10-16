@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class GardensOfTheDeadRegion extends Region {
 
     public GardensOfTheDeadRegion() {
-        super(GardensOfTheDead.id("nether"), RegionType.NETHER, 1);
+        super(GardensOfTheDead.id("nether"), RegionType.NETHER, 4);
     }
 
     @Override
