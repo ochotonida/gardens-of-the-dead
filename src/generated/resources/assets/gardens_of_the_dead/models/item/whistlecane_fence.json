@@ -1,6 +1,401 @@
 {
-  "parent": "minecraft:block/fence_inventory",
+  "parent": "minecraft:block/block",
+  "ambientocclusion": false,
+  "display": {
+    "fixed": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        135,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#top",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "north": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#top",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        -1
+      ],
+      "to": [
+        11,
+        16,
+        5
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#top",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "north": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#top",
+          "uv": [
+            6.0,
+            0.0,
+            12.0,
+            6.0
+          ]
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0.0,
+            0.0,
+            6.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        5,
+        0,
+        11
+      ],
+      "to": [
+        11,
+        16,
+        17
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            13.0
+          ]
+        },
+        "east": {
+          "texture": "#beam",
+          "uv": [
+            3.0,
+            7.0,
+            14.0,
+            9.0
+          ]
+        },
+        "south": {
+          "texture": "#beam"
+        },
+        "up": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            13.0
+          ]
+        },
+        "west": {
+          "texture": "#beam",
+          "uv": [
+            14.0,
+            7.0,
+            3.0,
+            9.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        7,
+        8
+      ],
+      "to": [
+        9,
+        9,
+        19
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            3.0,
+            9.0,
+            14.0
+          ]
+        },
+        "east": {
+          "texture": "#beam",
+          "uv": [
+            14.0,
+            7.0,
+            3.0,
+            9.0
+          ]
+        },
+        "north": {
+          "texture": "#beam"
+        },
+        "up": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            3.0,
+            9.0,
+            14.0
+          ]
+        },
+        "west": {
+          "texture": "#beam",
+          "uv": [
+            3.0,
+            7.0,
+            14.0,
+            9.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        7,
+        -3
+      ],
+      "to": [
+        9,
+        9,
+        8
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            13.0
+          ]
+        },
+        "east": {
+          "texture": "#beam",
+          "uv": [
+            3.0,
+            7.0,
+            14.0,
+            9.0
+          ]
+        },
+        "south": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ]
+        },
+        "up": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            2.0,
+            9.0,
+            13.0
+          ]
+        },
+        "west": {
+          "texture": "#beam",
+          "uv": [
+            14.0,
+            7.0,
+            3.0,
+            9.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        13,
+        8
+      ],
+      "to": [
+        9,
+        15,
+        19
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            3.0,
+            9.0,
+            14.0
+          ]
+        },
+        "east": {
+          "texture": "#beam",
+          "uv": [
+            14.0,
+            7.0,
+            3.0,
+            9.0
+          ]
+        },
+        "north": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            7.0,
+            9.0,
+            9.0
+          ]
+        },
+        "up": {
+          "texture": "#beam",
+          "uv": [
+            7.0,
+            3.0,
+            9.0,
+            14.0
+          ]
+        },
+        "west": {
+          "texture": "#beam",
+          "uv": [
+            3.0,
+            7.0,
+            14.0,
+            9.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        13,
+        -3
+      ],
+      "to": [
+        9,
+        15,
+        8
+      ]
+    }
+  ],
   "textures": {
-    "texture": "gardens_of_the_dead:block/whistlecane_block"
+    "beam": "gardens_of_the_dead:block/whistlecane_fence_beams",
+    "side": "gardens_of_the_dead:block/whistlecane1",
+    "top": "gardens_of_the_dead:block/whistlecane0"
   }
 }

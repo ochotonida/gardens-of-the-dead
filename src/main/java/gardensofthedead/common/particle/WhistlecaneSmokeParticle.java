@@ -3,8 +3,6 @@ package gardensofthedead.common.particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class WhistlecaneSmokeParticle extends TextureSheetParticle {
 
@@ -39,7 +37,6 @@ public class WhistlecaneSmokeParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public record Provider(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
 
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double u, double v, double w) {

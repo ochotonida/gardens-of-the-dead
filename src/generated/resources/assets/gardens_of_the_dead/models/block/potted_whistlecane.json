@@ -124,6 +124,7 @@
   "textures": {
     "flowerpot": "minecraft:block/flower_pot",
     "leaf": "#whistlecane",
+    "particle": "#flowerpot",
     "whistlecane": "gardens_of_the_dead:block/potted_whistlecane"
   }
 }

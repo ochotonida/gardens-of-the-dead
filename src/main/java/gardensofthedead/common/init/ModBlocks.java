@@ -56,7 +56,7 @@ public class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> WHISTLECANE_BLOCK = BLOCKS.register("whistlecane_block", () -> new RotatedPillarBlock(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistryObject<SlabBlock> WHISTLECANE_SLAB = BLOCKS.register("whistlecane_slab", () -> new SlabBlock(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistryObject<StairBlock> WHISTLECANE_STAIRS = stairs("whistlecane_stairs", WHISTLECANE_BLOCK, ModBlockProperties.WHISTLECANE_BLOCK);
-    public static final RegistryObject<FenceBlock> WHISTLECANE_FENCE = BLOCKS.register("whistlecane_fence", () -> new FenceBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistryObject<WhistlecaneFenceBlock> WHISTLECANE_FENCE = BLOCKS.register("whistlecane_fence", () -> new WhistlecaneFenceBlock(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistryObject<FenceGateBlock> WHISTLECANE_FENCE_GATE = BLOCKS.register("whistlecane_fence_gate", () -> new FenceGateBlock(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistryObject<ButtonBlock> WHISTLECANE_BUTTON = BLOCKS.register("whistlecane_button", () -> new WoodButtonBlock(ModBlockProperties.WHISTLECANE_BUTTONS));
     public static final RegistryObject<PressurePlateBlock> WHISTLECANE_PRESSURE_PLATE = BLOCKS.register("whistlecane_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, ModBlockProperties.WHISTLECANE_BUTTONS));

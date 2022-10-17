@@ -4,9 +4,11 @@ import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.block.SoulSporeBaseBlock;
 import gardensofthedead.common.block.SoulSporeBlock;
 import gardensofthedead.common.init.ModBlocks;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -21,6 +23,10 @@ import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOL
 public class BlockStates extends BlockStateProvider {
 
     private static final String CUTOUT = "cutout";
+
+    private static final String BLOCK_MODEL = BLOCK_FOLDER + "/block";
+    private static final ResourceLocation WHISTLECANE_0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "0");
+    private static final ResourceLocation WHISTLECANE_1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "1");
 
     public BlockStates(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, GardensOfTheDead.MODID, existingFileHelper);
@@ -45,14 +51,14 @@ public class BlockStates extends BlockStateProvider {
 
         simpleBlockWithItem(ModBlocks.BLIGHTWART_BLOCK.get());
 
-        pottedPlant(ModBlocks.POTTED_SOUL_SPORE.get(), "potted_soul_spore");
-        pottedPlant(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get(), "potted_glowing_soul_spore");
+        pottedPlantWithCustomTexture(ModBlocks.POTTED_SOUL_SPORE.get());
+        pottedPlantWithCustomTexture(ModBlocks.POTTED_GLOWING_SOUL_SPORE.get());
         pottedPlant(ModBlocks.POTTED_SOULBLIGHT_FUNGUS.get());
-        pottedPlant(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get(), "potted_soulblight_sprouts");
+        pottedPlantWithCustomTexture(ModBlocks.POTTED_SOULBLIGHT_SPROUTS.get());
         pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
         addPottedWhistleCane();
 
-        ResourceLocation soulblightPlanksTexture = blockTexture("soulblight_planks");
+        ResourceLocation soulblightPlanksTexture = blockTexture(getName(ModBlocks.SOULBLIGHT_PLANKS.get()));
         simpleBlockWithItem(ModBlocks.SOULBLIGHT_PLANKS.get());
         slabWithItem(ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanksTexture);
         stairsWithItem(ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanksTexture);
@@ -65,15 +71,16 @@ public class BlockStates extends BlockStateProvider {
         trapdoorWithItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
 
         logWithItem(ModBlocks.WHISTLECANE_BLOCK.get());
-        ResourceLocation whistlecaneTexture = blockTexture("whistlecane_block");
-        ResourceLocation whistlecaneTopTexture = blockTexture("whistlecane_block_top");
+        ResourceLocation whistlecaneTexture = blockTexture(getName(ModBlocks.WHISTLECANE_BLOCK.get()));
+        ResourceLocation whistlecaneTopTexture = blockTexture(getName(ModBlocks.WHISTLECANE_BLOCK.get()) + "_top");
+        ResourceLocation whistlecaneFenceGateTexture = blockTexture(ModBlocks.WHISTLECANE_FENCE_GATE.get());
 
         slabWithItem(ModBlocks.WHISTLECANE_SLAB.get(), whistlecaneTexture, whistlecaneTopTexture);
         stairsWithItem(ModBlocks.WHISTLECANE_STAIRS.get(), whistlecaneTexture, whistlecaneTopTexture);
         buttonWithItem(ModBlocks.WHISTLECANE_BUTTON.get(), whistlecaneTexture);
         pressurePlateWithItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistlecaneTexture);
-        fenceWithItem(ModBlocks.WHISTLECANE_FENCE.get(), whistlecaneTexture); // TODO
-        fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneTexture);
+        addWhistlecaneFence();
+        fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneFenceGateTexture);
         signWithItem(ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get(), whistlecaneTexture);
         doorWithItem(ModBlocks.WHISTLECANE_DOOR.get());
         trapdoorWithItem(ModBlocks.WHISTLECANE_TRAPDOOR.get());
@@ -104,19 +111,136 @@ public class BlockStates extends BlockStateProvider {
         generatedItem(ModBlocks.GLOWING_SOUL_SPORE.get());
     }
 
+    private void addWhistlecaneFence() {
+        String whistlecane = getName(ModBlocks.WHISTLECANE.get());
+        String whistlecaneFenceBeams = getName(ModBlocks.WHISTLECANE_FENCE.get()) + "_beams";
+        ResourceLocation beamTexture = GardensOfTheDead.id(BLOCK_FOLDER + "/" + whistlecaneFenceBeams);
+
+        ResourceLocation postTexture = WHISTLECANE_1;
+        int postU1 = 0;
+        int beam1Height = 7;
+        int beam2Height = 13;
+        int postWidth = 6;
+        int beamHeight = 2;
+        int beamWidth = 2;
+
+        ModelFile post = whistlecaneModel(whistlecane + "_post", postU1, postTexture);
+        BlockModelBuilder beams = models().getBuilder(whistlecaneFenceBeams)
+                .texture("beam", beamTexture);
+
+        fourWayBlock(ModBlocks.WHISTLECANE_FENCE.get(),
+                post, beams
+        );
+
+        addWhistlecaneFenceBeam(beams, beam1Height, postWidth, beamHeight, beamWidth);
+        addWhistlecaneFenceBeam(beams, beam2Height, postWidth, beamHeight, beamWidth);
+
+        ItemModelBuilder model = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
+                .transforms()
+                .transform(ItemTransforms.TransformType.GUI)
+                .rotation(30, 135, 0)
+                .scale(0.625F)
+                .end()
+                .transform(ItemTransforms.TransformType.FIXED)
+                .rotation(0, 90, 0)
+                .translation(0, 0, 0)
+                .scale(0.5F)
+                .end()
+                .end()
+                .ao(false)
+                .texture("side", postTexture)
+                .texture("top", WHISTLECANE_0)
+                .texture("beam", beamTexture);
+
+        int postOffset = 6;
+        addWhistlecanePost(model, postU1, -postOffset);
+        addWhistlecanePost(model, postU1, postOffset);
+
+        addWhistlecaneFenceItemBeam(model, beam1Height, postWidth, beamHeight, beamWidth, +postOffset);
+        addWhistlecaneFenceItemBeam(model, beam1Height, postWidth, beamHeight, beamWidth, -postOffset);
+        addWhistlecaneFenceItemBeam(model, beam2Height, postWidth, beamHeight, beamWidth, +postOffset);
+        addWhistlecaneFenceItemBeam(model, beam2Height, postWidth, beamHeight, beamWidth, -postOffset);
+    }
+
+    private void addWhistlecaneFenceItemBeam(ModelBuilder<?> builder, int height, int postWidth, int beamHeight, int beamWidth, int offset) {
+        float beamStart = 8 - beamWidth / 2F;
+        float beamEnd = 8 + beamWidth / 2F;
+        float endCapLength = 2;
+
+        float z1 = Math.min(8, 8 + offset + Mth.sign(offset) * (postWidth / 2F + endCapLength));
+        float zOffset = Math.max(8, 8 + offset + Mth.sign(offset) * (postWidth / 2F + endCapLength)) - z1;
+        Direction beamDirection = Mth.sign(offset) > 0 ? Direction.SOUTH : Direction.NORTH;
+
+        builder.element()
+                .from(beamStart, height, z1)
+                .to(beamEnd, height + beamHeight, z1 + zOffset)
+                .face(Direction.UP).end()
+                .face(Direction.DOWN).end()
+                .face(Direction.EAST).end()
+                .face(Direction.WEST).end()
+                .face(beamDirection).end()
+                .texture("#beam")
+                .faces((direction, faceBuilder) -> {
+                    if (direction.getAxis() == Direction.Axis.Y) {
+                        faceBuilder.uvs(beamStart, z1 - offset, beamEnd, z1 - offset + zOffset);
+                    } else if (direction.getAxis() == Direction.Axis.X) {
+                        float start = 8 - postWidth / 2F - endCapLength;
+                        float end = start + zOffset;
+                        faceBuilder.uvs(
+                                direction == Direction.EAST ^ offset > 0 ? end : start,
+                                beamStart,
+                                direction == Direction.WEST ^ offset > 0 ? end : start,
+                                beamEnd
+                        );
+
+                    } else if (direction.getAxis() == Direction.Axis.Z) {
+                        faceBuilder.uvs(beamStart, beamStart, beamEnd, beamEnd);
+                    }
+                });
+
+    }
+
+    private void addWhistlecaneFenceBeam(BlockModelBuilder builder, int height, int postWidth, int beamHeight, int beamWidth) {
+        float beamStart = 8 - beamWidth / 2F;
+        float beamEnd = 8 + beamWidth / 2F;
+        float postStart = 8 - postWidth / 2F;
+
+        builder.element()
+                .from(beamStart, height, 0)
+                .to(beamEnd, height + beamHeight, postStart)
+                .face(Direction.UP).end()
+                .face(Direction.DOWN).end()
+                .face(Direction.EAST).end()
+                .face(Direction.WEST).end()
+                .face(Direction.NORTH).uvs(beamStart, beamStart, beamEnd, beamEnd).cullface(Direction.NORTH)
+                .end()
+                .faces((direction, faceBuilder) -> {
+                    if (direction.getAxis() == Direction.Axis.Y) {
+                        faceBuilder.uvs(beamStart, 0, beamEnd, postStart);
+                    } else if (direction.getAxis() == Direction.Axis.X) {
+                        faceBuilder.uvs(
+                                direction == Direction.EAST ? postStart : 0,
+                                beamStart,
+                                direction == Direction.WEST ? postStart : 0,
+                                beamEnd
+                        );
+                    }
+                })
+                .texture("#beam")
+                .end();
+    }
+
     private void addWhistlecane() {
         String name = getName(ModBlocks.WHISTLECANE.get());
-        ResourceLocation texture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "0");
-        ResourceLocation texture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "1");
         ResourceLocation leafTexture0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "0");
         ResourceLocation leafTexture1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + name + "_leaves" + "1");
 
         String model0Name = name + "0";
         String model1Name = name + "1";
         String model2Name = name + "2";
-        BlockModelBuilder model0 = whistlecaneModel(model0Name, 0, texture0, texture0);
-        BlockModelBuilder model1 = whistlecaneModel(model1Name, 0, texture0, texture1);
-        BlockModelBuilder model2 = whistlecaneModel(model2Name, 6, texture0, texture1);
+        BlockModelBuilder model0 = whistlecaneModel(model0Name, 0, WHISTLECANE_0);
+        BlockModelBuilder model1 = whistlecaneModel(model1Name, 0, WHISTLECANE_1);
+        BlockModelBuilder model2 = whistlecaneModel(model2Name, 6, WHISTLECANE_1);
 
         model0.texture("leaf", leafTexture0);
         addWhistlecaneLeaf(model0, Direction.SOUTH, 5, 0);
@@ -144,7 +268,12 @@ public class BlockStates extends BlockStateProvider {
         simpleBlock(ModBlocks.WHISTLECANE.get(), models);
         simpleBlock(ModBlocks.WHISTLECANE_PLANT.get(), models);
 
-        itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + model0Name));
+        itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + model0Name))
+                .transforms()
+                .transform(ItemTransforms.TransformType.GUI)
+                .rotation(30, 225, 0)
+                .translation(0, -1, 0)
+                .scale(0.625F);
     }
 
     private void addPottedWhistleCane() {
@@ -155,6 +284,7 @@ public class BlockStates extends BlockStateProvider {
         BlockModelBuilder model = models().getBuilder(pottedWhistleCane)
                 .texture("whistlecane", whistlecaneTexture)
                 .texture("flowerpot", flowerpotTexture)
+                .texture("particle", "#flowerpot")
                 .ao(false)
                 .element().from(5, 0, 5).to(11, 6, 11)
                 .face(Direction.DOWN).uvs(5, 5, 6, 11).cullface(Direction.DOWN).end()
@@ -177,21 +307,26 @@ public class BlockStates extends BlockStateProvider {
         simpleBlock(ModBlocks.POTTED_WHISTLECANE.get(), model);
     }
 
-    private BlockModelBuilder whistlecaneModel(String modelName, int u1, ResourceLocation topTexture, ResourceLocation sideTexture) {
-        return models().withExistingParent(modelName, BLOCK_FOLDER + "/block")
-                .texture("top", topTexture)
+    private BlockModelBuilder whistlecaneModel(String modelName, int u1, ResourceLocation sideTexture) {
+        BlockModelBuilder model = models().withExistingParent(modelName, BLOCK_MODEL)
+                .texture("top", WHISTLECANE_0)
                 .texture("side", sideTexture)
                 .texture("particle", "#side")
-                .element()
-                .from(5, 0, 5).to(11, 16, 11)
+                .renderType(CUTOUT);
+        addWhistlecanePost(model, u1, 0);
+        return model;
+    }
+
+    private void addWhistlecanePost(ModelBuilder<?> builder, int u1, int zOffset) {
+        builder.element()
+                .from(5, 0, 8 - 3 + zOffset).to(11, 16, 8 + 3 + zOffset)
                 .allFaces((direction, faceBuilder) -> {
                     if (direction.getAxis() == Direction.Axis.Y) {
                         faceBuilder.uvs(6, 0, 12, 6).cullface(direction).texture("#top");
                     } else {
                         faceBuilder.uvs(u1, 0, u1 + 6, 16).texture("#side");
                     }
-                }).end()
-                .renderType(CUTOUT);
+                }).end();
     }
 
     private void addWhistlecaneLeaf(BlockModelBuilder model, Direction direction, int height, int u1) {
@@ -346,6 +481,10 @@ public class BlockStates extends BlockStateProvider {
         pottedPlant(pottedPlant, id);
     }
 
+    private void pottedPlantWithCustomTexture(Block pottedPlant) {
+        pottedPlant(pottedPlant, getName(pottedPlant));
+    }
+
     private void pottedPlant(Block pottedPlant, String textureName) {
         simpleBlock(pottedPlant, models()
                 .withExistingParent(getName(pottedPlant), "flower_pot_cross")
@@ -415,7 +554,7 @@ public class BlockStates extends BlockStateProvider {
         return modLoc(BLOCK_FOLDER + "/" + textureName);
     }
 
-    private String getName(Block block) {
+    private static String getName(Block block) {
         // noinspection ConstantConditions
         return ForgeRegistries.BLOCKS.getKey(block).getPath();
     }

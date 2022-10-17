@@ -3,7 +3,7 @@
   "group": "wooden_fence_gate",
   "key": {
     "#": {
-      "item": "minecraft:stick"
+      "item": "gardens_of_the_dead:whistlecane"
     },
     "W": {
       "item": "gardens_of_the_dead:whistlecane_block"

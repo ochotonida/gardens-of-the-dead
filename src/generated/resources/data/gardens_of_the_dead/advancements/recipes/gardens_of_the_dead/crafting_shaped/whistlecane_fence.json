@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_planks": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gardens_of_the_dead:crafting_shaped/whistlecane_fence"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_whistlecane": {
       "conditions": {
         "items": [
           {
@@ -12,17 +18,11 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "gardens_of_the_dead:crafting_shaped/whistlecane_fence"
-      },
-      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_planks",
+      "has_whistlecane",
       "has_the_recipe"
     ]
   ],
