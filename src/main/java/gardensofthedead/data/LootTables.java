@@ -3,12 +3,15 @@ package gardensofthedead.data;
 import com.mojang.datafixers.util.Pair;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.init.ModBlocks;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
@@ -16,6 +19,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.common.loot.CanToolPerformAction;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -60,6 +64,8 @@ public class LootTables extends LootTableProvider {
             if (!blocksWithLootAdded.contains(block) && ForgeRegistries.BLOCKS.getKey(block).getNamespace().equals(GardensOfTheDead.MODID)) {
                 if (block instanceof FlowerPotBlock pottedPlant) {
                     addPottedPlants(pottedPlant);
+                } else if (block instanceof DoorBlock doorBlock) {
+                    addDoor(doorBlock);
                 } else {
                     addDefaultDrops(block);
                 }
@@ -96,6 +102,21 @@ public class LootTables extends LootTableProvider {
                     )
             );
         }
+    }
+
+    private void addDoor(DoorBlock block) {
+        addBlockLootTable(block, LootTable
+                .lootTable()
+                .withPool(defaultDrops(block)
+                        .when(LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(block)
+                                .setProperties(StatePropertiesPredicate.Builder
+                                        .properties()
+                                        .hasProperty(DoorBlock.HALF, DoubleBlockHalf.LOWER)
+                                )
+                        )
+                )
+        );
     }
 
     private void addDefaultDrops(Block block) {
