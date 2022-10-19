@@ -98,7 +98,7 @@ public class ModBlockProperties {
 
     public static BlockBehaviour.Properties WHISTLECANE_BLOCK = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.CRIMSON_NYLIUM)
-            .strength(2, 3)
+            .strength(1, 2)
             .sound(ModSoundTypes.WHISTLECANE);
 
     public static BlockBehaviour.Properties WHISTLECANE_BUTTONS = copy(WHISTLECANE_BLOCK)
@@ -106,7 +106,7 @@ public class ModBlockProperties {
             .strength(0.5F);
 
     public static BlockBehaviour.Properties WHISTLECANE_DOOR = copy(WHISTLECANE_BLOCK)
-            .strength(3)
+            .strength(2)
             .noOcclusion();
 
     public static BlockBehaviour.Properties WHISTLECANE_TRAPDOOR = copy(WHISTLECANE_DOOR)
