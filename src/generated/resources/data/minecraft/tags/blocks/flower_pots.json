@@ -1,3 +1,10 @@
 {
-  "values": []
+  "values": [
+    "gardens_of_the_dead:potted_soul_spore",
+    "gardens_of_the_dead:potted_glowing_soul_spore",
+    "gardens_of_the_dead:potted_soulblight_fungus",
+    "gardens_of_the_dead:potted_soulblight_sprouts",
+    "gardens_of_the_dead:potted_blistercrown",
+    "gardens_of_the_dead:potted_whistlecane"
+  ]
 }

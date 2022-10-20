@@ -1,17 +1,21 @@
 package gardensofthedead.data;
 
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.common.block.StandingSignBlock;
+import gardensofthedead.common.block.WallSignBlock;
 import gardensofthedead.common.init.ModBlocks;
 import gardensofthedead.common.init.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BlockTags extends BlockTagsProvider {
 
@@ -44,6 +48,21 @@ public class BlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        ForgeRegistries.BLOCKS.getValues()
+                .stream()
+                .filter(block -> Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getNamespace().equals(GardensOfTheDead.MODID))
+                .forEach(block -> {
+                    if (block instanceof FlowerPotBlock) {
+                        tag(net.minecraft.tags.BlockTags.FLOWER_POTS).add(block);
+                    } else if (block instanceof StandingSignBlock) {
+                        tag(net.minecraft.tags.BlockTags.STANDING_SIGNS).add(block);
+                    } else if (block instanceof WallSignBlock) {
+                        tag(net.minecraft.tags.BlockTags.WALL_SIGNS).add(block);
+                    } else if (block instanceof FenceGateBlock) {
+                        tag(net.minecraft.tags.BlockTags.FENCE_GATES).add(block);
+                    }
+                });
+
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE).addTag(
                 ModTags.Blocks.SOULBLIGHT_STEMS
         ).add(
@@ -55,15 +74,6 @@ public class BlockTags extends BlockTagsProvider {
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_HOE).add(
                 ModBlocks.BLIGHTWART_BLOCK.get()
-        );
-
-        // noinspection ConstantConditions
-        tag(net.minecraft.tags.BlockTags.FLOWER_POTS).add(
-                ForgeRegistries.BLOCKS.getValues()
-                        .stream()
-                        .filter(block -> ForgeRegistries.BLOCKS.getKey(block).getPath().equals(GardensOfTheDead.MODID))
-                        .filter(block -> block instanceof FlowerPotBlock)
-                        .toArray(Block[]::new)
         );
 
         tag(net.minecraft.tags.BlockTags.ENDERMAN_HOLDABLE).add(
@@ -106,11 +116,6 @@ public class BlockTags extends BlockTagsProvider {
                 ModBlocks.WHISTLECANE_FENCE.get()
         );
 
-        tag(net.minecraft.tags.BlockTags.FENCE_GATES).add(
-                ModBlocks.SOULBLIGHT_FENCE_GATE.get(),
-                ModBlocks.WHISTLECANE_FENCE_GATE.get()
-        );
-
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(
                 ModBlocks.SOULBLIGHT_FENCE_GATE.get(),
                 ModBlocks.WHISTLECANE_FENCE_GATE.get()
@@ -122,22 +127,13 @@ public class BlockTags extends BlockTagsProvider {
         );
 
         tag(net.minecraft.tags.BlockTags.PLANKS).add(
-                ModBlocks.SOULBLIGHT_PLANKS.get()
+                ModBlocks.SOULBLIGHT_PLANKS.get(),
+                ModBlocks.WHISTLECANE_BLOCK.get()
         );
 
         tag(net.minecraft.tags.BlockTags.WOODEN_PRESSURE_PLATES).add(
                 ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(),
                 ModBlocks.WHISTLECANE_PRESSURE_PLATE.get()
-        );
-
-        tag(net.minecraft.tags.BlockTags.STANDING_SIGNS).add(
-                ModBlocks.SOULBLIGHT_SIGN.get(),
-                ModBlocks.WHISTLECANE_SIGN.get()
-        );
-
-        tag(net.minecraft.tags.BlockTags.WALL_SIGNS).add(
-                ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
-                ModBlocks.WHISTLECANE_WALL_SIGN.get()
         );
 
         tag(net.minecraft.tags.BlockTags.WOODEN_SLABS).add(
