@@ -1,29 +1,24 @@
 package gardensofthedead.common.block;
 
-import gardensofthedead.common.block.entity.WhistlecaneBlockEntity;
-import gardensofthedead.common.init.ModBlockEntityTypes;
 import gardensofthedead.common.init.ModSoundEvents;
+import gardensofthedead.common.network.NetworkHandler;
+import gardensofthedead.common.network.WhistleEffectPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
-import org.jetbrains.annotations.Nullable;
+import net.minecraftforge.network.PacketDistributor;
 
-public class WhistlecaneBlock extends WhistlecaneBaseBlock implements EntityBlock {
+public class WhistlecaneBlock extends WhistlecaneBaseBlock {
 
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
     public static final double GROW_CHANCE = 0.1;
@@ -71,19 +66,10 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock implements EntityBloc
         float volume = 1;
         float pitch = randomSource.nextFloat() * 0.3F + 0.85F;
         level.playSound(null, x, y, z, ModSoundEvents.WHISTLECANE_WHISTLE.get(), SoundSource.BLOCKS, volume, pitch);
-        level.getBlockEntity(pos, ModBlockEntityTypes.WHISTLECANE.get())
-                .ifPresent(WhistlecaneBlockEntity::sendWhistlePacket);
+        sendWhistlePacket(level, pos);
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntityTypes.WHISTLECANE.get().create(pos, state);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return WhistlecaneBlockEntity::tick;
+    private void sendWhistlePacket(ServerLevel level, BlockPos pos) {
+        NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> level.getChunkAt(pos)), new WhistleEffectPacket(pos, level));
     }
 }

@@ -2,7 +2,6 @@ package gardensofthedead.common.init;
 
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.common.block.entity.SignBlockEntity;
-import gardensofthedead.common.block.entity.WhistlecaneBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +19,4 @@ public class ModBlockEntityTypes {
             ModBlocks.WHISTLECANE_SIGN.get(),
             ModBlocks.WHISTLECANE_WALL_SIGN.get()
     ).build(null));
-
-    public static final RegistryObject<BlockEntityType<WhistlecaneBlockEntity>> WHISTLECANE = BLOCK_ENTITY_TYPES.register("whistlecane", () -> BlockEntityType.Builder.of(WhistlecaneBlockEntity::new, ModBlocks.WHISTLECANE.get()).build(null));
 }

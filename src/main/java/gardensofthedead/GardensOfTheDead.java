@@ -1,6 +1,7 @@
 package gardensofthedead;
 
 import gardensofthedead.common.init.*;
+import gardensofthedead.common.network.NetworkHandler;
 import gardensofthedead.common.region.GardensOfTheDeadRegion;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +47,7 @@ public class GardensOfTheDead {
             Regions.register(new GardensOfTheDeadRegion());
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, MODID, ModSurfaceRules.makeRules());
             ModItems.addCompostables();
+            NetworkHandler.register();
         });
     }
 }
