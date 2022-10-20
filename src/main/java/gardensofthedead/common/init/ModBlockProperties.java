@@ -38,7 +38,7 @@ public class ModBlockProperties {
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ);
 
-    public static BlockBehaviour.Properties BLISTERCROWN = BlockBehaviour.Properties.of(Material.PLANT)
+    public static BlockBehaviour.Properties BLISTERCROWN = BlockBehaviour.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT)
             .color(MaterialColor.COLOR_RED)
             .noCollission()
             .instabreak()

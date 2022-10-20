@@ -29,7 +29,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> BLIGHTWART_BLOCK = block("blightwart_block", ModBlockProperties.BLIGHTWART_BLOCK);
 
     public static final RegistryObject<Block> BLISTERCROWN = BLOCKS.register("blistercrown", () -> new BlistercrownBlock(ModBlockProperties.BLISTERCROWN));
-    public static final RegistryObject<Block> TALL_BLISTERCROWN = BLOCKS.register("tall_blistercrown", () -> new TallBlistercrownBlock(ModBlockProperties.BLISTERCROWN));
+    public static final RegistryObject<DoublePlantBlock> TALL_BLISTERCROWN = BLOCKS.register("tall_blistercrown", () -> new TallBlistercrownBlock(ModBlockProperties.BLISTERCROWN));
 
     public static final RegistryObject<Block> WHISTLECANE = BLOCKS.register("whistlecane", () -> new WhistlecaneBlock(ModBlockProperties.WHISTLECANE));
     public static final RegistryObject<Block> WHISTLECANE_PLANT = BLOCKS.register("whistlecane_plant", () -> new WhistlecanePlantBlock(ModBlockProperties.WHISTLECANE_BASE));
