@@ -27,7 +27,7 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock implements EntityBloc
 
     public static final BooleanProperty GROWING = BooleanProperty.create("growing");
     public static final double GROW_CHANCE = 0.1;
-    public static final double WHISTLE_CHANCE = 1 / 80D;
+    public static final double WHISTLE_CHANCE = 1 / 40D;
 
     public WhistlecaneBlock(BlockBehaviour.Properties properties) {
         super(properties);
