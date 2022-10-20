@@ -243,7 +243,7 @@ public class BlockStates extends BlockStateProvider {
         BlockModelBuilder model2 = whistlecaneModel(model2Name, 6, WHISTLECANE_1);
 
         model0.texture("leaf", leafTexture0);
-        addWhistlecaneLeaf(model0, Direction.SOUTH, 5, 0);
+        addWhistlecaneLeaf(model0, Direction.WEST, 5, 0);
         model1.texture("leaf", leafTexture0);
         addWhistlecaneLeaf(model1, Direction.NORTH, 9, 0);
         addWhistlecaneLeaf(model1, Direction.SOUTH, 15, 8);
