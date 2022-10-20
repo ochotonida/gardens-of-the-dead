@@ -54,66 +54,23 @@ public class Recipes extends RecipeProvider {
         Block whistleCaneBlock = ModBlocks.WHISTLECANE_BLOCK.get();
         woodenSlab(consumer, ModBlocks.WHISTLECANE_SLAB.get(), whistleCaneBlock);
         woodenStairs(consumer, ModBlocks.WHISTLECANE_STAIRS.get(), whistleCaneBlock);
-        whistleCaneFence(consumer);
-        whistleCaneFenceGate(consumer);
+        fence(consumer, ModBlocks.WHISTLECANE_FENCE.get(), whistleCaneBlock);
+        fenceGate(consumer, ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistleCaneBlock);
         button(consumer, ModBlocks.WHISTLECANE_BUTTON.get(), whistleCaneBlock);
         pressurePlate(consumer, ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistleCaneBlock);
         door(consumer, ModBlocks.WHISTLECANE_DOOR.get(), whistleCaneBlock);
         trapdoor(consumer, ModBlocks.WHISTLECANE_TRAPDOOR.get(), whistleCaneBlock);
-        whistleCaneSign(consumer);
+        sign(consumer, ModBlocks.WHISTLECANE_SIGN.get(), whistleCaneBlock);
     }
 
     protected static void whistleCaneBlock(Consumer<FinishedRecipe> consumer) {
         Block whistleCane = ModBlocks.WHISTLECANE.get();
-        ShapedRecipeBuilder.shaped(ModBlocks.WHISTLECANE_BLOCK.get(), 1)
+        ShapedRecipeBuilder.shaped(ModBlocks.WHISTLECANE_BLOCK.get(), 2)
                 .define('#', whistleCane)
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_whistlecane", has(whistleCane))
                 .save(consumer, getRecipeLocation(whistleCane, CRAFTING_SHAPED));
-    }
-
-    protected static void whistleCaneFence(Consumer<FinishedRecipe> consumer) {
-        Block stick = ModBlocks.WHISTLECANE.get();
-        Block whistlecaneBlock = ModBlocks.WHISTLECANE_BLOCK.get();
-        Block fence = ModBlocks.WHISTLECANE_FENCE.get();
-        ShapedRecipeBuilder.shaped(fence, 3)
-                .define('W', whistlecaneBlock)
-                .define('#', stick)
-                .pattern("W#W")
-                .pattern("W#W")
-                .group("wooden_fence")
-                .unlockedBy("has_whistlecane", has(whistlecaneBlock))
-                .save(consumer, getRecipeLocation(fence, CRAFTING_SHAPED));
-    }
-
-    protected static void whistleCaneFenceGate(Consumer<FinishedRecipe> consumer) {
-        Block planks = ModBlocks.WHISTLECANE_BLOCK.get();
-        Block stick = ModBlocks.WHISTLECANE.get();
-        Block fenceGate = ModBlocks.WHISTLECANE_FENCE_GATE.get();
-        ShapedRecipeBuilder.shaped(fenceGate)
-                .define('#', stick)
-                .define('W', planks)
-                .pattern("#W#")
-                .pattern("#W#")
-                .group("wooden_fence_gate")
-                .unlockedBy("has_planks", has(planks))
-                .save(consumer, getRecipeLocation(fenceGate, CRAFTING_SHAPED));
-    }
-
-    protected static void whistleCaneSign(Consumer<FinishedRecipe> consumer) {
-        Block planks = ModBlocks.WHISTLECANE_BLOCK.get();
-        Block stick = ModBlocks.WHISTLECANE.get();
-        Block sign = ModBlocks.WHISTLECANE_SIGN.get();
-        ShapedRecipeBuilder.shaped(sign, 3)
-                .define('#', planks)
-                .define('X', stick)
-                .pattern("###")
-                .pattern("###")
-                .pattern(" X ")
-                .group("wooden_sign")
-                .unlockedBy("has_planks", has(planks))
-                .save(consumer, getRecipeLocation(sign, CRAFTING_SHAPED));
     }
 
     protected static void woodFromLogs(Consumer<FinishedRecipe> consumer, ItemLike wood, ItemLike log) {
