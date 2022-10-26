@@ -1,112 +1,51 @@
-buildscript {
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7.+'
-    }
-}
-
 plugins {
-    id 'eclipse'
-    id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '5.1.+'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
 }
 
-apply plugin: 'org.spongepowered.mixin'
+architectury {
+    minecraft = rootProject.minecraft_version
+}
 
-version = '1.19.2-1.1.0'
-group = 'gardens-of-the-dead'
-archivesBaseName = 'gardens-of-the-dead'
+subprojects {
+    apply plugin: "dev.architectury.loom"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+    loom {
+        silentMojangMappingsLicense()
+    }
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: 'official', version: '1.19.2'
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                gardens_of_the_dead {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                gardens_of_the_dead {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'gardens_of_the_dead', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                gardens_of_the_dead {
-                    source sourceSets.main
-                }
-            }
-        }
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // The following line declares the mojmap mappings, you may use other mappings as well
+        mappings loom.officialMojangMappings()
+        // The following line declares the yarn mappings you may select this one as well.
+        // mappings "net.fabricmc:yarn:1.19.2+build.3:v2"
     }
 }
 
-sourceSets.main.resources {
-    srcDir 'src/generated/resources'
-}
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-repositories {
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
 
-}
-
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.2-43.1.32'
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
-    implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:1.19.2-2.0.1.127')
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "gardens_of_the_dead",
-                "Specification-Vendor"    : "ochotonida",
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "ochotonida",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-jar.finalizedBy('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
     repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
     }
-}
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
+    }
 }

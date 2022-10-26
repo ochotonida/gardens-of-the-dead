@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "gardens_of_the_dead",
+  "version": "${version}",
+  "name": "Gardens of the Dead",
+  "description": "Adds new spooky biomes to the Nether. Created for Spooky Jam 2022.",
+  "authors": [
+    "ochotonida"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/gardens-of-the-dead",
+    "sources": "https://github.com/ochotonida/gardens-of-the-dead"
+  },
+  "license": "MIT",
+  "icon": "assets/examplemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gardensofthedead.fabric.ExampleModFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.2.43"
+  }
+}
