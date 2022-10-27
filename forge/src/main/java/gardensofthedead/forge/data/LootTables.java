@@ -2,7 +2,7 @@ package gardensofthedead.forge.data;
 
 import com.mojang.datafixers.util.Pair;
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.init.ModBlocks;
+import gardensofthedead.registry.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;

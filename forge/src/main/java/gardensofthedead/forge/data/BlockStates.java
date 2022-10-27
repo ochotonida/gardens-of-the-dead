@@ -1,9 +1,9 @@
 package gardensofthedead.forge.data;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.block.SoulSporeBaseBlock;
-import gardensofthedead.forge.common.block.SoulSporeBlock;
-import gardensofthedead.forge.common.init.ModBlocks;
+import gardensofthedead.block.SoulSporeBaseBlock;
+import gardensofthedead.block.SoulSporeBlock;
+import gardensofthedead.registry.ModBlocks;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;

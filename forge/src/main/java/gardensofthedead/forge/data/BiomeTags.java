@@ -1,7 +1,7 @@
 package gardensofthedead.forge.data;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.init.ModBiomes;
+import gardensofthedead.registry.ModBiomes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.world.level.biome.Biome;

@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "gardensofthedead.fabric.ExampleModFabric"
+      "gardensofthedead.fabric.GardensOfTheDeadFabric"
     ]
   },
   "depends": {

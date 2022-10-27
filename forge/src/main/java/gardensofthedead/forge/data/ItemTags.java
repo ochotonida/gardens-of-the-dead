@@ -1,7 +1,7 @@
 package gardensofthedead.forge.data;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.init.ModTags;
+import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;

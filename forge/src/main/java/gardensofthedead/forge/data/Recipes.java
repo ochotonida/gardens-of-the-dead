@@ -1,8 +1,8 @@
 package gardensofthedead.forge.data;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.init.ModBlocks;
-import gardensofthedead.forge.common.init.ModTags;
+import gardensofthedead.registry.ModBlocks;
+import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;

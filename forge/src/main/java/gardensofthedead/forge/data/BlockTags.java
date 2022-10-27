@@ -1,10 +1,10 @@
 package gardensofthedead.forge.data;
 
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.forge.common.block.StandingSignBlock;
-import gardensofthedead.forge.common.block.WallSignBlock;
-import gardensofthedead.forge.common.init.ModBlocks;
-import gardensofthedead.forge.common.init.ModTags;
+import gardensofthedead.block.StandingSignBlock;
+import gardensofthedead.block.WallSignBlock;
+import gardensofthedead.registry.ModBlocks;
+import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.world.level.block.Block;

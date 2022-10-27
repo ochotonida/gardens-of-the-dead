@@ -6,6 +6,7 @@ import gardensofthedead.ExampleExpectPlatform;
 import java.nio.file.Path;
 
 public class ExampleExpectPlatformImpl {
+
     /**
      * This is our actual method to {@link ExampleExpectPlatform#getConfigDirectory()}.
      */
