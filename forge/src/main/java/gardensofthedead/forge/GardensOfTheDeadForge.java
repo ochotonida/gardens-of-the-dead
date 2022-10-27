@@ -2,7 +2,6 @@ package gardensofthedead.forge;
 
 import dev.architectury.platform.forge.EventBuses;
 import gardensofthedead.GardensOfTheDead;
-import gardensofthedead.network.NetworkHandler;
 import gardensofthedead.forge.region.GardensOfTheDeadRegionForge;
 import gardensofthedead.registry.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,7 +33,6 @@ public class GardensOfTheDeadForge {
             Regions.register(new GardensOfTheDeadRegionForge());
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, GardensOfTheDead.MOD_ID, ModSurfaceRules.makeRules());
             ModItems.addCompostables();
-            NetworkHandler.register();
         });
     }
 }

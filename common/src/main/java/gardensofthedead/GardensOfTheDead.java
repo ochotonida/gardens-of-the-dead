@@ -1,6 +1,6 @@
 package gardensofthedead;
 
-import dev.architectury.event.events.client.ClientTickEvent;
+import gardensofthedead.network.NetworkHandler;
 import gardensofthedead.registry.*;
 import net.minecraft.resources.ResourceLocation;
 
@@ -13,6 +13,8 @@ public class GardensOfTheDead {
     }
 
     public static void init() {
+        NetworkHandler.register(); // TODO common setup?
+
         ModBlocks.BLOCKS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
         ModItems.ITEMS.register();

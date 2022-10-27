@@ -1,5 +1,6 @@
 package gardensofthedead.network;
 
+import dev.architectury.networking.NetworkManager;
 import gardensofthedead.client.WhistleEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -7,7 +8,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -31,12 +31,11 @@ public class WhistleEffectPacket {
         buffer.writeResourceKey(dimension);
     }
 
-    void handle(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
+    void apply(Supplier<NetworkManager.PacketContext> context) {
+        context.get().queue(() -> {
             if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.dimension().equals(dimension)) {
                 WhistleEventHandler.add(pos);
             }
         });
-        context.get().setPacketHandled(true);
     }
 }

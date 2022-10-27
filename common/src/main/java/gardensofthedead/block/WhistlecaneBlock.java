@@ -15,8 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.network.PacketDistributor;
 
 public class WhistlecaneBlock extends WhistlecaneBaseBlock {
 
@@ -70,6 +68,6 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock {
     }
 
     private void sendWhistlePacket(ServerLevel level, BlockPos pos) {
-        NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_CHUNK.with(() -> level.getChunkAt(pos)), new WhistleEffectPacket(pos, level));
+        NetworkHandler.sendToTrackingPlayers(level, pos, new WhistleEffectPacket(pos, level));
     }
 }
