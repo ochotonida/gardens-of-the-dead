@@ -1,5 +1,6 @@
 package gardensofthedead.registry;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import gardensofthedead.GardensOfTheDead;
@@ -78,13 +79,16 @@ public class ModBlocks {
     }
 
     private static RegistrySupplier<FlowerPotBlock> flowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        RegistrySupplier<FlowerPotBlock> result = BLOCKS.register("potted_" + plant.getId().getPath(), () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, properties));
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getId(), result);
-        return result;
+        return BLOCKS.register("potted_" + plant.getId().getPath(), createFlowerPot(plant, properties));
+    }
+
+    @ExpectPlatform
+    public static Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
+        throw new AssertionError();
     }
 
     private static RegistrySupplier<StairBlock> stairs(String name, Supplier<? extends Block> baseBlock, BlockBehaviour.Properties properties) {
-        return BLOCKS.register(name, () -> new StairBlock(() -> baseBlock.get().defaultBlockState(), properties));
+        return BLOCKS.register(name, () -> new StairBlock(baseBlock.get().defaultBlockState(), properties)); // TODO test on fabric
     }
 
     private static RegistrySupplier<Block> block(String name, BlockBehaviour.Properties properties) {

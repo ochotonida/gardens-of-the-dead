@@ -1,5 +1,6 @@
 package gardensofthedead.block;
 
+import gardensofthedead.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,12 +18,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IForgeShearable;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
 import org.jetbrains.annotations.Nullable;
 
-public class SoulSporeBaseBlock extends Block implements IPlantable, IForgeShearable {
+public class SoulSporeBaseBlock extends Block implements IForgeShearable {
 
     public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 
@@ -70,20 +68,9 @@ public class SoulSporeBaseBlock extends Block implements IPlantable, IForgeShear
         Direction direction = state.getValue(DIRECTION);
         BlockPos attachedPos = pos.relative(direction.getOpposite());
         BlockState supportingBlock = level.getBlockState(attachedPos);
-        return supportingBlock.canSustainPlant(level, pos, Direction.UP, this)
-                || supportingBlock.is(Blocks.SOUL_SAND)
+        return supportingBlock.is(Blocks.SOUL_SAND)
                 || supportingBlock.is(Blocks.SOUL_SOIL)
                 || supportingBlock.is(BlockTags.WART_BLOCKS)
                 || supportingBlock.is(ModBlocks.SOUL_SPORE.get()) && supportingBlock.getValue(DIRECTION) == direction;
-    }
-
-    @Override
-    public PlantType getPlantType(BlockGetter world, BlockPos pos) {
-        return PlantType.NETHER;
-    }
-
-    @Override
-    public BlockState getPlant(BlockGetter world, BlockPos pos) {
-        return defaultBlockState();
     }
 }

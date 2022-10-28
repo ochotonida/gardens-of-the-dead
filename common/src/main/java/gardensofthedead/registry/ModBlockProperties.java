@@ -93,7 +93,8 @@ public class ModBlockProperties {
             .strength(1);
 
     public static BlockBehaviour.Properties SOULBLIGHT_WALL_SIGN = copy(SOULBLIGHT_SIGN)
-            .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get());
+            // TODO .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get())
+            ;
 
     public static BlockBehaviour.Properties WHISTLECANE_BLOCK = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
             .color(MaterialColor.CRIMSON_NYLIUM)
@@ -116,7 +117,8 @@ public class ModBlockProperties {
             .strength(1);
 
     public static BlockBehaviour.Properties WHISTLECANE_WALL_SIGN = copy(WHISTLECANE_SIGN)
-            .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get());
+            // TODO .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get())
+            ;
 
     public static BlockBehaviour.Properties pottedPlant() {
         return BlockBehaviour.Properties.of(Material.DECORATION)

@@ -20,7 +20,8 @@ public class ModWoodTypes {
 
     @SuppressWarnings("SameParameterValue")
     private static WoodType create(String id) {
-        WoodType woodType = WoodType.register(WoodType.create(GardensOfTheDead.id(id).toString()));
+        WoodType woodType = new WoodType(GardensOfTheDead.id(id).toString());
+        WoodType.register(woodType);
         VALUES.add(woodType);
         return woodType;
     }

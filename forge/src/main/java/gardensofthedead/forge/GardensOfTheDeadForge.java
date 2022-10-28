@@ -2,6 +2,7 @@ package gardensofthedead.forge;
 
 import dev.architectury.platform.forge.EventBuses;
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.GardensOfTheDeadClient;
 import gardensofthedead.forge.region.GardensOfTheDeadRegionForge;
 import gardensofthedead.registry.*;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,13 +19,14 @@ public class GardensOfTheDeadForge {
 
     public GardensOfTheDeadForge() {
         EventBuses.registerModEventBus(GardensOfTheDead.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+
         GardensOfTheDead.init();
-
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClientForge::init);
         GardensOfTheDeadData.init();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClient::init);
 
+        // TODO
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClientForge::init);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         modEventBus.addListener(this::commonSetup);
     }
 

@@ -70,7 +70,7 @@ public class ModPlacedFeatures {
 
     public static final RegistrySupplier<PlacedFeature> NOISY_CRIMSON_FUNGI = register(
             "noisy_crimson_fungi",
-            TreeFeatures.CRIMSON_FUNGUS,
+            TreeFeatures.CRIMSON_FUNGUS::value,
             NoiseBasedCountPlacement.of(6, 180, 0),
             CountOnEveryLayerPlacement.of(1),
             BiomeFilter.biome()
@@ -78,7 +78,7 @@ public class ModPlacedFeatures {
 
     public static final RegistrySupplier<PlacedFeature> DENSE_WEEPING_VINES = register(
             "dense_weeping_vines",
-            NetherFeatures.WEEPING_VINES,
+            NetherFeatures.WEEPING_VINES::value,
             CountPlacement.of(40),
             InSquarePlacement.spread(),
             PlacementUtils.FULL_RANGE,

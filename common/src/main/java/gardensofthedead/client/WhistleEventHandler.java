@@ -2,14 +2,12 @@ package gardensofthedead.client;
 
 import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModParticleTypes;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,12 +18,7 @@ public class WhistleEventHandler {
 
     private static ResourceKey<Level> dimension;
 
-    public static void onClientTick(TickEvent.ClientTickEvent event) {
-        ClientLevel level = Minecraft.getInstance().level;
-        if (level == null || Minecraft.getInstance().isPaused() || event.phase != TickEvent.Phase.START) {
-            return;
-        }
-
+    public static void onClientTick(ClientLevel level) {
         if (level.dimension() != dimension) {
             dimension = level.dimension();
             WHISTLE_EFFECTS.clear();

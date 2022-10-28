@@ -1,5 +1,6 @@
 package gardensofthedead.block;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,13 +21,10 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.ToolActions;
 
 import javax.annotation.Nullable;
 
-public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, BonemealableBlock {
+public abstract class WhistlecaneBaseBlock extends Block implements BonemealableBlock {
 
     protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 16, 11);
     public static final int MAX_HEIGHT = 6;
@@ -35,26 +33,31 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
         super(properties);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Vec3 offset = state.getOffset(level, pos);
         return SHAPE.move(offset.x, offset.y, offset.z);
     }
 
+    @Override
     public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
         return true;
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType pathComputationType) {
         return false;
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
         return false;
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockState stateBelow = level.getBlockState(pos.below());
@@ -65,6 +68,7 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
                 || stateBelow.is(Blocks.SOUL_SOIL);
     }
 
+    @Override
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
         int heightAbove = this.getHeightAboveUpToMax(level, pos);
         int heightBelow = this.getHeightBelowUpToMax(level, pos);
@@ -74,10 +78,12 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
                 && topState.getValue(WhistlecaneBlock.GROWING);
     }
 
+    @Override
     public boolean isBonemealSuccess(Level level, RandomSource randomSource, BlockPos pos, BlockState state) {
         return true;
     }
 
+    @Override
     public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState state) {
         int heightAbove = getHeightAboveUpToMax(level, pos);
         int heightBelow = getHeightBelowUpToMax(level, pos);
@@ -98,9 +104,15 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
 
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
-        return player.getMainHandItem().canPerformAction(ToolActions.SWORD_DIG) ? 1 : super.getDestroyProgress(state, player, level, pos);
+        return canInstabreak(player) ? 1 : super.getDestroyProgress(state, player, level, pos);
+    }
+
+    @ExpectPlatform
+    public static boolean canInstabreak(Player player) {
+        throw new AssertionError();
     }
 
     protected void growCane(Level level, BlockPos pos, RandomSource randomSource, int currentHeight) {
@@ -109,6 +121,7 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState above = context.getLevel().getBlockState(context.getClickedPos().above());
         return !above.is(getHeadBlock()) && !above.is(getBodyBlock()) ? getHeadBlock().defaultBlockState() : getBodyBlock().defaultBlockState();
@@ -124,25 +137,12 @@ public abstract class WhistlecaneBaseBlock extends Block implements IPlantable, 
         return super.updateShape(state, direction, newState, level, pos, updatedPos);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if (!state.canSurvive(level, pos)) {
             level.destroyBlock(pos, true);
         }
-    }
-
-    @Override
-    public BlockState getPlant(BlockGetter level, BlockPos pos) {
-        BlockState state = level.getBlockState(pos);
-        if (state.getBlock() != this) {
-            return defaultBlockState();
-        }
-        return state;
-    }
-
-    @Override
-    public PlantType getPlantType(BlockGetter level, BlockPos pos) {
-        return PlantType.NETHER;
     }
 
     protected int getHeightAboveUpToMax(BlockGetter level, BlockPos pos) {

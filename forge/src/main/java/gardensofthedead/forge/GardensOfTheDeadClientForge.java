@@ -23,8 +23,6 @@ public class GardensOfTheDeadClientForge {
         modEventBus.addListener(GardensOfTheDeadClientForge::onClientSetup);
         modEventBus.addListener(GardensOfTheDeadClientForge::onRegisterRenderers);
         modEventBus.addListener(GardensOfTheDeadClientForge::onRegisterParticleProviders);
-
-        MinecraftForge.EVENT_BUS.addListener(WhistleEventHandler::onClientTick);
     }
 
     public static void onClientSetup(FMLClientSetupEvent event) {
