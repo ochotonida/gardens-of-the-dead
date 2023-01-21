@@ -8,7 +8,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.ComposterBlock;
+
+import java.util.function.BiConsumer;
 
 @SuppressWarnings("unused")
 public class ModItems {
@@ -61,28 +62,36 @@ public class ModItems {
         return new Item.Properties().tab(CREATIVE_TAB);
     }
 
-    public static void addCompostables() {
-        addCompostables(0.3F,
+    public static void addCompostables(BiConsumer<ItemLike, Float> consumer) {
+        addCompostables(
+                consumer,
+                0.3F,
                 SOUL_SPORE.get(),
                 SOULBLIGHT_SPROUTS.get(),
                 BLISTERCROWN.get(),
                 TALL_BLISTERCROWN.get()
         );
-        addCompostables(0.5F,
+        addCompostables(
+                consumer,
+                0.5F,
                 WHISTLECANE.get()
         );
-        addCompostables(0.65F,
+        addCompostables(
+                consumer,
+                0.65F,
                 SOULBLIGHT_FUNGUS.get()
         );
-        addCompostables(0.85F,
+        addCompostables(
+                consumer,
+                0.85F,
                 GLOWING_SOUL_SPORE.get(),
                 BLIGHTWART_BLOCK.get()
         );
     }
 
-    private static void addCompostables(double chance, ItemLike... items) {
+    private static void addCompostables(BiConsumer<ItemLike, Float> consumer, double chance, ItemLike... items) {
         for (ItemLike item : items) {
-            ComposterBlock.COMPOSTABLES.put(item, (float) chance);
+            consumer.accept(item, (float) chance);
         }
     }
 }

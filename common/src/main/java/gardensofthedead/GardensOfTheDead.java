@@ -13,19 +13,17 @@ public class GardensOfTheDead {
     }
 
     public static void init() {
-        NetworkHandler.register(); // TODO common setup?
+        NetworkHandler.register();
 
         ModBlocks.BLOCKS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
         ModItems.ITEMS.register();
-        ModBiomes.BIOME_REGISTER.register();
         ModFeatures.FEATURES.register();
         ModConfiguredFeatures.CONFIGURED_FEATURES.register();
-        ModPlacedFeatures.PLACED_FEATURES.register();
         ModPlacementModifiers.PLACEMENT_MODIFIER_TYPES.register();
+        ModPlacedFeatures.PLACED_FEATURES.register();
         ModParticleTypes.PARTICLE_TYPES.register();
         ModSoundEvents.SOUND_EVENTS.register();
-        
-        // System.out.println(ExampleExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+        ModBiomes.BIOME_REGISTER.register();
     }
 }

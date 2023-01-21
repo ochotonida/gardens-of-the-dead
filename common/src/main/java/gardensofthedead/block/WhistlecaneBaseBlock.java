@@ -101,7 +101,6 @@ public abstract class WhistlecaneBaseBlock extends Block implements Bonemealable
             ++heightAbove;
             ++height;
         }
-
     }
 
     @Override

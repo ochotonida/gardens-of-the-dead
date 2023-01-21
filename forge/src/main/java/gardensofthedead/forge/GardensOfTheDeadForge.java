@@ -3,8 +3,9 @@ package gardensofthedead.forge;
 import dev.architectury.platform.forge.EventBuses;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.GardensOfTheDeadClient;
-import gardensofthedead.forge.region.GardensOfTheDeadRegionForge;
+import gardensofthedead.forge.region.GardensOfTheDeadForgeRegion;
 import gardensofthedead.registry.*;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -21,20 +22,19 @@ public class GardensOfTheDeadForge {
         EventBuses.registerModEventBus(GardensOfTheDead.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
         GardensOfTheDead.init();
-        GardensOfTheDeadData.init();
+        GardensOfTheDeadForgeData.init();
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClient::init);
 
-        // TODO
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClientForge::init);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadForgeClient::init);
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Regions.register(new GardensOfTheDeadRegionForge());
+            Regions.register(new GardensOfTheDeadForgeRegion());
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, GardensOfTheDead.MOD_ID, ModSurfaceRules.makeRules());
-            ModItems.addCompostables();
+            ModItems.addCompostables((k, v) -> ComposterBlock.COMPOSTABLES.put(k, (float) v));
         });
     }
 }

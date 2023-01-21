@@ -16,7 +16,6 @@ public interface GardensOfTheDeadRegion {
     int WEIGHT = 4;
     ResourceLocation ID = GardensOfTheDead.id("nether");
 
-    @SuppressWarnings("unused")
     default void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         add(mapper,
                 Climate.parameters(0.4F, 0, 0, 0, 0, 0, 0),

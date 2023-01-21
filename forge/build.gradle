@@ -18,6 +18,8 @@ loom {
             mod "gardens_of_the_dead"
         }
 
+        mixinConfig("mixins.gardens_of_the_dead.common.json")
+
         launches {
             data {
                 arg "--existing", new File(getRootDir(), "common/src/main/resources").absolutePath

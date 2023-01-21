@@ -20,7 +20,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class SoulSporeBaseBlock extends Block implements IForgeShearable {
+public class SoulSporeBaseBlock extends Block {
 
     public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 

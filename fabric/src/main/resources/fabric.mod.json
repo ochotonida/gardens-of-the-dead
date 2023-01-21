@@ -17,8 +17,17 @@
   "entrypoints": {
     "main": [
       "gardensofthedead.fabric.GardensOfTheDeadFabric"
+    ],
+    "client": [
+      "gardensofthedead.fabric.GardensOfTheDeadFabricClient"
+    ],
+    "terrablender": [
+      "gardensofthedead.fabric.GardensOfTheDeadFabric"
     ]
   },
+  "mixins": [
+    "mixins.gardens_of_the_dead.common.json"
+  ],
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.19.2",

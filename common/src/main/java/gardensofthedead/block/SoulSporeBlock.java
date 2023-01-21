@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
 
 public class SoulSporeBlock extends SoulSporeBaseBlock {
 
@@ -94,12 +93,9 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
                     level.setBlock(pos, state.setValue(GROWING, false), UPDATE_NONE);
                 }
             } else {
-                if (ForgeHooks.onCropsGrowPre(level, pos, state, true)) {
-                    BlockState grownState = defaultBlockState().setValue(DIRECTION, direction);
-                    level.setBlockAndUpdate(pos.relative(direction), grownState);
-                    ForgeHooks.onCropsGrowPost(level, pos.relative(direction), grownState);
-                    level.setBlock(pos, state.setValue(TOP, false), 4);
-                }
+                BlockState grownState = defaultBlockState().setValue(DIRECTION, direction);
+                level.setBlockAndUpdate(pos.relative(direction), grownState);
+                level.setBlock(pos, state.setValue(TOP, false), 4);
             }
         }
     }

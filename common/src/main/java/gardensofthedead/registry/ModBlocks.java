@@ -66,8 +66,13 @@ public class ModBlocks {
     public static final RegistrySupplier<StandingSignBlock> WHISTLECANE_SIGN = BLOCKS.register("whistlecane_sign", () -> new StandingSignBlock(ModBlockProperties.WHISTLECANE_SIGN, ModWoodTypes.WHISTLECANE));
     public static final RegistrySupplier<WallSignBlock> WHISTLECANE_WALL_SIGN = BLOCKS.register("whistlecane_wall_sign", () -> new WallSignBlock(ModBlockProperties.WHISTLECANE_WALL_SIGN, ModWoodTypes.WHISTLECANE));
 
+    @ExpectPlatform
+    private static Supplier<RotatedPillarBlock> createStrippableBlock(BlockBehaviour.Properties properties, Supplier<? extends Block> strippedBlock) {
+        throw new AssertionError();
+    }
+
     private static RegistrySupplier<RotatedPillarBlock> soulblightStem(String name, Supplier<? extends Block> strippedLogBlock) {
-        return BLOCKS.register(name, () -> new StrippableLogBlock(ModBlockProperties.SOULBLIGHT_STEM, strippedLogBlock));
+        return BLOCKS.register(name, createStrippableBlock(ModBlockProperties.SOULBLIGHT_STEM, strippedLogBlock));
     }
 
     private static RegistrySupplier<RotatedPillarBlock> strippedSoulblightStem(String name) {
@@ -88,7 +93,7 @@ public class ModBlocks {
     }
 
     private static RegistrySupplier<StairBlock> stairs(String name, Supplier<? extends Block> baseBlock, BlockBehaviour.Properties properties) {
-        return BLOCKS.register(name, () -> new StairBlock(baseBlock.get().defaultBlockState(), properties)); // TODO test on fabric
+        return BLOCKS.register(name, () -> new StairBlock(baseBlock.get().defaultBlockState(), properties));
     }
 
     private static RegistrySupplier<Block> block(String name, BlockBehaviour.Properties properties) {

@@ -44,9 +44,8 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock {
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if (state.getValue(GROWING) && level.isEmptyBlock(pos.above())) {
             int height = getHeightBelowUpToMax(level, pos) + 1;
-            if (height < MAX_HEIGHT && ForgeHooks.onCropsGrowPre(level, pos, state, randomSource.nextFloat() < GROW_CHANCE)) {
+            if (height < MAX_HEIGHT && randomSource.nextFloat() < GROW_CHANCE) {
                 growCane(level, pos, randomSource, height);
-                ForgeHooks.onCropsGrowPost(level, pos, state);
                 return;
             }
         }

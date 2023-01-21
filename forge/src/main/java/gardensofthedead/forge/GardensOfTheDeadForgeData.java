@@ -7,12 +7,12 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-public class GardensOfTheDeadData {
+public class GardensOfTheDeadForgeData {
 
     public static void init() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(GardensOfTheDeadData::gatherData);
+        modEventBus.addListener(GardensOfTheDeadForgeData::gatherData);
     }
 
     public static void gatherData(GatherDataEvent event) {

@@ -2,6 +2,7 @@ package gardensofthedead.registry;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.SoundType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -31,7 +32,7 @@ public class ModSoundTypes {
         }
 
         public SoundType build() {
-            return new ForgeSoundType(volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
+            return new CustomSoundType(volume, pitch, breakSound, stepSound, placeSound, hitSound, fallSound);
         }
 
         public Builder setVolume(float volume) {
@@ -67,6 +68,50 @@ public class ModSoundTypes {
         public Builder setFallSound(Supplier<SoundEvent> fallSound) {
             this.fallSound = fallSound;
             return this;
+        }
+    }
+
+    private static class CustomSoundType extends SoundType {
+
+        private final Supplier<SoundEvent> breakSound;
+        private final Supplier<SoundEvent> stepSound;
+        private final Supplier<SoundEvent> placeSound;
+        private final Supplier<SoundEvent> hitSound;
+        private final Supplier<SoundEvent> fallSound;
+
+        public CustomSoundType(float volume, float pitch, Supplier<SoundEvent> breakSound, Supplier<SoundEvent> stepSound, Supplier<SoundEvent> placeSound, Supplier<SoundEvent> hitSound, Supplier<SoundEvent> fallSound) {
+            // noinspection ConstantConditions
+            super(volume, pitch, null, null, null, null, null);
+            this.breakSound = breakSound;
+            this.stepSound = stepSound;
+            this.placeSound = placeSound;
+            this.hitSound = hitSound;
+            this.fallSound = fallSound;
+        }
+
+        @NotNull
+        public SoundEvent getBreakSound() {
+            return breakSound.get();
+        }
+
+        @NotNull
+        public SoundEvent getStepSound() {
+            return stepSound.get();
+        }
+
+        @NotNull
+        public SoundEvent getPlaceSound() {
+            return placeSound.get();
+        }
+
+        @NotNull
+        public SoundEvent getHitSound() {
+            return hitSound.get();
+        }
+
+        @NotNull
+        public SoundEvent getFallSound() {
+            return fallSound.get();
         }
     }
 }

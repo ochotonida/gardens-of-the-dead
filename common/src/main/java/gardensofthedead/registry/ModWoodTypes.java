@@ -1,6 +1,7 @@
 package gardensofthedead.registry;
 
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.mixin.WoodTypeInvoker;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
@@ -20,8 +21,8 @@ public class ModWoodTypes {
 
     @SuppressWarnings("SameParameterValue")
     private static WoodType create(String id) {
-        WoodType woodType = new WoodType(GardensOfTheDead.id(id).toString());
-        WoodType.register(woodType);
+        WoodType woodType = WoodTypeInvoker.newWoodType(GardensOfTheDead.id(id).toString());
+        WoodTypeInvoker.invokerRegister(woodType);
         VALUES.add(woodType);
         return woodType;
     }

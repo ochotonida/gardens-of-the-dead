@@ -1,4 +1,4 @@
-package gardensofthedead.block;
+package gardensofthedead.forge.block;
 
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
