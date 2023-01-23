@@ -22,9 +22,9 @@ public class GardensOfTheDeadForgeData {
         BlockStates blockStates = new BlockStates(generator, existingFileHelper);
         generator.addProvider(event.includeClient(), blockStates);
 
-        BlockTags blockTags = new BlockTags(generator, existingFileHelper);
-        generator.addProvider(event.includeServer(), blockTags);
-        generator.addProvider(event.includeServer(), new ItemTags(generator, blockTags, existingFileHelper));
+        BlockTagsProvider blockTagsProvider = new BlockTagsProvider(generator, existingFileHelper);
+        generator.addProvider(event.includeServer(), blockTagsProvider);
+        generator.addProvider(event.includeServer(), new ItemTagsProvider(generator, blockTagsProvider, existingFileHelper));
         generator.addProvider(event.includeClient(), new BiomeTags(generator, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTables(generator));
         generator.addProvider(event.includeServer(), new Recipes(generator));

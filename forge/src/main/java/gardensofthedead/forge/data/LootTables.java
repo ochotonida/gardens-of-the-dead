@@ -2,6 +2,7 @@ package gardensofthedead.forge.data;
 
 import com.mojang.datafixers.util.Pair;
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.loot.MatchShears;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
@@ -80,7 +81,7 @@ public class LootTables extends LootTableProvider {
             addBlockLootTable(block, LootTable.lootTable()
                     .withPool(LootPool.lootPool()
                             .add(LootItem.lootTableItem(block)
-                                    .when(CanToolPerformAction.canToolPerformAction(ToolActions.SHEARS_DIG))
+                                    .when(MatchShears.matchShears())
                             )
                     )
             );

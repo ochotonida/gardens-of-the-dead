@@ -1,10 +1,11 @@
 package gardensofthedead.registry;
 
+import dev.architectury.injectables.annotations.ExpectPlatform;
+import gardensofthedead.GardensOfTheDead;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,7 +17,7 @@ public class ModBlockProperties {
     private static final int GLOWING_SOUL_SPORE_LIGHT = 7;
     private static final int BLISTERCROWN_LIGHT = 5;
 
-    public static BlockBehaviour.Properties SOUL_SPORE = BlockBehaviour.Properties.of(Material.PLANT)
+    public static BlockBehaviour.Properties SOUL_SPORE = of(Material.PLANT)
             .color(MaterialColor.COLOR_BROWN)
             .sound(SoundType.WEEPING_VINES)
             .noCollission()
@@ -25,20 +26,20 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties GLOWING_SOUL_SPORE = copy(SOUL_SPORE)
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_FUNGUS = BlockBehaviour.Properties.of(Material.PLANT)
+    public static BlockBehaviour.Properties SOULBLIGHT_FUNGUS = of(Material.PLANT)
             .color(MaterialColor.COLOR_BROWN)
             .instabreak()
             .noCollission()
             .sound(SoundType.FUNGUS);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_SPROUTS = BlockBehaviour.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT)
+    public static BlockBehaviour.Properties SOULBLIGHT_SPROUTS = of(Material.REPLACEABLE_FIREPROOF_PLANT)
             .color(MaterialColor.COLOR_BROWN)
             .noCollission()
             .instabreak()
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ);
 
-    public static BlockBehaviour.Properties BLISTERCROWN = BlockBehaviour.Properties.of(Material.REPLACEABLE_FIREPROOF_PLANT)
+    public static BlockBehaviour.Properties BLISTERCROWN = of(Material.REPLACEABLE_FIREPROOF_PLANT)
             .color(MaterialColor.COLOR_RED)
             .noCollission()
             .instabreak()
@@ -46,7 +47,7 @@ public class ModBlockProperties {
             .offsetType(BlockBehaviour.OffsetType.XZ)
             .lightLevel(state -> BLISTERCROWN_LIGHT);
 
-    public static BlockBehaviour.Properties WHISTLECANE_BASE = BlockBehaviour.Properties.of(Material.VEGETABLE)
+    public static BlockBehaviour.Properties WHISTLECANE_BASE = of(Material.VEGETABLE)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .randomTicks()
             .instabreak()
@@ -59,12 +60,12 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties WHISTLECANE = copy(WHISTLECANE_BASE)
             .randomTicks();
 
-    public static BlockBehaviour.Properties SOULBLIGHT_STEM = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
+    public static BlockBehaviour.Properties SOULBLIGHT_STEM = of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
             .strength(2)
             .sound(SoundType.STEM);
 
-    public static BlockBehaviour.Properties BLIGHTWART_BLOCK = BlockBehaviour.Properties.of(Material.GRASS)
+    public static BlockBehaviour.Properties BLIGHTWART_BLOCK = of(Material.GRASS)
             .color(MaterialColor.COLOR_YELLOW)
             .strength(1)
             .sound(SoundType.WART_BLOCK);
@@ -72,7 +73,7 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_PLANKS = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
+    public static BlockBehaviour.Properties SOULBLIGHT_PLANKS = of(Material.NETHER_WOOD)
             .color(MaterialColor.COLOR_BROWN)
             .strength(2, 3)
             .sound(SoundType.WOOD);
@@ -92,11 +93,12 @@ public class ModBlockProperties {
             .noCollission()
             .strength(1);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_WALL_SIGN = copy(SOULBLIGHT_SIGN)
-            // TODO .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get())
-            ;
+    public static BlockBehaviour.Properties SOULBLIGHT_WALL_SIGN = copyWithLoot(
+            SOULBLIGHT_SIGN,
+            GardensOfTheDead.id("soulblight_sign")
+    );
 
-    public static BlockBehaviour.Properties WHISTLECANE_BLOCK = BlockBehaviour.Properties.of(Material.NETHER_WOOD)
+    public static BlockBehaviour.Properties WHISTLECANE_BLOCK = of(Material.NETHER_WOOD)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .strength(1, 2)
             .sound(ModSoundTypes.WHISTLECANE);
@@ -116,28 +118,30 @@ public class ModBlockProperties {
             .noCollission()
             .strength(1);
 
-    public static BlockBehaviour.Properties WHISTLECANE_WALL_SIGN = copy(WHISTLECANE_SIGN)
-            // TODO .lootFrom(() -> ModBlocks.SOULBLIGHT_SIGN.get())
-            ;
+    public static BlockBehaviour.Properties WHISTLECANE_WALL_SIGN = copyWithLoot(
+            WHISTLECANE_SIGN,
+            GardensOfTheDead.id("whistlecane_sign")
+    );
 
     public static BlockBehaviour.Properties pottedPlant() {
-        return BlockBehaviour.Properties.of(Material.DECORATION)
+        return of(Material.DECORATION)
                 .instabreak()
                 .noOcclusion();
     }
 
+    @ExpectPlatform
     public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {
-        return BlockBehaviour.Properties.copy(new BlockBehaviour(properties) {
-            @Override
-            public Item asItem() {
-                throw new UnsupportedOperationException();
-            }
+        throw new AssertionError();
+    }
 
-            @Override
-            protected Block asBlock() {
-                throw new UnsupportedOperationException();
-            }
-        });
+    @ExpectPlatform
+    public static BlockBehaviour.Properties of(Material material) {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    public static BlockBehaviour.Properties copyWithLoot(BlockBehaviour.Properties properties, ResourceLocation id) {
+        throw new AssertionError();
     }
 
     private static Boolean never(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> entityType) {

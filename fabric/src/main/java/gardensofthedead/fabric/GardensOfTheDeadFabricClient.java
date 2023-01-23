@@ -1,5 +1,6 @@
 package gardensofthedead.fabric;
 
+import gardensofthedead.GardensOfTheDeadClient;
 import gardensofthedead.client.particle.SoulblightSporeProvider;
 import gardensofthedead.client.particle.WhistlecaneSmokeParticle;
 import gardensofthedead.registry.ModBlockEntityTypes;
@@ -20,6 +21,7 @@ public class GardensOfTheDeadFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        GardensOfTheDeadClient.init();
         ModWoodTypes.register();
         BlockEntityRenderers.register(ModBlockEntityTypes.SIGN.get(), SignRenderer::new);
         ParticleFactoryRegistry.getInstance().register(ModParticleTypes.SOULBLIGHT_SPORE.get(), SoulblightSporeProvider::new);
@@ -27,7 +29,6 @@ public class GardensOfTheDeadFabricClient implements ClientModInitializer {
         registerRenderTypes();
     }
 
-    // TODO cleanup?
     private static void registerRenderTypes() {
         for (Block block : List.of(
                 ModBlocks.BLISTERCROWN.get(),
@@ -37,6 +38,7 @@ public class GardensOfTheDeadFabricClient implements ClientModInitializer {
                 ModBlocks.SOULBLIGHT_FUNGUS.get(),
                 ModBlocks.SOULBLIGHT_SPROUTS.get(),
                 ModBlocks.WHISTLECANE.get(),
+                ModBlocks.WHISTLECANE_PLANT.get(),
                 ModBlocks.TALL_BLISTERCROWN.get(),
 
                 ModBlocks.POTTED_BLISTERCROWN.get(),

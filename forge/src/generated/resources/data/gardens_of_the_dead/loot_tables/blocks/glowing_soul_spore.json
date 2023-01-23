@@ -8,8 +8,7 @@
           "type": "minecraft:item",
           "conditions": [
             {
-              "action": "shears_dig",
-              "condition": "forge:can_tool_perform_action"
+              "condition": "gardens_of_the_dead:match_shears"
             }
           ],
           "name": "gardens_of_the_dead:glowing_soul_spore"

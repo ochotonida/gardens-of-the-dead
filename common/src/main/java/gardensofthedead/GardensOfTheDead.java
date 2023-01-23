@@ -25,5 +25,6 @@ public class GardensOfTheDead {
         ModParticleTypes.PARTICLE_TYPES.register();
         ModSoundEvents.SOUND_EVENTS.register();
         ModBiomes.BIOME_REGISTER.register();
+        ModLootConditions.LOOT_CONDITIONS.register();
     }
 }

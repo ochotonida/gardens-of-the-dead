@@ -15,14 +15,14 @@ loom {
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
         dataGen {
-            mod "gardens_of_the_dead"
+            mod mod_id
         }
 
-        mixinConfig("mixins.gardens_of_the_dead.common.json")
+        mixinConfig("mixins.${mod_id}.common.json")
 
         launches {
             data {
-                arg "--existing", new File(getRootDir(), "common/src/main/resources").absolutePath
+                arg "--existing", project(":common").file("src/main/resources").absolutePath
             }
         }
     }
@@ -38,7 +38,6 @@ configurations {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
-    // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
