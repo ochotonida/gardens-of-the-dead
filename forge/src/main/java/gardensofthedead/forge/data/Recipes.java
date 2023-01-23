@@ -61,6 +61,8 @@ public class Recipes extends RecipeProvider {
         door(consumer, ModBlocks.WHISTLECANE_DOOR.get(), whistleCaneBlock);
         trapdoor(consumer, ModBlocks.WHISTLECANE_TRAPDOOR.get(), whistleCaneBlock);
         sign(consumer, ModBlocks.WHISTLECANE_SIGN.get(), whistleCaneBlock);
+
+        blistercrown(consumer);
     }
 
     protected static void whistleCaneBlock(Consumer<FinishedRecipe> consumer) {
@@ -152,6 +154,13 @@ public class Recipes extends RecipeProvider {
                 .group("wooden_sign")
                 .unlockedBy("has_planks", has(planks))
                 .save(consumer, getRecipeLocation(sign, CRAFTING_SHAPED));
+    }
+
+    protected static void blistercrown(Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(ModBlocks.BLISTERCROWN.get(), 3)
+                .requires(ModBlocks.TALL_BLISTERCROWN.get())
+                .unlockedBy("has_blistercrown", has(ModBlocks.TALL_BLISTERCROWN.get()))
+                .save(consumer, getRecipeLocation(ModBlocks.BLISTERCROWN.get(), CRAFTING_SHAPELESS));
     }
 
     private static ResourceLocation getRecipeLocation(ItemLike result, String location) {
