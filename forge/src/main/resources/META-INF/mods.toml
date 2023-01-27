@@ -8,7 +8,7 @@ modId="gardens_of_the_dead"
 version="${version}"
 displayName="Gardens of the Dead"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/gardens-of-the-dead"
-# TODO logoFile="logo.png"
+logoFile="logo.png"
 authors="ochotonida"
 
 description='''Adds new spooky biomes to the Nether. Created for Spooky Jam 2022.'''

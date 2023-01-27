@@ -12,7 +12,7 @@
     "sources": "https://github.com/ochotonida/gardens-of-the-dead"
   },
   "license": "MIT",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/gardens_of_the_dead/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
