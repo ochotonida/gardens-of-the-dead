@@ -26,7 +26,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "gardens_of_the_dead:glowing_soul_spore"
         }
       ],
       "rolls": 1.0

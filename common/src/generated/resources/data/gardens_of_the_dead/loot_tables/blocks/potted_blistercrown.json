@@ -26,7 +26,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "gardens_of_the_dead:blistercrown"
         }
       ],
       "rolls": 1.0
