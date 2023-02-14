@@ -1,0 +1,6 @@
+// 1.19.2	2023-02-11T20:56:40.2260409	Tags for minecraft:worldgen/biome
+aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/gardens_of_the_dead/tags/worldgen/biome/is_dry/nether.json
+cfacd4eb8d92daa8fb5b4ba4a0a0916f3c8b5ed9 data/gardens_of_the_dead/tags/worldgen/biome/is_hot/nether.json
+aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json
+ca4305d23e11a592ef7e89dcfb823a219a956ad9 data/minecraft/tags/worldgen/biome/has_structure/nether_fossil.json
+aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/minecraft/tags/worldgen/biome/is_nether.json

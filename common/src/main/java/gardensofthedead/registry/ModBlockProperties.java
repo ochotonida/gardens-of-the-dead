@@ -131,17 +131,17 @@ public class ModBlockProperties {
 
     @ExpectPlatform
     public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {
-        throw new AssertionError();
+        return BlockBehaviour.Properties.of(Material.AIR);
     }
 
     @ExpectPlatform
     public static BlockBehaviour.Properties of(Material material) {
-        throw new AssertionError();
+        return BlockBehaviour.Properties.of(material);
     }
 
     @ExpectPlatform
     public static BlockBehaviour.Properties copyWithLoot(BlockBehaviour.Properties properties, ResourceLocation id) {
-        throw new AssertionError();
+        return BlockBehaviour.Properties.of(Material.AIR);
     }
 
     private static Boolean never(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> entityType) {

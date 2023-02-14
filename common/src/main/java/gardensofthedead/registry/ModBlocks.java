@@ -68,7 +68,7 @@ public class ModBlocks {
 
     @ExpectPlatform
     private static Supplier<RotatedPillarBlock> createStrippableBlock(BlockBehaviour.Properties properties, Supplier<? extends Block> strippedBlock) {
-        throw new AssertionError();
+        return () -> new RotatedPillarBlock(properties);
     }
 
     private static RegistrySupplier<RotatedPillarBlock> soulblightStem(String name, Supplier<? extends Block> strippedLogBlock) {
@@ -89,7 +89,7 @@ public class ModBlocks {
 
     @ExpectPlatform
     public static Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        throw new AssertionError();
+        return () -> new FlowerPotBlock(Blocks.AIR, properties);
     }
 
     private static RegistrySupplier<StairBlock> stairs(String name, Supplier<? extends Block> baseBlock, BlockBehaviour.Properties properties) {

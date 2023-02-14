@@ -14,16 +14,14 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        dataGen {
-            mod mod_id
-        }
-
         mixinConfig("mixins.${mod_id}.common.json")
+    }
+}
 
-        launches {
-            data {
-                arg "--existing", project(":common").file("src/main/resources").absolutePath
-            }
+sourceSets {
+    main {
+        resources {
+            srcDir(project(":common").file("src/generated/resources"))
         }
     }
 }

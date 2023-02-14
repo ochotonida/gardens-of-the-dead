@@ -27,11 +27,11 @@ public class ModWoodTypes {
 
     @ExpectPlatform
     public static String createName(String id) {
-        throw new AssertionError();
+        return id;
     }
 
     @ExpectPlatform
     public static void addMaterial(WoodType woodType) {
-        throw new AssertionError();
+        // TODO throw new AssertionError();
     }
 }

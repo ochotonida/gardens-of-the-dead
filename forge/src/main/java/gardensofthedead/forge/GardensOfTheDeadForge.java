@@ -22,7 +22,6 @@ public class GardensOfTheDeadForge {
         EventBuses.registerModEventBus(GardensOfTheDead.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
         GardensOfTheDead.init();
-        GardensOfTheDeadForgeData.init();
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadClient::init);
 
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> GardensOfTheDeadForgeClient::init);
