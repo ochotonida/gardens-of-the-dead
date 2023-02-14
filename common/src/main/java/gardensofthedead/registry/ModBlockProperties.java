@@ -1,7 +1,7 @@
 package gardensofthedead.registry;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.platform.PlatformServices;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -129,19 +129,16 @@ public class ModBlockProperties {
                 .noOcclusion();
     }
 
-    @ExpectPlatform
-    public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {
-        return BlockBehaviour.Properties.of(Material.AIR);
-    }
-
-    @ExpectPlatform
     public static BlockBehaviour.Properties of(Material material) {
-        return BlockBehaviour.Properties.of(material);
+        return PlatformServices.platformHelper.createBlockProperties(material);
     }
 
-    @ExpectPlatform
+    public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {
+        return PlatformServices.platformHelper.copyBlockProperties(properties);
+    }
+
     public static BlockBehaviour.Properties copyWithLoot(BlockBehaviour.Properties properties, ResourceLocation id) {
-        return BlockBehaviour.Properties.of(Material.AIR);
+        return PlatformServices.platformHelper.copyBlockPropertiesWithLoot(properties, id);
     }
 
     private static Boolean never(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> entityType) {

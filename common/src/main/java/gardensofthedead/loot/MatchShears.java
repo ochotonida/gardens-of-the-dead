@@ -2,8 +2,7 @@ package gardensofthedead.loot;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import dev.architectury.injectables.annotations.ExpectPlatform;
+import com.google.gson.JsonSerializationContext;import gardensofthedead.platform.PlatformServices;
 import gardensofthedead.registry.ModLootConditions;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -30,9 +29,8 @@ public class MatchShears implements LootItemCondition {
         return false;
     }
 
-    @ExpectPlatform
     public static boolean test(ItemStack tool) {
-        throw new AssertionError();
+        return PlatformServices.platformHelper.isShears(tool);
     }
 
     public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<MatchShears> {

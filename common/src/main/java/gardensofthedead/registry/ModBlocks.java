@@ -1,12 +1,12 @@
 package gardensofthedead.registry;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.block.*;
 import gardensofthedead.block.StandingSignBlock;
 import gardensofthedead.block.WallSignBlock;
+import gardensofthedead.platform.PlatformServices;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -66,12 +66,11 @@ public class ModBlocks {
     public static final RegistrySupplier<StandingSignBlock> WHISTLECANE_SIGN = BLOCKS.register("whistlecane_sign", () -> new StandingSignBlock(ModBlockProperties.WHISTLECANE_SIGN, ModWoodTypes.WHISTLECANE));
     public static final RegistrySupplier<WallSignBlock> WHISTLECANE_WALL_SIGN = BLOCKS.register("whistlecane_wall_sign", () -> new WallSignBlock(ModBlockProperties.WHISTLECANE_WALL_SIGN, ModWoodTypes.WHISTLECANE));
 
-    @ExpectPlatform
-    private static Supplier<RotatedPillarBlock> createStrippableBlock(BlockBehaviour.Properties properties, Supplier<? extends Block> strippedBlock) {
-        return () -> new RotatedPillarBlock(properties);
+    private static Supplier<RotatedPillarBlock> createStrippableBlock(BlockBehaviour.Properties properties, RegistrySupplier<? extends Block> strippedBlock) {
+        return PlatformServices.platformHelper.createStrippableBlock(strippedBlock, properties);
     }
 
-    private static RegistrySupplier<RotatedPillarBlock> soulblightStem(String name, Supplier<? extends Block> strippedLogBlock) {
+    private static RegistrySupplier<RotatedPillarBlock> soulblightStem(String name, RegistrySupplier<? extends Block> strippedLogBlock) {
         return BLOCKS.register(name, createStrippableBlock(ModBlockProperties.SOULBLIGHT_STEM, strippedLogBlock));
     }
 
@@ -84,12 +83,7 @@ public class ModBlocks {
     }
 
     private static RegistrySupplier<FlowerPotBlock> flowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        return BLOCKS.register("potted_" + plant.getId().getPath(), createFlowerPot(plant, properties));
-    }
-
-    @ExpectPlatform
-    public static Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        return () -> new FlowerPotBlock(Blocks.AIR, properties);
+        return BLOCKS.register("potted_" + plant.getId().getPath(), PlatformServices.platformHelper.createFlowerPot(plant, properties));
     }
 
     private static RegistrySupplier<StairBlock> stairs(String name, Supplier<? extends Block> baseBlock, BlockBehaviour.Properties properties) {

@@ -1,7 +1,7 @@
 package gardensofthedead.registry;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import gardensofthedead.mixin.WoodTypeInvoker;
+import gardensofthedead.platform.PlatformServices;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.HashSet;
@@ -15,23 +15,13 @@ public class ModWoodTypes {
     public static final WoodType WHISTLECANE = create("whistlecane");
 
     private static WoodType create(String id) {
-        WoodType woodType = WoodTypeInvoker.newWoodType(createName(id));
+        WoodType woodType = WoodTypeInvoker.newWoodType(PlatformServices.clientPlatformHelper.createWoodTypeName(id));
         WoodTypeInvoker.invokerRegister(woodType);
         VALUES.add(woodType);
         return woodType;
     }
 
     public static void register() {
-        VALUES.forEach(ModWoodTypes::addMaterial);
-    }
-
-    @ExpectPlatform
-    public static String createName(String id) {
-        return id;
-    }
-
-    @ExpectPlatform
-    public static void addMaterial(WoodType woodType) {
-        // TODO throw new AssertionError();
+        VALUES.forEach(PlatformServices.clientPlatformHelper::addWoodTypeMaterial);
     }
 }

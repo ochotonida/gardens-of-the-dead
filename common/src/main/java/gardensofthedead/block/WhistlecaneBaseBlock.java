@@ -1,6 +1,6 @@
 package gardensofthedead.block;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
+import gardensofthedead.platform.PlatformServices;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -106,12 +106,10 @@ public abstract class WhistlecaneBaseBlock extends Block implements Bonemealable
     @Override
     @SuppressWarnings("deprecation")
     public float getDestroyProgress(BlockState state, Player player, BlockGetter level, BlockPos pos) {
-        return canInstabreak(player) ? 1 : super.getDestroyProgress(state, player, level, pos);
-    }
-
-    @ExpectPlatform
-    public static boolean canInstabreak(Player player) {
-        throw new AssertionError();
+        if (PlatformServices.platformHelper.isSword(player.getMainHandItem())) {
+            return 1;
+        }
+        return super.getDestroyProgress(state, player, level, pos);
     }
 
     protected void growCane(Level level, BlockPos pos, RandomSource randomSource, int currentHeight) {
