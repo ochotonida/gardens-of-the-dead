@@ -4,11 +4,10 @@ import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.registry.ModSoundEvents;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.common.data.SoundDefinitionsProvider;
 
-public class SoundDefinitions extends SoundDefinitionsProvider {
+public class SoundDefinitionsProvider extends net.minecraftforge.common.data.SoundDefinitionsProvider {
 
-    public SoundDefinitions(DataGenerator generator, ExistingFileHelper helper) {
+    public SoundDefinitionsProvider(DataGenerator generator, ExistingFileHelper helper) {
         super(generator, GardensOfTheDead.MOD_ID, helper);
     }
 

@@ -20,7 +20,7 @@ import java.util.Objects;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
-public class BlockStates extends BlockStateProvider {
+public class BlockStateProvider extends net.minecraftforge.client.model.generators.BlockStateProvider {
 
     private static final String CUTOUT = "cutout";
 
@@ -28,7 +28,7 @@ public class BlockStates extends BlockStateProvider {
     private static final ResourceLocation WHISTLECANE_0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "0");
     private static final ResourceLocation WHISTLECANE_1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "1");
 
-    public BlockStates(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public BlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, GardensOfTheDead.MOD_ID, existingFileHelper);
     }
 

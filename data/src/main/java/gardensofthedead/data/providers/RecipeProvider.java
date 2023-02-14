@@ -5,7 +5,6 @@ import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -18,12 +17,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
-public class Recipes extends RecipeProvider {
+public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
 
     private static final String CRAFTING_SHAPED = "crafting_shaped";
     private static final String CRAFTING_SHAPELESS = "crafting_shapeless";
 
-    public Recipes(DataGenerator generator) {
+    public RecipeProvider(DataGenerator generator) {
         super(generator);
     }
 

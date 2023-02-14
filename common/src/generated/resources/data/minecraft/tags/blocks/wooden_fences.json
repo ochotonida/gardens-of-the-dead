@@ -1,5 +1,6 @@
 {
   "values": [
-    "#gardens_of_the_dead:fences/wooden"
+    "gardens_of_the_dead:soulblight_fence",
+    "gardens_of_the_dead:whistlecane_fence"
   ]
 }

@@ -16,15 +16,15 @@ public class GardensOfTheDeadData {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        BlockStates blockStates = new BlockStates(generator, existingFileHelper);
+        BlockStateProvider blockStates = new BlockStateProvider(generator, existingFileHelper);
         generator.addProvider(event.includeClient(), blockStates);
 
         BlockTagsProvider blockTagsProvider = new BlockTagsProvider(generator, existingFileHelper);
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeServer(), new ItemTagsProvider(generator, blockTagsProvider, existingFileHelper));
-        generator.addProvider(event.includeClient(), new BiomeTags(generator, existingFileHelper));
-        generator.addProvider(event.includeServer(), new LootTables(generator));
-        generator.addProvider(event.includeServer(), new Recipes(generator));
-        generator.addProvider(event.includeServer(), new SoundDefinitions(generator, existingFileHelper));
+        generator.addProvider(event.includeClient(), new BiomeTagsProvider(generator, existingFileHelper));
+        generator.addProvider(event.includeServer(), new LootTableProvider(generator));
+        generator.addProvider(event.includeServer(), new RecipeProvider(generator));
+        generator.addProvider(event.includeServer(), new SoundDefinitionsProvider(generator, existingFileHelper));
     }
 }

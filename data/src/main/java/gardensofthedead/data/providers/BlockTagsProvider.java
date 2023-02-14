@@ -3,12 +3,15 @@ package gardensofthedead.data.providers;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.block.StandingSignBlock;
 import gardensofthedead.block.WallSignBlock;
+import gardensofthedead.data.registry.CommonTags;
 import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -56,6 +59,11 @@ public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider
                         tag(BlockTags.STANDING_SIGNS).add(block);
                     } else if (block instanceof WallSignBlock) {
                         tag(BlockTags.WALL_SIGNS).add(block);
+                    } else if (block instanceof FenceGateBlock) {
+                        // TODO cleanup 1.19.3
+                        tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block);
+                        tag(CommonTags.Blocks.FENCE_GATES).add(block);
+                        tag(BlockTags.FENCE_GATES).add(block);
                     }
                 });
 
@@ -102,20 +110,9 @@ public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider
                 ModBlocks.BLIGHTWART_BLOCK.get()
         );
 
-        tag(BlockTags.FENCES).addTag(ModTags.Blocks.FENCES);
-        tag(BlockTags.FENCE_GATES).addTag(ModTags.Blocks.FENCE_GATES);
-        tag(BlockTags.WOODEN_FENCES).addTag(ModTags.Blocks.WOODEN_FENCES);
-        tag(ModTags.Blocks.FENCES).addTag(ModTags.Blocks.WOODEN_FENCES);
-        tag(ModTags.Blocks.FENCE_GATES).addTag(ModTags.Blocks.WOODEN_FENCE_GATES);
-
-        tag(ModTags.Blocks.WOODEN_FENCES).add(
+        tag(BlockTags.WOODEN_FENCES).add(
                 ModBlocks.SOULBLIGHT_FENCE.get(),
                 ModBlocks.WHISTLECANE_FENCE.get()
-        );
-
-        tag(ModTags.Blocks.WOODEN_FENCE_GATES).add(
-                ModBlocks.SOULBLIGHT_FENCE_GATE.get(),
-                ModBlocks.WHISTLECANE_FENCE_GATE.get()
         );
 
         tag(BlockTags.WOODEN_BUTTONS).add(
@@ -153,7 +150,7 @@ public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider
                 ModBlocks.WHISTLECANE_STAIRS.get()
         );
 
-        tag(ModTags.Blocks.MUSHROOMS).add(
+        tag(CommonTags.Blocks.MUSHROOMS).add(
                 ModBlocks.SOULBLIGHT_FUNGUS.get()
         );
     }
