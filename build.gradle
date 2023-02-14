@@ -27,6 +27,10 @@ allprojects {
     apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
+    sourceSets {
+        main.resources.srcDirs = ['src/main/resources', 'src/generated/resources']
+    }
+
     archivesBaseName = rootProject.archives_base_name
     version = rootProject.mod_version
     group = rootProject.maven_group
