@@ -11,7 +11,7 @@ public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registry.SOUND_EVENT_REGISTRY);
 
     public static final int WHISTLECANE_RANGE = 32;
-    public static final RegistrySupplier<SoundEvent> WHISTLECANE_WHISTLE = register("whistlecane_whistle", WHISTLECANE_RANGE);
+    public static final RegistrySupplier<SoundEvent> WHISTLECANE_WHISTLE = register("block.whistlecane.whistle", WHISTLECANE_RANGE);
 
     private static RegistrySupplier<SoundEvent> register(String name, float range) {
         return SOUND_EVENTS.register(name, () -> new SoundEvent(GardensOfTheDead.id(name), range));

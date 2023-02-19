@@ -1,16 +1,16 @@
 {
-  "whistlecane_whistle": {
+  "block.whistlecane.whistle": {
     "sounds": [
       {
         "attenuation_distance": 32,
-        "name": "gardens_of_the_dead:whistlecane_whistle0"
+        "name": "gardens_of_the_dead:block/whistlecane/whistle1"
       },
       {
         "attenuation_distance": 32,
-        "name": "gardens_of_the_dead:whistlecane_whistle1",
+        "name": "gardens_of_the_dead:block/whistlecane/whistle2",
         "weight": 2
       }
     ],
-    "subtitle": "gardens_of_the_dead.subtitle.whistlecane_whistles"
+    "subtitle": "gardens_of_the_dead.subtitle.block.whistlecane.whistle"
   }
 }
