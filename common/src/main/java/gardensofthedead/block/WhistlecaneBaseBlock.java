@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
+// TODO cleanup 1.19.3
 public abstract class WhistlecaneBaseBlock extends Block implements BonemealableBlock {
 
     protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 16, 11);
