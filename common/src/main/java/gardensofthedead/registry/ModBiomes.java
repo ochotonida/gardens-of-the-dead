@@ -94,7 +94,7 @@ public class ModBiomes {
                                 .ambientLoopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP)
                                 .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2))
                                 .ambientAdditionsSound(new AmbientAdditionsSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111))
-                                .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_CRIMSON_FOREST)).build())
+                                .backgroundMusic(Musics.createGameMusic(ModSoundEvents.SOULBLIGHT_FOREST_MUSIC.get())).build())
                 .mobSpawnSettings(spawnSettings)
                 .generationSettings(generationSettings.build())
                 .build();
@@ -140,7 +140,7 @@ public class ModBiomes {
                                 .ambientLoopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP)
                                 .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2))
                                 .ambientAdditionsSound(new AmbientAdditionsSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111))
-                                .backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_CRIMSON_FOREST)).build())
+                                .backgroundMusic(Musics.createGameMusic(ModSoundEvents.WHISTLING_WOODS_MUSIC.get())).build())
                 .mobSpawnSettings(spawnSettings)
                 .generationSettings(generationSettings.build())
                 .build();
