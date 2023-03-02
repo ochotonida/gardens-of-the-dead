@@ -15,13 +15,13 @@ public class ModWoodTypes {
     public static final WoodType WHISTLECANE = create("whistlecane");
 
     private static WoodType create(String id) {
-        WoodType woodType = WoodTypeInvoker.newWoodType(PlatformServices.clientPlatformHelper.createWoodTypeName(id));
+        WoodType woodType = WoodTypeInvoker.newWoodType(PlatformServices.platformHelper.createWoodTypeName(id));
         WoodTypeInvoker.invokerRegister(woodType);
         VALUES.add(woodType);
         return woodType;
     }
 
     public static void register() {
-        VALUES.forEach(PlatformServices.clientPlatformHelper::addWoodTypeMaterial);
+        VALUES.forEach(PlatformServices.platformHelper::addWoodTypeMaterial);
     }
 }
