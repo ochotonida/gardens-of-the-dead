@@ -48,3 +48,19 @@ allprojects {
         withSourcesJar()
     }
 }
+
+task collectJars(type: Copy) {
+    subprojects {
+        if (project.name != "common" && project.name != "data") {
+            def remapJar = project.tasks.named('remapJar')
+            dependsOn remapJar
+            from remapJar
+        }
+    }
+
+    into(buildDir.toPath().resolve("libs"))
+}
+
+assemble {
+    dependsOn(collectJars)
+}
