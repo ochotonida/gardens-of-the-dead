@@ -7,6 +7,8 @@ architectury {
     fabric()
 }
 
+archivesBaseName = archivesBaseName + "-fabric"
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 }
@@ -27,7 +29,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${rootProject.terrablender_version}"
+    include modImplementation("com.github.glitchfiend:TerraBlender-fabric:${rootProject.terrablender_version}")
 }
 
 processResources {

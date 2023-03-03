@@ -7,6 +7,8 @@ architectury {
     forge()
 }
 
+archivesBaseName = archivesBaseName + "-forge"
+
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
 
@@ -33,7 +35,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
-    modImplementation "com.github.glitchfiend:TerraBlender-forge:${rootProject.terrablender_version}"
+    include modImplementation("com.github.glitchfiend:TerraBlender-forge:${rootProject.terrablender_version}")
 }
 
 processResources {
