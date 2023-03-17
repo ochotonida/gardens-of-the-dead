@@ -8,13 +8,13 @@ import gardensofthedead.feature.SoulSporeColumnFeature;
 import gardensofthedead.feature.SoulblightForestVegetationFeature;
 import gardensofthedead.feature.configuration.HugeFlatFungusConfiguration;
 import gardensofthedead.feature.configuration.SoulSporeColumnConfiguration;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;
 
 public class ModFeatures {
 
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registry.FEATURE_REGISTRY);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registries.FEATURE);
 
     public static final RegistrySupplier<HugeFlatFungusFeature> HUGE_SOULBLIGHT_FUNGUS = FEATURES.register("soulblight_fungus", () -> new HugeFlatFungusFeature(HugeFlatFungusConfiguration.CODEC));
     public static final RegistrySupplier<SoulSporeColumnFeature> SOUL_SPORE_COLUMN = FEATURES.register("short_soul_spore_column", () -> new SoulSporeColumnFeature(SoulSporeColumnConfiguration.CODEC));

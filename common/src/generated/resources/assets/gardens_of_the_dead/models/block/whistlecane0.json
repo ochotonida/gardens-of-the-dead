@@ -74,7 +74,9 @@
     {
       "faces": {
         "east": {
-          "ambientocclusion": false,
+          "forge_data": {
+            "ambient_occlusion": false
+          },
           "texture": "#leaf",
           "uv": [
             8.0,
@@ -84,7 +86,9 @@
           ]
         },
         "west": {
-          "ambientocclusion": false,
+          "forge_data": {
+            "ambient_occlusion": false
+          },
           "texture": "#leaf",
           "uv": [
             0.0,

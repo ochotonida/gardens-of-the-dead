@@ -1,0 +1,12 @@
+{
+  "feature": "gardens_of_the_dead:soulblight_forest_vegetation",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 2
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

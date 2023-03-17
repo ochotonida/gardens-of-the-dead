@@ -1,0 +1,18 @@
+{
+  "type": "gardens_of_the_dead:soulblight_fungus",
+  "config": {
+    "hat_state": {
+      "Name": "gardens_of_the_dead:blightwart_block"
+    },
+    "planted": false,
+    "stem_state": {
+      "Name": "gardens_of_the_dead:soulblight_stem",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "valid_base_block": {
+      "Name": "minecraft:soul_soil"
+    }
+  }
+}

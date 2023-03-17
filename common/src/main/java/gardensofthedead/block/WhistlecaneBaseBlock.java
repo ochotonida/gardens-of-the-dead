@@ -70,7 +70,7 @@ public abstract class WhistlecaneBaseBlock extends Block implements Bonemealable
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
         int heightAbove = this.getHeightAboveUpToMax(level, pos);
         int heightBelow = this.getHeightBelowUpToMax(level, pos);
         BlockState topState = level.getBlockState(pos.above(heightAbove));

@@ -4,7 +4,9 @@ import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModTags;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -22,12 +24,12 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     private static final String CRAFTING_SHAPED = "crafting_shaped";
     private static final String CRAFTING_SHAPELESS = "crafting_shapeless";
 
-    public RecipeProvider(DataGenerator generator) {
-        super(generator);
+    public RecipeProvider(PackOutput packOutput) {
+        super(packOutput);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         addCraftingRecipes(consumer);
     }
 
@@ -66,7 +68,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
 
     protected static void whistleCaneBlock(Consumer<FinishedRecipe> consumer) {
         Block whistleCane = ModBlocks.WHISTLECANE.get();
-        ShapedRecipeBuilder.shaped(ModBlocks.WHISTLECANE_BLOCK.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.WHISTLECANE_BLOCK.get(), 2)
                 .define('#', whistleCane)
                 .pattern("##")
                 .pattern("##")
@@ -75,7 +77,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     }
 
     protected static void woodFromLogs(Consumer<FinishedRecipe> consumer, ItemLike wood, ItemLike log) {
-        ShapedRecipeBuilder.shaped(wood, 3)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wood, 3)
                 .define('#', log)
                 .pattern("##")
                 .pattern("##")
@@ -85,7 +87,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     }
 
     protected static void planksFromLogs(Consumer<FinishedRecipe> consumer, ItemLike planks, TagKey<Item> tag) {
-        ShapelessRecipeBuilder.shapeless(planks, 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, planks, 4)
                 .requires(tag)
                 .group("planks")
                 .unlockedBy("has_logs", has(tag))
@@ -93,7 +95,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     }
 
     protected static void woodenSlab(Consumer<FinishedRecipe> consumer, ItemLike slab, ItemLike planks) {
-        slabBuilder(slab, Ingredient.of(planks))
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS, slab, Ingredient.of(planks))
                 .group("wooden_slab")
                 .unlockedBy("has_planks", has(planks))
                 .save(consumer, getRecipeLocation(slab, CRAFTING_SHAPED));
@@ -142,7 +144,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     }
 
     protected static void pressurePlate(Consumer<FinishedRecipe> consumer, ItemLike pressurePlate, ItemLike planks) {
-        pressurePlateBuilder(pressurePlate, Ingredient.of(planks))
+        pressurePlateBuilder(RecipeCategory.REDSTONE, pressurePlate, Ingredient.of(planks))
                 .group("wooden_pressure_plate")
                 .unlockedBy("has_planks", has(planks))
                 .save(consumer, getRecipeLocation(pressurePlate, CRAFTING_SHAPED));
@@ -156,7 +158,7 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
     }
 
     protected static void blistercrown(Consumer<FinishedRecipe> consumer) {
-        ShapelessRecipeBuilder.shapeless(ModBlocks.BLISTERCROWN.get(), 3)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ModBlocks.BLISTERCROWN.get(), 3)
                 .requires(ModBlocks.TALL_BLISTERCROWN.get())
                 .unlockedBy("has_blistercrown", has(ModBlocks.TALL_BLISTERCROWN.get()))
                 .save(consumer, getRecipeLocation(ModBlocks.BLISTERCROWN.get(), CRAFTING_SHAPELESS));

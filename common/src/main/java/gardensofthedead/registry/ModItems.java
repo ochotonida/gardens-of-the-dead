@@ -4,7 +4,9 @@ import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import gardensofthedead.GardensOfTheDead;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +16,7 @@ import java.util.function.BiConsumer;
 @SuppressWarnings("unused")
 public class ModItems {
 
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registry.ITEM_REGISTRY);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registries.ITEM);
 
     public static final RegistrySupplier<Item> SOUL_SPORE = blockItem(ModBlocks.SOUL_SPORE);
     public static final RegistrySupplier<Item> GLOWING_SOUL_SPORE = blockItem(ModBlocks.GLOWING_SOUL_SPORE);
@@ -37,9 +39,9 @@ public class ModItems {
     public static final RegistrySupplier<Item> SOULBLIGHT_FENCE_GATE = blockItem(ModBlocks.SOULBLIGHT_FENCE_GATE);
     public static final RegistrySupplier<Item> SOULBLIGHT_BUTTON = blockItem(ModBlocks.SOULBLIGHT_BUTTON);
     public static final RegistrySupplier<Item> SOULBLIGHT_PRESSURE_PLATE = blockItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE);
-    public static final RegistrySupplier<Item> SOULBLIGHT_DOOR = ITEMS.register("soulblight_door", () -> new DoubleHighBlockItem(ModBlocks.SOULBLIGHT_DOOR.get(), properties()));
+    public static final RegistrySupplier<Item> SOULBLIGHT_DOOR = ITEMS.register("soulblight_door", () -> new DoubleHighBlockItem(ModBlocks.SOULBLIGHT_DOOR.get(), new Item.Properties()));
     public static final RegistrySupplier<Item> SOULBLIGHT_TRAPDOOR = blockItem(ModBlocks.SOULBLIGHT_TRAPDOOR);
-    public static final RegistrySupplier<Item> SOULBLIGHT_SIGN = ITEMS.register("soulblight_sign", () -> new SignItem(properties().stacksTo(16), ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get()));
+    public static final RegistrySupplier<Item> SOULBLIGHT_SIGN = ITEMS.register("soulblight_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get()));
 
     public static final RegistrySupplier<Item> WHISTLECANE_BLOCK = blockItem(ModBlocks.WHISTLECANE_BLOCK);
     public static final RegistrySupplier<Item> WHISTLECANE_SLAB = blockItem(ModBlocks.WHISTLECANE_SLAB);
@@ -48,18 +50,23 @@ public class ModItems {
     public static final RegistrySupplier<Item> WHISTLECANE_FENCE_GATE = blockItem(ModBlocks.WHISTLECANE_FENCE_GATE);
     public static final RegistrySupplier<Item> WHISTLECANE_BUTTON = blockItem(ModBlocks.WHISTLECANE_BUTTON);
     public static final RegistrySupplier<Item> WHISTLECANE_PRESSURE_PLATE = blockItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE);
-    public static final RegistrySupplier<Item> WHISTLECANE_DOOR = ITEMS.register("whistlecane_door", () -> new DoubleHighBlockItem(ModBlocks.WHISTLECANE_DOOR.get(), properties()));
+    public static final RegistrySupplier<Item> WHISTLECANE_DOOR = ITEMS.register("whistlecane_door", () -> new DoubleHighBlockItem(ModBlocks.WHISTLECANE_DOOR.get(), new Item.Properties()));
     public static final RegistrySupplier<Item> WHISTLECANE_TRAPDOOR = blockItem(ModBlocks.WHISTLECANE_TRAPDOOR);
-    public static final RegistrySupplier<Item> WHISTLECANE_SIGN = ITEMS.register("whistlecane_sign", () -> new SignItem(properties().stacksTo(16), ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get()));
+    public static final RegistrySupplier<Item> WHISTLECANE_SIGN = ITEMS.register("whistlecane_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get()));
 
-    public static final CreativeModeTab CREATIVE_TAB = CreativeTabRegistry.create(GardensOfTheDead.id("main"), () -> new ItemStack(GLOWING_SOUL_SPORE.get()));
+    public static final CreativeTabRegistry.TabSupplier CREATIVE_TAB = CreativeTabRegistry.create(GardensOfTheDead.id("main"),
+            builder -> builder
+                    .icon(() -> new ItemStack(ModItems.GLOWING_SOUL_SPORE.get()))
+                    .title(Component.translatable("%s.creative_tab".formatted(GardensOfTheDead.MOD_ID)))
+                    .displayItems(((featureFlagSet, output, hasOp) -> BuiltInRegistries.ITEM.forEach(item -> {
+                        if (BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(GardensOfTheDead.MOD_ID)) {
+                            output.accept(item);
+                        }
+                    })))
+    );
 
     private static RegistrySupplier<Item> blockItem(RegistrySupplier<? extends Block> block) {
-        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), properties()));
-    }
-
-    private static Item.Properties properties() {
-        return new Item.Properties().tab(CREATIVE_TAB);
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void addCompostables(BiConsumer<ItemLike, Float> consumer) {

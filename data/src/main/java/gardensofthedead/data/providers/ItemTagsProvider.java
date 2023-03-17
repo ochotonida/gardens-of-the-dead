@@ -3,8 +3,9 @@ package gardensofthedead.data.providers;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.data.registry.CommonTags;
 import gardensofthedead.registry.ModTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -13,14 +14,16 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
 
-    public ItemTagsProvider(DataGenerator generator, BlockTagsProvider blockTags, @Nullable ExistingFileHelper existingFileHelper) {
-        super(generator, blockTags, GardensOfTheDead.MOD_ID, existingFileHelper);
+    public ItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+        super(packOutput, lookupProvider, blockTags, GardensOfTheDead.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         copy(ModTags.Blocks.SOULBLIGHT_STEMS, ModTags.Items.SOULBLIGHT_STEMS);
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);

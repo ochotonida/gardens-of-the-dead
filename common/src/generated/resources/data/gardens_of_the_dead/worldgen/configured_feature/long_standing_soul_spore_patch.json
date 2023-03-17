@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "gardens_of_the_dead:short_soul_spore_column",
+        "config": {
+          "direction": "up",
+          "glowingChance": 0.05,
+          "length": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 8,
+              "min_inclusive": 1
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:soul_sand",
+                "offset": [
+                  0,
+                  -1,
+                  0
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 64,
+    "xz_spread": 8,
+    "y_spread": 4
+  }
+}

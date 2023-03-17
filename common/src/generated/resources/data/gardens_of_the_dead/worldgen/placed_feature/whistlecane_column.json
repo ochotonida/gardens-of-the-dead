@@ -1,0 +1,24 @@
+{
+  "feature": "gardens_of_the_dead:whistlecane_column",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 20
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "gardens_of_the_dead:whistlecane",
+          "Properties": {
+            "growing": "true"
+          }
+        }
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

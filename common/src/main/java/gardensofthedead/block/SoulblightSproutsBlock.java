@@ -7,6 +7,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -19,6 +20,7 @@ public class SoulblightSproutsBlock extends RootsBlock implements BonemealableBl
         super(properties);
     }
 
+    @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return state.is(BlockTags.WART_BLOCKS)
                 || state.is(Blocks.SOUL_SAND)
@@ -26,7 +28,7 @@ public class SoulblightSproutsBlock extends RootsBlock implements BonemealableBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 

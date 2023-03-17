@@ -1,6 +1,5 @@
 package gardensofthedead.forge.platform;
 
-import com.google.common.base.Suppliers;
 import dev.architectury.registry.registries.RegistrySupplier;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.forge.block.StrippableLogBlock;
@@ -36,17 +35,16 @@ public class ForgePlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        Supplier<FlowerPotBlock> result = Suppliers.memoize(
-                () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, plant, properties)
-        );
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getId(), result);
+    public FlowerPotBlock createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
+        FlowerPotBlock flowerPot = (FlowerPotBlock) Blocks.FLOWER_POT;
+        FlowerPotBlock result = new FlowerPotBlock(() -> flowerPot, plant, properties);
+        flowerPot.addPlant(plant.getId(), () -> result);
         return result;
     }
 
     @Override
-    public Supplier<RotatedPillarBlock> createStrippableBlock(RegistrySupplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties) {
-        return () -> new StrippableLogBlock(properties, strippedBlock);
+    public RotatedPillarBlock createStrippableBlock(Supplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties) {
+        return new StrippableLogBlock(properties, strippedBlock);
     }
 
     @Override

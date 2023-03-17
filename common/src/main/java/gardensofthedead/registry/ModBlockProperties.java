@@ -141,7 +141,7 @@ public class ModBlockProperties {
         return PlatformServices.platformHelper.copyBlockPropertiesWithLoot(properties, id);
     }
 
-    private static Boolean never(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> entityType) {
+    public static Boolean never(BlockState state, BlockGetter level, BlockPos pos, EntityType<?> entityType) {
         return false;
     }
 }

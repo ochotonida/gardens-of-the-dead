@@ -22,12 +22,9 @@ public class GardensOfTheDead {
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
         ModItems.ITEMS.register();
         ModFeatures.FEATURES.register();
-        ModConfiguredFeatures.CONFIGURED_FEATURES.register();
         ModPlacementModifiers.PLACEMENT_MODIFIER_TYPES.register();
-        ModPlacedFeatures.PLACED_FEATURES.register();
         ModParticleTypes.PARTICLE_TYPES.register();
         ModSoundEvents.SOUND_EVENTS.register();
-        ModBiomes.BIOME_REGISTER.register();
         ModLootConditions.LOOT_CONDITIONS.register();
     }
 }

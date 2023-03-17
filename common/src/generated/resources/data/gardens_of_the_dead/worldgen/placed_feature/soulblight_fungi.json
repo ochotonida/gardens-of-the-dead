@@ -1,0 +1,34 @@
+{
+  "feature": "gardens_of_the_dead:soulblight_fungus",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 3
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:not",
+        "predicate": {
+          "type": "minecraft:matching_fluids",
+          "fluids": "minecraft:lava"
+        }
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:soul_soil",
+        "offset": [
+          0,
+          -1,
+          0
+        ]
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

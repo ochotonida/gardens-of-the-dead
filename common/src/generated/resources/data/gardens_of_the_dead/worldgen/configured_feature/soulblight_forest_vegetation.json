@@ -1,0 +1,36 @@
+{
+  "type": "gardens_of_the_dead:soulblight_forest_vegetation",
+  "config": {
+    "spread_height": 4,
+    "spread_width": 8,
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "gardens_of_the_dead:soulblight_sprouts"
+          },
+          "weight": 48
+        },
+        {
+          "data": {
+            "Name": "gardens_of_the_dead:soulblight_fungus"
+          },
+          "weight": 48
+        },
+        {
+          "data": {
+            "Name": "minecraft:crimson_fungus"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "minecraft:warped_fungus"
+          },
+          "weight": 2
+        }
+      ]
+    }
+  }
+}

@@ -37,6 +37,7 @@ public class CountOnEveryCeilingPlacement extends PlacementModifier {
         return of(ConstantInt.of(count));
     }
 
+    @Override
     public Stream<BlockPos> getPositions(PlacementContext context, RandomSource randomSource, BlockPos pos) {
         Stream.Builder<BlockPos> builder = Stream.builder();
         int layer = 0;
@@ -62,6 +63,7 @@ public class CountOnEveryCeilingPlacement extends PlacementModifier {
         return builder.build();
     }
 
+    @Override
     public PlacementModifierType<?> type() {
         return ModPlacementModifiers.COUNT_ON_EVERY_CEILING.get();
     }

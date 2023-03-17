@@ -40,16 +40,19 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
         occlusionByIndex = makeShapes(3, 0.5F, 16, 6, 15);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
         return this.occlusionByIndex[this.getAABBIndex(state)];
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getVisualShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return this.getShape(state, level, pos, context);
     }
 
+    @Override
     public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType pathComputationType) {
         return false;
     }
@@ -65,6 +68,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
         return state.is(BlockTags.FENCES) && state.is(BlockTags.WOODEN_FENCES) == defaultBlockState().is(BlockTags.WOODEN_FENCES);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
         if (player.getItemInHand(hand).is(Items.LEAD)) {
@@ -73,6 +77,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
         return super.use(state, level, pos, player, hand, blockHitResult);
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockGetter level = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -94,6 +99,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
                 .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
         if (state.getValue(WATERLOGGED)) {
@@ -106,6 +112,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
         return super.updateShape(state, direction, newState, level, pos, updatedPos);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }

@@ -22,6 +22,7 @@ public class SoulSporeColumnFeature extends Feature<SoulSporeColumnConfiguration
         super(codec);
     }
 
+    @Override
     public boolean place(FeaturePlaceContext<SoulSporeColumnConfiguration> context) {
         WorldGenLevel level = context.level();
         SoulSporeColumnConfiguration config = context.config();

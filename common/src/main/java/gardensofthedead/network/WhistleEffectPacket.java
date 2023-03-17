@@ -5,6 +5,7 @@ import gardensofthedead.client.WhistleEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
@@ -23,7 +24,7 @@ public class WhistleEffectPacket {
 
     public WhistleEffectPacket(FriendlyByteBuf buffer) {
         pos = buffer.readBlockPos();
-        dimension = buffer.readResourceKey(Registry.DIMENSION_REGISTRY);
+        dimension = buffer.readResourceKey(Registries.DIMENSION);
     }
 
     void encode(FriendlyByteBuf buffer) {

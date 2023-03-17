@@ -28,17 +28,20 @@ public class WhistlecaneSmokeParticle extends TextureSheetParticle {
         setColor(r, g, b);
     }
 
+    @Override
     public void tick() {
         super.tick();
         setSpriteFromAge(sprites);
     }
 
+    @Override
     public ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     public record Provider(SpriteSet sprites) implements ParticleProvider<SimpleParticleType> {
 
+        @Override
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double u, double v, double w) {
             return new WhistlecaneSmokeParticle(level, x, y, z, u, v, w, sprites);
         }

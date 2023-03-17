@@ -31,6 +31,7 @@ public class SoulSporeBaseBlock extends Block {
         registerDefaultState(stateDefinition.any().setValue(DIRECTION, Direction.UP));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(DIRECTION);
     }
@@ -47,6 +48,7 @@ public class SoulSporeBaseBlock extends Block {
         return defaultBlockState().setValue(DIRECTION, context.getNearestLookingVerticalDirection().getOpposite());
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if (!state.canSurvive(level, pos)) {
@@ -54,6 +56,7 @@ public class SoulSporeBaseBlock extends Block {
         }
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos updatedPos) {
         if (!state.canSurvive(level, pos)) {
@@ -63,6 +66,7 @@ public class SoulSporeBaseBlock extends Block {
         return super.updateShape(state, direction, newState, level, pos, updatedPos);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         Direction direction = state.getValue(DIRECTION);

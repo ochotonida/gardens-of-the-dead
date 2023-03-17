@@ -27,6 +27,7 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock {
         registerDefaultState(stateDefinition.any().setValue(GROWING, true));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(GROWING);
     }
@@ -40,6 +41,7 @@ public class WhistlecaneBlock extends WhistlecaneBaseBlock {
         return super.updateShape(state, direction, newState, level, pos, updatedPos);
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         if (state.getValue(GROWING) && level.isEmptyBlock(pos.above())) {

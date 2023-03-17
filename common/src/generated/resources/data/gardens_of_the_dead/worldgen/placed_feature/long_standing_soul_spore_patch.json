@@ -1,0 +1,12 @@
+{
+  "feature": "gardens_of_the_dead:long_standing_soul_spore_patch",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 12
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -19,6 +19,7 @@ public class TallBlistercrownBlock extends DoublePlantBlock {
         return state.is(BlockTags.NYLIUM) || super.mayPlaceOn(state, level, pos);
     }
 
+    @Override
     public boolean canSurvive(BlockState p_154615_, LevelReader p_154616_, BlockPos p_154617_) {
         if (p_154615_.getValue(HALF) == DoubleBlockHalf.UPPER) {
             return super.canSurvive(p_154615_, p_154616_, p_154617_);

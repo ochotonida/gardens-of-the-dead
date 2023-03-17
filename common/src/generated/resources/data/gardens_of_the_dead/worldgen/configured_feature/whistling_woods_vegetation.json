@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:nether_forest_vegetation",
+  "config": {
+    "spread_height": 4,
+    "spread_width": 8,
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:crimson_roots"
+          },
+          "weight": 70
+        },
+        {
+          "data": {
+            "Name": "gardens_of_the_dead:blistercrown"
+          },
+          "weight": 18
+        },
+        {
+          "data": {
+            "Name": "minecraft:crimson_fungus"
+          },
+          "weight": 10
+        },
+        {
+          "data": {
+            "Name": "minecraft:warped_fungus"
+          },
+          "weight": 2
+        }
+      ]
+    }
+  }
+}

@@ -6,7 +6,7 @@ import gardensofthedead.block.SoulSporeBlock;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
@@ -28,7 +28,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
     private static final ResourceLocation WHISTLECANE_0 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "0");
     private static final ResourceLocation WHISTLECANE_1 = GardensOfTheDead.id(ModelProvider.BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE.get()) + "1");
 
-    public BlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public BlockStateProvider(PackOutput generator, ExistingFileHelper existingFileHelper) {
         super(generator, GardensOfTheDead.MOD_ID, existingFileHelper);
     }
 

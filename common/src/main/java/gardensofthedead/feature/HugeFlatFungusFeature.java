@@ -23,6 +23,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         super(codec);
     }
 
+    @Override
     public boolean place(FeaturePlaceContext<HugeFlatFungusConfiguration> context) {
         WorldGenLevel level = context.level();
         BlockPos pos = context.origin();

@@ -6,7 +6,8 @@ import gardensofthedead.block.WallSignBlock;
 import gardensofthedead.data.registry.CommonTags;
 import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModTags;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -17,11 +18,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
-public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider {
+public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsProvider {
 
-    public BlockTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, GardensOfTheDead.MOD_ID, existingFileHelper);
+    public BlockTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+        super(packOutput, lookupProvider, GardensOfTheDead.MOD_ID, existingFileHelper);
     }
 
     protected static final List<Block> NON_FLAMMABLE_WOOD_ITEMS = List.of(
@@ -48,7 +50,7 @@ public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider
     );
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider lookup) {
         ForgeRegistries.BLOCKS.getValues()
                 .stream()
                 .filter(block -> Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getNamespace().equals(GardensOfTheDead.MOD_ID))
@@ -91,15 +93,6 @@ public class BlockTagsProvider extends net.minecraft.data.tags.BlockTagsProvider
                 ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
                 ModBlocks.SOULBLIGHT_HYPHAE.get(),
                 ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get()
-        );
-
-        tag(BlockTags.NON_FLAMMABLE_WOOD).addTag(
-                ModTags.Blocks.SOULBLIGHT_STEMS
-        ).add(
-                ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
-                ModBlocks.WHISTLECANE_WALL_SIGN.get()
-        ).add(
-                NON_FLAMMABLE_WOOD_ITEMS.toArray(new Block[]{})
         );
 
         tag(BlockTags.LOGS).addTag(

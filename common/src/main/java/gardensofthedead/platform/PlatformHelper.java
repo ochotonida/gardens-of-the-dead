@@ -18,9 +18,9 @@ public interface PlatformHelper {
 
     boolean isShears(ItemStack stack);
 
-    Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties);
+    FlowerPotBlock createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties);
 
-    Supplier<RotatedPillarBlock> createStrippableBlock(RegistrySupplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties);
+    RotatedPillarBlock createStrippableBlock(Supplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties);
 
     BlockBehaviour.Properties createBlockProperties(Material material);
 

@@ -2,7 +2,6 @@ package gardensofthedead.registry;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.SoundType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -89,27 +88,27 @@ public class ModSoundTypes {
             this.fallSound = fallSound;
         }
 
-        @NotNull
+        @Override
         public SoundEvent getBreakSound() {
             return breakSound.get();
         }
 
-        @NotNull
+        @Override
         public SoundEvent getStepSound() {
             return stepSound.get();
         }
 
-        @NotNull
+        @Override
         public SoundEvent getPlaceSound() {
             return placeSound.get();
         }
 
-        @NotNull
+        @Override
         public SoundEvent getHitSound() {
             return hitSound.get();
         }
 
-        @NotNull
+        @Override
         public SoundEvent getFallSound() {
             return fallSound.get();
         }

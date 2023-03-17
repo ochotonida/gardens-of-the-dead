@@ -1,0 +1,12 @@
+{
+  "feature": "gardens_of_the_dead:long_hanging_soul_spore_patch",
+  "placement": [
+    {
+      "type": "gardens_of_the_dead:count_on_every_ceiling",
+      "count": 8
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package gardensofthedead.data.registry;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -14,7 +14,7 @@ public class CommonTags {
         public static final TagKey<Block> MUSHROOMS = tag("mushrooms");
 
         private static TagKey<Block> tag(String path) {
-            return TagKey.create(Registry.BLOCK_REGISTRY, id(path));
+            return TagKey.create(Registries.BLOCK, id(path));
         }
     }
 
@@ -24,7 +24,7 @@ public class CommonTags {
         public static final TagKey<Item> MUSHROOMS = tag("mushrooms");
 
         private static TagKey<Item> tag(String path) {
-            return TagKey.create(Registry.ITEM_REGISTRY, id(path));
+            return TagKey.create(Registries.ITEM, id(path));
         }
     }
 

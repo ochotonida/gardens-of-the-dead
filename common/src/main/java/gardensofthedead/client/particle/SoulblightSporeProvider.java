@@ -13,6 +13,7 @@ public class SoulblightSporeProvider extends SuspendedParticle.CrimsonSporeProvi
         super(sprite);
     }
 
+    @Override
     public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double u, double v, double w) {
         SuspendedParticle particle = (SuspendedParticle) super.createParticle(particleType, level, x, y, z, u, v, w);
 

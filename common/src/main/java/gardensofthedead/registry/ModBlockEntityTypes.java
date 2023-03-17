@@ -4,13 +4,13 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.block.entity.SignBlockEntity;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 @SuppressWarnings("ConstantConditions")
 public class ModBlockEntityTypes {
 
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registry.BLOCK_ENTITY_TYPE_REGISTRY);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registries.BLOCK_ENTITY_TYPE);
 
     public static final RegistrySupplier<BlockEntityType<SignBlockEntity>> SIGN = BLOCK_ENTITY_TYPES.register("sign", () -> BlockEntityType.Builder.of(
             SignBlockEntity::new,

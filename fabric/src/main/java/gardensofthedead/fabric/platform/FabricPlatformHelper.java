@@ -34,17 +34,15 @@ public class FabricPlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public Supplier<FlowerPotBlock> createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
-        return () -> new FlowerPotBlock(plant.get(), properties);
+    public FlowerPotBlock createFlowerPot(RegistrySupplier<? extends Block> plant, BlockBehaviour.Properties properties) {
+        return new FlowerPotBlock(plant.get(), properties);
     }
 
     @Override
-    public Supplier<RotatedPillarBlock> createStrippableBlock(RegistrySupplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties) {
-        return () -> {
-            RotatedPillarBlock result = new RotatedPillarBlock(properties);
-            StrippableBlockRegistry.register(result, strippedBlock.get());
-            return result;
-        };
+    public RotatedPillarBlock createStrippableBlock(Supplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties) {
+        RotatedPillarBlock result = new RotatedPillarBlock(properties);
+        StrippableBlockRegistry.register(result, strippedBlock.get());
+        return result;
     }
 
     @Override

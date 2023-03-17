@@ -40,6 +40,7 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
         }
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(TOP, GROWING);
@@ -70,6 +71,7 @@ public class SoulSporeBlock extends SoulSporeBaseBlock {
         }
     }
 
+    @Override
     @SuppressWarnings("deprecation")
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource randomSource) {
         Direction direction = state.getValue(DIRECTION);

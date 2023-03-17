@@ -16,6 +16,7 @@ public class SoulblightForestVegetationFeature extends Feature<NetherForestVeget
         super(codec);
     }
 
+    @Override
     public boolean place(FeaturePlaceContext<NetherForestVegetationConfig> context) {
         WorldGenLevel level = context.level();
         BlockPos origin = context.origin();
