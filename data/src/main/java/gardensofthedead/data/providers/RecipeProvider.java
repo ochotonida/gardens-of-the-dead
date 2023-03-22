@@ -3,7 +3,6 @@ package gardensofthedead.data.providers;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.registry.ModBlocks;
 import gardensofthedead.registry.ModTags;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;

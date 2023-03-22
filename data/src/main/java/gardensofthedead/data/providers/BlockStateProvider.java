@@ -266,7 +266,6 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
                 .modelFile(model2).rotationY(270).build();
 
         simpleBlock(ModBlocks.WHISTLECANE.get(), models);
-        simpleBlock(ModBlocks.WHISTLECANE_PLANT.get(), models);
 
         itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + model0Name))
                 .transforms()

@@ -50,7 +50,7 @@ public class LootTableProvider extends net.minecraft.data.loot.LootTableProvider
                 ModBlocks.TALL_BLISTERCROWN.get()
         );
 
-        addDefaultDrops(ModBlocks.WHISTLECANE_PLANT.get(), ModBlocks.WHISTLECANE.get());
+        addDefaultDrops(ModBlocks.WHISTLECANE.get());
 
         for (Block block : ForgeRegistries.BLOCKS.getValues()) {
             // noinspection ConstantConditions

@@ -15,7 +15,6 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -109,12 +108,8 @@ public class ConfiguredFeatureProvider {
             () -> new BlockColumnConfiguration(
                     List.of(
                             BlockColumnConfiguration.layer(
-                                    UniformInt.of(WhistlecaneBlock.MAX_HEIGHT - 5, WhistlecaneBlock.MAX_HEIGHT - 1),
-                                    net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.simple(ModBlocks.WHISTLECANE_PLANT.get().defaultBlockState())
-                            ),
-                            BlockColumnConfiguration.layer(
-                                    ConstantInt.of(1),
-                                    net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.GROWING, false))
+                                    UniformInt.of(WhistlecaneBlock.MAX_HEIGHT - 4, WhistlecaneBlock.MAX_HEIGHT),
+                                    BlockStateProvider.simple(ModBlocks.WHISTLECANE.get().defaultBlockState().setValue(WhistlecaneBlock.GROWING, false))
                             )
                     ),
                     Direction.UP,

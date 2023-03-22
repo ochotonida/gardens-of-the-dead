@@ -1,4 +1,4 @@
-// 1.19.3	2023-03-16T20:21:39.7473682	Loot Tables
+// 1.19.3	2023-03-22T14:02:39.8446249	Loot Tables
 269643404fae68d9eefcca6eda556831c083465d data/gardens_of_the_dead/loot_tables/blocks/blightwart_block.json
 8d175ba6ef8879764d85715186b7c52e93620908 data/gardens_of_the_dead/loot_tables/blocks/blistercrown.json
 067619071e89536f3661bd4e72b9ab8af16d0f29 data/gardens_of_the_dead/loot_tables/blocks/glowing_soul_spore.json
@@ -32,7 +32,6 @@ e9f42cd6318a6738a66c361cd0ba28bfc5ea7e15 data/gardens_of_the_dead/loot_tables/bl
 59dd5c8a9622a229dc4c6d3a82d8bb816ce927cd data/gardens_of_the_dead/loot_tables/blocks/whistlecane_door.json
 26e685d5767ef0b767d7ddea3d4c77378a5b55f4 data/gardens_of_the_dead/loot_tables/blocks/whistlecane_fence.json
 b4c67febcce39d61335018e58aa754bfef5e2f12 data/gardens_of_the_dead/loot_tables/blocks/whistlecane_fence_gate.json
-e9f42cd6318a6738a66c361cd0ba28bfc5ea7e15 data/gardens_of_the_dead/loot_tables/blocks/whistlecane_plant.json
 2a41c72ac65f73ffc019fb950efd84ac83236054 data/gardens_of_the_dead/loot_tables/blocks/whistlecane_pressure_plate.json
 7f1abcd444486f6e0f28eee7fceaf50fae500aeb data/gardens_of_the_dead/loot_tables/blocks/whistlecane_sign.json
 c080e3c4a1d82d100cfc1ef33b59c56e39cb4b4c data/gardens_of_the_dead/loot_tables/blocks/whistlecane_slab.json
