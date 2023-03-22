@@ -29,7 +29,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
     private final VoxelShape[] occlusionByIndex;
 
     public WhistlecaneFenceBlock(BlockBehaviour.Properties properties) {
-        super(3, 3, 16, 16, 24, properties);
+        super(3, 2, 16, 16, 24, properties);
         this.registerDefaultState(stateDefinition.any()
                 .setValue(NORTH, false)
                 .setValue(EAST, false)
@@ -37,7 +37,7 @@ public class WhistlecaneFenceBlock extends CrossCollisionBlock {
                 .setValue(WEST, false)
                 .setValue(WATERLOGGED, false)
         );
-        occlusionByIndex = makeShapes(3, 0.5F, 16, 6, 15);
+        occlusionByIndex = makeShapes(3, 1, 16, 6, 15);
     }
 
     @Override

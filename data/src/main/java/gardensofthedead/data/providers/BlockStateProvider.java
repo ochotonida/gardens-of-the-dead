@@ -118,10 +118,10 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
 
         ResourceLocation postTexture = WHISTLECANE_1;
         int postU1 = 0;
-        int beam1Height = 7;
-        int beam2Height = 13;
+        int beam1Height = 6;
+        int beam2Height = 12;
         int postWidth = 6;
-        int beamHeight = 2;
+        int beamHeight = 3;
         int beamWidth = 2;
 
         ModelFile post = whistlecaneModel(whistlecane + "_post", postU1, postTexture);
@@ -135,7 +135,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         addWhistlecaneFenceBeam(beams, beam1Height, postWidth, beamHeight, beamWidth);
         addWhistlecaneFenceBeam(beams, beam2Height, postWidth, beamHeight, beamWidth);
 
-        ItemModelBuilder model = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
+        ItemModelBuilder itemModel = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
                 .transforms()
                 .transform(ItemTransforms.TransformType.GUI)
                 .rotation(30, 135, 0)
@@ -153,13 +153,13 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
                 .texture("beam", beamTexture);
 
         int postOffset = 6;
-        addWhistlecanePost(model, postU1, -postOffset);
-        addWhistlecanePost(model, postU1, postOffset);
+        addWhistlecanePost(itemModel, postU1, -postOffset);
+        addWhistlecanePost(itemModel, postU1, postOffset);
 
-        addWhistlecaneFenceItemBeam(model, beam1Height, postWidth, beamHeight, beamWidth, +postOffset);
-        addWhistlecaneFenceItemBeam(model, beam1Height, postWidth, beamHeight, beamWidth, -postOffset);
-        addWhistlecaneFenceItemBeam(model, beam2Height, postWidth, beamHeight, beamWidth, +postOffset);
-        addWhistlecaneFenceItemBeam(model, beam2Height, postWidth, beamHeight, beamWidth, -postOffset);
+        addWhistlecaneFenceItemBeam(itemModel, beam1Height, postWidth, beamHeight, beamWidth, +postOffset);
+        addWhistlecaneFenceItemBeam(itemModel, beam1Height, postWidth, beamHeight, beamWidth, -postOffset);
+        addWhistlecaneFenceItemBeam(itemModel, beam2Height, postWidth, beamHeight, beamWidth, +postOffset);
+        addWhistlecaneFenceItemBeam(itemModel, beam2Height, postWidth, beamHeight, beamWidth, -postOffset);
     }
 
     private void addWhistlecaneFenceItemBeam(ModelBuilder<?> builder, int height, int postWidth, int beamHeight, int beamWidth, int offset) {

@@ -78,10 +78,6 @@ public class ModBlockProperties {
             .strength(2, 3)
             .sound(SoundType.WOOD);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_BUTTONS = copy(SOULBLIGHT_PLANKS)
-            .noCollission()
-            .strength(0.5F);
-
     public static BlockBehaviour.Properties SOULBLIGHT_DOOR = copy(SOULBLIGHT_PLANKS)
             .strength(3)
             .noOcclusion();
@@ -101,11 +97,7 @@ public class ModBlockProperties {
     public static BlockBehaviour.Properties WHISTLECANE_BLOCK = of(Material.NETHER_WOOD)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .strength(1, 2)
-            .sound(ModSoundTypes.WHISTLECANE);
-
-    public static BlockBehaviour.Properties WHISTLECANE_BUTTONS = copy(WHISTLECANE_BLOCK)
-            .noCollission()
-            .strength(0.5F);
+            .sound(SoundType.BAMBOO_WOOD);
 
     public static BlockBehaviour.Properties WHISTLECANE_DOOR = copy(WHISTLECANE_BLOCK)
             .strength(2)

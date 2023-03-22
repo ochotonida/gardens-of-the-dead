@@ -168,8 +168,7 @@ public class ModBlocks {
 
     private static FenceGateBlock fenceGate(Properties baseProperties, SoundEvent closeSound, SoundEvent openSound) {
         Properties properties = ModBlockProperties.copy(baseProperties)
-                .strength(2, 3)
-                .sound(SoundType.NETHER_WOOD);
+                .strength(2, 3);
 
         return new FenceGateBlock(properties, closeSound, openSound);
     }
