@@ -62,7 +62,6 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
                     } else if (block instanceof WallSignBlock) {
                         tag(BlockTags.WALL_SIGNS).add(block);
                     } else if (block instanceof FenceGateBlock) {
-                        // TODO cleanup 1.19.3
                         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block);
                         tag(CommonTags.Blocks.FENCE_GATES).add(block);
                         tag(BlockTags.FENCE_GATES).add(block);

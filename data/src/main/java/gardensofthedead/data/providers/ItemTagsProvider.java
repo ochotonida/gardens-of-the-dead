@@ -28,6 +28,7 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
         copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
         copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+        copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
         copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
 
         copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
