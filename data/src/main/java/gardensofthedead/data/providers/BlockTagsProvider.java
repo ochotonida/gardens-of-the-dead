@@ -2,6 +2,7 @@ package gardensofthedead.data.providers;
 
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.block.StandingSignBlock;
+import gardensofthedead.block.WallHangingSignBlock;
 import gardensofthedead.block.WallSignBlock;
 import gardensofthedead.data.registry.CommonTags;
 import gardensofthedead.registry.ModBlocks;
@@ -10,6 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.Tags;
@@ -61,6 +63,10 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
                         tag(BlockTags.STANDING_SIGNS).add(block);
                     } else if (block instanceof WallSignBlock) {
                         tag(BlockTags.WALL_SIGNS).add(block);
+                    } else if (block instanceof CeilingHangingSignBlock) {
+                        tag(BlockTags.CEILING_HANGING_SIGNS).add(block);
+                    } else if (block instanceof WallHangingSignBlock) {
+                        tag(BlockTags.WALL_HANGING_SIGNS).add(block);
                     } else if (block instanceof FenceGateBlock) {
                         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block);
                         tag(CommonTags.Blocks.FENCE_GATES).add(block);
@@ -70,9 +76,6 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
 
         tag(BlockTags.MINEABLE_WITH_AXE).addTag(
                 ModTags.Blocks.SOULBLIGHT_STEMS
-        ).add(
-                ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
-                ModBlocks.WHISTLECANE_WALL_SIGN.get()
         ).add(
                 NON_FLAMMABLE_WOOD_ITEMS.toArray(new Block[]{})
         );

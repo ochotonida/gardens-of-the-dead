@@ -6,6 +6,7 @@ import gardensofthedead.registry.ModBlockEntityTypes;
 import gardensofthedead.registry.ModParticleTypes;
 import gardensofthedead.registry.ModWoodTypes;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -25,6 +26,7 @@ public class GardensOfTheDeadForgeClient {
 
     public static void onClientSetup(FMLClientSetupEvent event) {
         BlockEntityRenderers.register(ModBlockEntityTypes.SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntityTypes.HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {

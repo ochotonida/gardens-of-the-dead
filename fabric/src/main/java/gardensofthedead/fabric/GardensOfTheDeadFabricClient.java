@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.world.level.block.Block;
 
@@ -24,6 +25,7 @@ public class GardensOfTheDeadFabricClient implements ClientModInitializer {
         GardensOfTheDeadClient.init();
         ModWoodTypes.register();
         BlockEntityRenderers.register(ModBlockEntityTypes.SIGN.get(), SignRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntityTypes.HANGING_SIGN.get(), HangingSignRenderer::new);
         ParticleFactoryRegistry.getInstance().register(ModParticleTypes.SOULBLIGHT_SPORE.get(), SoulblightSporeProvider::new);
         ParticleFactoryRegistry.getInstance().register(ModParticleTypes.WHISTLECANE_SMOKE.get(), WhistlecaneSmokeParticle.Provider::new);
         registerRenderTypes();
@@ -38,7 +40,6 @@ public class GardensOfTheDeadFabricClient implements ClientModInitializer {
                 ModBlocks.SOULBLIGHT_FUNGUS.get(),
                 ModBlocks.SOULBLIGHT_SPROUTS.get(),
                 ModBlocks.WHISTLECANE.get(),
-                ModBlocks.WHISTLECANE_PLANT.get(),
                 ModBlocks.TALL_BLISTERCROWN.get(),
 
                 ModBlocks.POTTED_BLISTERCROWN.get(),

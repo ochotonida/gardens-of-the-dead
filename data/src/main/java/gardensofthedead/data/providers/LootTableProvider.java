@@ -1,6 +1,8 @@
 package gardensofthedead.data.providers;
 
 import gardensofthedead.GardensOfTheDead;
+import gardensofthedead.block.WallHangingSignBlock;
+import gardensofthedead.block.WallSignBlock;
 import gardensofthedead.loot.MatchShears;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -37,10 +39,12 @@ public class LootTableProvider extends net.minecraft.data.loot.LootTableProvider
         lootTables.clear();
         blocksWithLootAdded.clear();
 
-        noLoot(
-                ModBlocks.SOULBLIGHT_WALL_SIGN.get(),
-                ModBlocks.WHISTLECANE_WALL_SIGN.get()
-        );
+        ForgeRegistries.BLOCKS.getKeys()
+                .stream()
+                .filter(k -> k.getNamespace().equals(GardensOfTheDead.MOD_ID))
+                .map(ForgeRegistries.BLOCKS::getValue)
+                .filter(block -> block instanceof WallSignBlock || block instanceof WallHangingSignBlock)
+                .forEach(this::noLoot);
 
         addShearHarvestables(
                 ModBlocks.SOUL_SPORE.get(),
