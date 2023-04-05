@@ -65,8 +65,9 @@ public class ModBlocks {
     public static final RegistrySupplier<WallHangingSignBlock> SOULBLIGHT_WALL_HANGING_SIGN = BLOCKS.register("soulblight_wall_hanging_sign", () -> wallHangingSign(ModBlockProperties.SOULBLIGHT_SIGN, SOULBLIGHT_HANGING_SIGN, SoundType.NETHER_WOOD_HANGING_SIGN, ModWoodTypes.SOULBLIGHT));
 
     public static final RegistrySupplier<RotatedPillarBlock> WHISTLECANE_BLOCK = BLOCKS.register("whistlecane_block", () -> new RotatedPillarBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistrySupplier<Block> WHISTLECANE_PLANKS = block("whistlecane_planks", ModBlockProperties.WHISTLECANE_BLOCK);
     public static final RegistrySupplier<SlabBlock> WHISTLECANE_SLAB = BLOCKS.register("whistlecane_slab", () -> new SlabBlock(ModBlockProperties.WHISTLECANE_BLOCK));
-    public static final RegistrySupplier<StairBlock> WHISTLECANE_STAIRS = stairs("whistlecane_stairs", WHISTLECANE_BLOCK, ModBlockProperties.WHISTLECANE_BLOCK);
+    public static final RegistrySupplier<StairBlock> WHISTLECANE_STAIRS = stairs("whistlecane_stairs", WHISTLECANE_PLANKS, ModBlockProperties.WHISTLECANE_BLOCK);
     public static final RegistrySupplier<WhistlecaneFenceBlock> WHISTLECANE_FENCE = BLOCKS.register("whistlecane_fence", () -> new WhistlecaneFenceBlock(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistrySupplier<FenceGateBlock> WHISTLECANE_FENCE_GATE = BLOCKS.register("whistlecane_fence_gate", () -> bambooFenceGate(ModBlockProperties.WHISTLECANE_BLOCK));
     public static final RegistrySupplier<ButtonBlock> WHISTLECANE_BUTTON = BLOCKS.register("whistlecane_button", ModBlocks::whistlecaneButton);
@@ -77,6 +78,10 @@ public class ModBlocks {
     public static final RegistrySupplier<WallSignBlock> WHISTLECANE_WALL_SIGN = BLOCKS.register("whistlecane_wall_sign", () -> wallSign(ModBlockProperties.WHISTLECANE_BLOCK, WHISTLECANE_SIGN, ModWoodTypes.WHISTLECANE));
     public static final RegistrySupplier<CeilingHangingSignBlock> WHISTLECANE_HANGING_SIGN = BLOCKS.register("whistlecane_hanging_sign", () -> hangingSign(ModBlockProperties.WHISTLECANE_SIGN, SoundType.BAMBOO_WOOD_HANGING_SIGN, ModWoodTypes.WHISTLECANE));
     public static final RegistrySupplier<WallHangingSignBlock> WHISTLECANE_WALL_HANGING_SIGN = BLOCKS.register("whistlecane_wall_hanging_sign", () -> wallHangingSign(ModBlockProperties.WHISTLECANE_WALL_SIGN, WHISTLECANE_HANGING_SIGN, SoundType.BAMBOO_WOOD_HANGING_SIGN, ModWoodTypes.WHISTLECANE));
+
+    public static final RegistrySupplier<Block> WHISTLECANE_MOSAIC = block("whistlecane_mosaic", ModBlockProperties.WHISTLECANE_BLOCK);
+    public static final RegistrySupplier<SlabBlock> WHISTLECANE_MOSAIC_SLAB = BLOCKS.register("whistlecane_mosaic_slab", () -> new SlabBlock(ModBlockProperties.WHISTLECANE_BLOCK));
+    public static final RegistrySupplier<StairBlock> WHISTLECANE_MOSAIC_STAIRS = stairs("whistlecane_mosaic_stairs", WHISTLECANE_MOSAIC, ModBlockProperties.WHISTLECANE_BLOCK);
 
     private static Supplier<RotatedPillarBlock> createStrippableBlock(Properties properties, RegistrySupplier<? extends Block> strippedBlock) {
         return () -> PlatformServices.platformHelper.createStrippableBlock(strippedBlock, properties);

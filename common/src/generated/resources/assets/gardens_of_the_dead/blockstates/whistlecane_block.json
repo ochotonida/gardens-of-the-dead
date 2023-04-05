@@ -1,16 +1,13 @@
 {
   "variants": {
     "axis=x": {
-      "model": "gardens_of_the_dead:block/whistlecane_block_horizontal",
-      "x": 90,
-      "y": 90
+      "model": "gardens_of_the_dead:block/whistlecane_block_x"
     },
     "axis=y": {
-      "model": "gardens_of_the_dead:block/whistlecane_block"
+      "model": "gardens_of_the_dead:block/whistlecane_block_y"
     },
     "axis=z": {
-      "model": "gardens_of_the_dead:block/whistlecane_block_horizontal",
-      "x": 90
+      "model": "gardens_of_the_dead:block/whistlecane_block_z"
     }
   }
 }

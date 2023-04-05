@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button_pressed",
   "textures": {
-    "texture": "gardens_of_the_dead:block/whistlecane_block"
+    "texture": "gardens_of_the_dead:block/whistlecane_planks"
   }
 }

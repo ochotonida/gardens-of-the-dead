@@ -46,6 +46,7 @@ public class ModItems {
     public static final RegistrySupplier<Item> SOULBLIGHT_HANGING_SIGN = ITEMS.register("soulblight_hanging_sign", () -> hangingSign(ModBlocks.SOULBLIGHT_HANGING_SIGN, ModBlocks.SOULBLIGHT_WALL_HANGING_SIGN));
 
     public static final RegistrySupplier<Item> WHISTLECANE_BLOCK = blockItem(ModBlocks.WHISTLECANE_BLOCK);
+    public static final RegistrySupplier<Item> WHISTLECANE_PLANKS = blockItem(ModBlocks.WHISTLECANE_PLANKS);
     public static final RegistrySupplier<Item> WHISTLECANE_SLAB = blockItem(ModBlocks.WHISTLECANE_SLAB);
     public static final RegistrySupplier<Item> WHISTLECANE_STAIRS = blockItem(ModBlocks.WHISTLECANE_STAIRS);
     public static final RegistrySupplier<Item> WHISTLECANE_FENCE = blockItem(ModBlocks.WHISTLECANE_FENCE);
@@ -56,6 +57,10 @@ public class ModItems {
     public static final RegistrySupplier<Item> WHISTLECANE_TRAPDOOR = blockItem(ModBlocks.WHISTLECANE_TRAPDOOR);
     public static final RegistrySupplier<Item> WHISTLECANE_SIGN = ITEMS.register("whistlecane_sign", () -> sign(ModBlocks.WHISTLECANE_SIGN, ModBlocks.WHISTLECANE_WALL_SIGN));
     public static final RegistrySupplier<Item> WHISTLECANE_HANGING_SIGN = ITEMS.register("whistlecane_hanging_sign", () -> hangingSign(ModBlocks.WHISTLECANE_HANGING_SIGN, ModBlocks.WHISTLECANE_WALL_HANGING_SIGN));
+
+    public static final RegistrySupplier<Item> WHISTLECANE_MOSAIC = blockItem(ModBlocks.WHISTLECANE_MOSAIC);
+    public static final RegistrySupplier<Item> WHISTLECANE_MOSAIC_SLAB = blockItem(ModBlocks.WHISTLECANE_MOSAIC_SLAB);
+    public static final RegistrySupplier<Item> WHISTLECANE_MOSAIC_STAIRS = blockItem(ModBlocks.WHISTLECANE_MOSAIC_STAIRS);
 
     @SuppressWarnings("UnstableApiUsage")
     public static final CreativeTabRegistry.TabSupplier CREATIVE_TAB = CreativeTabRegistry.create(GardensOfTheDead.id("main"),

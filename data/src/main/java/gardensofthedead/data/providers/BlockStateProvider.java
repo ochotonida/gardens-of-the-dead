@@ -16,7 +16,7 @@ import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Objects;
+import java.util.Locale;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
@@ -70,20 +70,25 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         doorWithItem(ModBlocks.SOULBLIGHT_DOOR.get());
         trapdoorWithItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
 
-        logWithItem(ModBlocks.WHISTLECANE_BLOCK.get());
-        ResourceLocation whistlecaneTexture = blockTexture(getName(ModBlocks.WHISTLECANE_BLOCK.get()));
-        ResourceLocation whistlecaneTopTexture = blockTexture(getName(ModBlocks.WHISTLECANE_BLOCK.get()) + "_top");
+        axisBlockUvLocked(ModBlocks.WHISTLECANE_BLOCK.get());
+        ResourceLocation whistlecanePlanks = blockTexture(ModBlocks.WHISTLECANE_PLANKS.get());
         ResourceLocation whistlecaneFenceGateTexture = blockTexture(ModBlocks.WHISTLECANE_FENCE_GATE.get());
+        simpleBlockWithItem(ModBlocks.WHISTLECANE_PLANKS.get());
 
-        slabWithItem(ModBlocks.WHISTLECANE_SLAB.get(), whistlecaneTexture, whistlecaneTopTexture);
-        stairsWithItem(ModBlocks.WHISTLECANE_STAIRS.get(), whistlecaneTexture, whistlecaneTopTexture);
-        buttonWithItem(ModBlocks.WHISTLECANE_BUTTON.get(), whistlecaneTexture);
-        pressurePlateWithItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistlecaneTexture);
+        slabWithItem(ModBlocks.WHISTLECANE_SLAB.get(), whistlecanePlanks);
+        stairsWithItem(ModBlocks.WHISTLECANE_STAIRS.get(), whistlecanePlanks);
+        buttonWithItem(ModBlocks.WHISTLECANE_BUTTON.get(), whistlecanePlanks);
+        pressurePlateWithItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistlecanePlanks);
         addWhistlecaneFence();
         fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneFenceGateTexture);
-        signWithItem(ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get(), whistlecaneTexture);
+        signWithItem(ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get(), whistlecanePlanks);
         doorWithItem(ModBlocks.WHISTLECANE_DOOR.get());
         trapdoorWithItem(ModBlocks.WHISTLECANE_TRAPDOOR.get());
+
+        ResourceLocation whistlecaneMosaicTexture = blockTexture(getName(ModBlocks.WHISTLECANE_MOSAIC.get()));
+        simpleBlockWithItem(ModBlocks.WHISTLECANE_MOSAIC.get());
+        slabWithItem(ModBlocks.WHISTLECANE_MOSAIC_SLAB.get(), whistlecaneMosaicTexture);
+        stairsWithItem(ModBlocks.WHISTLECANE_MOSAIC_STAIRS.get(), whistlecaneMosaicTexture);
     }
 
     private void addSoulSpore() {
@@ -466,6 +471,37 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         simpleBlockItem(wood);
     }
 
+    private ModelFile cubeColumnUvLocked(RotatedPillarBlock block, Direction.Axis axis) {
+        String name = getName(block);
+        String axisName = axis.getName().toLowerCase(Locale.ROOT);
+        String parent = "%s/cube_column_uv_locked_%s".formatted(BLOCK_FOLDER, axisName);
+        String modelName = name + '_' + axisName;
+        ResourceLocation side = blockTexture(name);
+        ResourceLocation end = blockTexture(name + "_top");
+
+        return models().withExistingParent(modelName, parent)
+                .texture("side", side)
+                .texture("end", end);
+    }
+
+    private void axisBlockUvLocked(RotatedPillarBlock block) {
+        String name = getName(block);
+
+        ModelFile modelX = cubeColumnUvLocked(block, Direction.Axis.X);
+        ModelFile modelY = cubeColumnUvLocked(block, Direction.Axis.Y);
+        ModelFile modelZ = cubeColumnUvLocked(block, Direction.Axis.Z);
+
+        getVariantBuilder(block)
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.X)
+                .modelForState().modelFile(modelX).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
+                .modelForState().modelFile(modelY).addModel()
+                .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Z)
+                .modelForState().modelFile(modelZ).addModel();
+
+        itemModels().withExistingParent(name, modelY.getLocation());
+    }
+
     private void woodWithItem(RotatedPillarBlock wood) {
         String name = getName(wood)
                 .replace("wood", "log")
@@ -514,13 +550,13 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
     }
 
     private void simpleBlockItem(Block block) {
-        ResourceLocation id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(block.asItem()));
-
-        itemModels().withExistingParent(id.getPath(), modLoc(BLOCK_FOLDER + '/' + id.getPath()));
+        String name = getName(block);
+        itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + name));
     }
 
     private void generatedItem(Block block) {
-        generatedItem(block.asItem(), GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(block)));
+        String name = getName(block);
+        generatedItem(block.asItem(), GardensOfTheDead.id(BLOCK_FOLDER + '/' + name));
     }
 
     private void generatedItem(Item item, ResourceLocation texture) {
