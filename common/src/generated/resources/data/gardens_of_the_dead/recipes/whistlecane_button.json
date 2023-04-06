@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "gardens_of_the_dead:whistlecane_planks"
+    }
+  ],
+  "result": {
+    "item": "gardens_of_the_dead:whistlecane_button"
+  }
+}

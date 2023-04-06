@@ -11,6 +11,7 @@ public class ModTags {
     public static class Blocks {
 
         public static final TagKey<Block> SOULBLIGHT_STEMS = tag("soulblight_stems");
+        public static final TagKey<Block> WHISTLECANE_BLOCKS = tag("whistlecane_blocks");
 
         private static TagKey<Block> tag(String path) {
             return TagKey.create(Registries.BLOCK, GardensOfTheDead.id(path));
@@ -20,6 +21,7 @@ public class ModTags {
     public static class Items {
 
         public static final TagKey<Item> SOULBLIGHT_STEMS = tag("soulblight_stems");
+        public static final TagKey<Item> WHISTLECANE_BLOCKS = tag("whistlecane_blocks");
 
         private static TagKey<Item> tag(String path) {
             return TagKey.create(Registries.ITEM, GardensOfTheDead.id(path));

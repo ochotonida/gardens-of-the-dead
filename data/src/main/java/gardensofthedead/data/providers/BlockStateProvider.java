@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Locale;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+import static net.minecraftforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
 public class BlockStateProvider extends net.minecraftforge.client.model.generators.BlockStateProvider {
 
@@ -272,12 +273,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
 
         simpleBlock(ModBlocks.WHISTLECANE.get(), models);
 
-        itemModels().withExistingParent(name, modLoc(BLOCK_FOLDER + '/' + model0Name))
-                .transforms()
-                .transform(ItemTransforms.TransformType.GUI)
-                .rotation(30, 225, 0)
-                .translation(0, -1, 0)
-                .scale(0.625F);
+        generatedItem(ModBlocks.WHISTLECANE.get().asItem(), GardensOfTheDead.id(ITEM_FOLDER + '/' + name));
     }
 
     private void addPottedWhistleCane() {

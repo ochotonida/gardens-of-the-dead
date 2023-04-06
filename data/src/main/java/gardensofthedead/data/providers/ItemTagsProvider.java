@@ -24,6 +24,7 @@ public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         copy(ModTags.Blocks.SOULBLIGHT_STEMS, ModTags.Items.SOULBLIGHT_STEMS);
+        copy(ModTags.Blocks.WHISTLECANE_BLOCKS, ModTags.Items.WHISTLECANE_BLOCKS);
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 

@@ -1,22 +1,6 @@
 {
-  "parent": "gardens_of_the_dead:block/whistlecane0",
-  "display": {
-    "gui": {
-      "rotation": [
-        30,
-        225,
-        0
-      ],
-      "scale": [
-        0.625,
-        0.625,
-        0.625
-      ],
-      "translation": [
-        0,
-        -1,
-        0
-      ]
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gardens_of_the_dead:item/whistlecane"
   }
 }

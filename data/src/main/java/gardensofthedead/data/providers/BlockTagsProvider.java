@@ -39,7 +39,7 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
             ModBlocks.SOULBLIGHT_DOOR.get(),
             ModBlocks.SOULBLIGHT_TRAPDOOR.get(),
             ModBlocks.SOULBLIGHT_SIGN.get(),
-            ModBlocks.WHISTLECANE_BLOCK.get(),
+            ModBlocks.WHISTLECANE_PLANKS.get(),
             ModBlocks.WHISTLECANE_SLAB.get(),
             ModBlocks.WHISTLECANE_STAIRS.get(),
             ModBlocks.WHISTLECANE_FENCE.get(),
@@ -48,7 +48,10 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
             ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(),
             ModBlocks.WHISTLECANE_DOOR.get(),
             ModBlocks.WHISTLECANE_TRAPDOOR.get(),
-            ModBlocks.WHISTLECANE_SIGN.get()
+            ModBlocks.WHISTLECANE_SIGN.get(),
+            ModBlocks.WHISTLECANE_MOSAIC.get(),
+            ModBlocks.WHISTLECANE_MOSAIC_SLAB.get(),
+            ModBlocks.WHISTLECANE_MOSAIC_STAIRS.get()
     );
 
     @Override
@@ -74,11 +77,10 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
                     }
                 });
 
-        tag(BlockTags.MINEABLE_WITH_AXE).addTag(
-                ModTags.Blocks.SOULBLIGHT_STEMS
-        ).add(
-                NON_FLAMMABLE_WOOD_ITEMS.toArray(new Block[]{})
-        );
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .addTag(ModTags.Blocks.SOULBLIGHT_STEMS)
+                .addTag(ModTags.Blocks.WHISTLECANE_BLOCKS)
+                .add(NON_FLAMMABLE_WOOD_ITEMS.toArray(new Block[]{}));
 
         tag(BlockTags.MINEABLE_WITH_HOE).add(
                 ModBlocks.BLIGHTWART_BLOCK.get()
@@ -95,6 +97,10 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
                 ModBlocks.STRIPPED_SOULBLIGHT_STEM.get(),
                 ModBlocks.SOULBLIGHT_HYPHAE.get(),
                 ModBlocks.STRIPPED_SOULBLIGHT_HYPHAE.get()
+        );
+
+        tag(ModTags.Blocks.WHISTLECANE_BLOCKS).add(
+                ModBlocks.WHISTLECANE_BLOCK.get()
         );
 
         tag(BlockTags.LOGS).addTag(
@@ -117,7 +123,7 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
 
         tag(BlockTags.PLANKS).add(
                 ModBlocks.SOULBLIGHT_PLANKS.get(),
-                ModBlocks.WHISTLECANE_BLOCK.get()
+                ModBlocks.WHISTLECANE_PLANKS.get()
         );
 
         tag(BlockTags.WOODEN_PRESSURE_PLATES).add(

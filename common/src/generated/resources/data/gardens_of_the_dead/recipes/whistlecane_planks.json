@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "gardens_of_the_dead:whistlecane_blocks"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "gardens_of_the_dead:whistlecane_planks"
+  }
+}
