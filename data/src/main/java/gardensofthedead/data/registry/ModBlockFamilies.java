@@ -21,7 +21,7 @@ public class ModBlockFamilies {
             .fence(ModBlocks.SOULBLIGHT_FENCE.get())
             .fenceGate(ModBlocks.SOULBLIGHT_FENCE_GATE.get())
             .pressurePlate(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get())
-            .sign(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_HANGING_SIGN.get())
+            .sign(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get())
             .slab(ModBlocks.SOULBLIGHT_SLAB.get())
             .stairs(ModBlocks.SOULBLIGHT_STAIRS.get())
             .door(ModBlocks.SOULBLIGHT_DOOR.get())

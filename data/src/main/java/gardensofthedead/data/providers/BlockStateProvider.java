@@ -3,9 +3,11 @@ package gardensofthedead.data.providers;
 import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.block.SoulSporeBaseBlock;
 import gardensofthedead.block.SoulSporeBlock;
+import gardensofthedead.data.registry.ModBlockFamilies;
 import gardensofthedead.registry.ModBlocks;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -17,6 +19,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
+import java.util.Map;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.minecraftforge.client.model.generators.ModelProvider.ITEM_FOLDER;
@@ -35,6 +38,8 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
 
     @Override
     protected void registerStatesAndModels() {
+        ModBlockFamilies.getAllFamilies().forEach(this::generateModels);
+
         createCrossModels();
 
         addSoulSpore();
@@ -59,37 +64,46 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         pottedPlant(ModBlocks.POTTED_BLISTERCROWN.get());
         addPottedWhistleCane();
 
-        ResourceLocation soulblightPlanksTexture = blockTexture(getName(ModBlocks.SOULBLIGHT_PLANKS.get()));
-        simpleBlockWithItem(ModBlocks.SOULBLIGHT_PLANKS.get());
-        slabWithItem(ModBlocks.SOULBLIGHT_SLAB.get(), soulblightPlanksTexture);
-        stairsWithItem(ModBlocks.SOULBLIGHT_STAIRS.get(), soulblightPlanksTexture);
-        buttonWithItem(ModBlocks.SOULBLIGHT_BUTTON.get(), soulblightPlanksTexture);
-        pressurePlateWithItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE.get(), soulblightPlanksTexture);
-        fenceWithItem(ModBlocks.SOULBLIGHT_FENCE.get(), soulblightPlanksTexture);
-        fenceGateWithItem(ModBlocks.SOULBLIGHT_FENCE_GATE.get(), soulblightPlanksTexture);
-        signWithItem(ModBlocks.SOULBLIGHT_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_SIGN.get(), soulblightPlanksTexture);
-        doorWithItem(ModBlocks.SOULBLIGHT_DOOR.get());
-        trapdoorWithItem(ModBlocks.SOULBLIGHT_TRAPDOOR.get());
-
         axisBlockUvLocked(ModBlocks.WHISTLECANE_BLOCK.get());
-        ResourceLocation whistlecanePlanks = blockTexture(ModBlocks.WHISTLECANE_PLANKS.get());
         ResourceLocation whistlecaneFenceGateTexture = blockTexture(ModBlocks.WHISTLECANE_FENCE_GATE.get());
-        simpleBlockWithItem(ModBlocks.WHISTLECANE_PLANKS.get());
 
-        slabWithItem(ModBlocks.WHISTLECANE_SLAB.get(), whistlecanePlanks);
-        stairsWithItem(ModBlocks.WHISTLECANE_STAIRS.get(), whistlecanePlanks);
-        buttonWithItem(ModBlocks.WHISTLECANE_BUTTON.get(), whistlecanePlanks);
-        pressurePlateWithItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE.get(), whistlecanePlanks);
         addWhistlecaneFence();
         fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneFenceGateTexture);
-        signWithItem(ModBlocks.WHISTLECANE_SIGN.get(), ModBlocks.WHISTLECANE_WALL_SIGN.get(), whistlecanePlanks);
-        doorWithItem(ModBlocks.WHISTLECANE_DOOR.get());
-        trapdoorWithItem(ModBlocks.WHISTLECANE_TRAPDOOR.get());
+    }
 
-        ResourceLocation whistlecaneMosaicTexture = blockTexture(getName(ModBlocks.WHISTLECANE_MOSAIC.get()));
-        simpleBlockWithItem(ModBlocks.WHISTLECANE_MOSAIC.get());
-        slabWithItem(ModBlocks.WHISTLECANE_MOSAIC_SLAB.get(), whistlecaneMosaicTexture);
-        stairsWithItem(ModBlocks.WHISTLECANE_MOSAIC_STAIRS.get(), whistlecaneMosaicTexture);
+    private void generateModels(BlockFamily family) {
+        Map<BlockFamily.Variant, Block> variants = family.getVariants();
+        ResourceLocation texture = blockTexture(family.getBaseBlock());
+
+        simpleBlockWithItem(family.getBaseBlock());
+
+        if (variants.containsKey(BlockFamily.Variant.SLAB)) {
+            slabWithItem((SlabBlock) variants.get(BlockFamily.Variant.SLAB), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.STAIRS)) {
+            stairsWithItem((StairBlock) variants.get(BlockFamily.Variant.STAIRS), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.PRESSURE_PLATE)) {
+            pressurePlateWithItem((PressurePlateBlock) variants.get(BlockFamily.Variant.PRESSURE_PLATE), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.BUTTON)) {
+            buttonWithItem((ButtonBlock) variants.get(BlockFamily.Variant.BUTTON), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.FENCE)) {
+            fenceWithItem((FenceBlock) variants.get(BlockFamily.Variant.FENCE), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.FENCE_GATE)) {
+            fenceGateWithItem((FenceGateBlock) variants.get(BlockFamily.Variant.FENCE_GATE), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.SIGN) && variants.containsKey(BlockFamily.Variant.WALL_SIGN)) {
+            signWithItem((StandingSignBlock) variants.get(BlockFamily.Variant.SIGN), (WallSignBlock) variants.get(BlockFamily.Variant.WALL_SIGN), texture);
+        }
+        if (variants.containsKey(BlockFamily.Variant.DOOR)) {
+            doorWithItem((DoorBlock) variants.get(BlockFamily.Variant.DOOR));
+        }
+        if (variants.containsKey(BlockFamily.Variant.TRAPDOOR)) {
+            trapdoorWithItem((TrapDoorBlock) variants.get(BlockFamily.Variant.TRAPDOOR));
+        }
     }
 
     private void addSoulSpore() {
