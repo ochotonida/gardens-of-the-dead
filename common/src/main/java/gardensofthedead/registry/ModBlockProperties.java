@@ -89,11 +89,6 @@ public class ModBlockProperties {
             .noCollission()
             .strength(1);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_WALL_SIGN = copyWithLoot(
-            SOULBLIGHT_SIGN,
-            GardensOfTheDead.id("soulblight_sign")
-    );
-
     public static BlockBehaviour.Properties WHISTLECANE_BLOCK = of(Material.NETHER_WOOD)
             .color(MaterialColor.CRIMSON_NYLIUM)
             .strength(1, 2)

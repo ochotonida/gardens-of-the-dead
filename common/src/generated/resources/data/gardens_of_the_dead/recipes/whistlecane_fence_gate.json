@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "gardens_of_the_dead:whistlecane_fence_gate"
-  }
+  },
+  "show_notification": true
 }

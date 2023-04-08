@@ -67,7 +67,7 @@
       "gardens_of_the_dead:whistling_woods_vegetation"
     ]
   ],
-  "precipitation": "none",
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

@@ -15,5 +15,6 @@
   "result": {
     "count": 4,
     "item": "gardens_of_the_dead:whistlecane_stairs"
-  }
+  },
+  "show_notification": true
 }

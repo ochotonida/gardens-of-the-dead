@@ -1,4 +1,4 @@
-// 1.19.3	2023-04-08T18:57:05.4446135	Block States: gardens_of_the_dead
+// 1.19.4	2023-04-08T22:16:02.302332	Block States: gardens_of_the_dead
 64691076489f7ebfe627505c5912a2c89966a38e assets/gardens_of_the_dead/blockstates/blightwart_block.json
 c9dc65eb668de54de3a17d7e4edaad83b6c0616a assets/gardens_of_the_dead/blockstates/blistercrown.json
 b73f1d2dfe1f22fc77711d76b005b1e62f363aa4 assets/gardens_of_the_dead/blockstates/glowing_soul_spore.json
@@ -181,7 +181,7 @@ bb135e8491bcd4ba37321b9c2696b9af0e23fb63 assets/gardens_of_the_dead/models/item/
 fb4b94344f30f7d9c1b6dc52c14e91317366359b assets/gardens_of_the_dead/models/item/whistlecane_block.json
 b7a24c23630dc3f21f94a0f5a1ca3668f8ef7b5c assets/gardens_of_the_dead/models/item/whistlecane_button.json
 acbb87d73cbcb0253995892e5f78c77d79ccf6fc assets/gardens_of_the_dead/models/item/whistlecane_door.json
-6693b4385fff49aba20d68f3782bc295f17d3ae3 assets/gardens_of_the_dead/models/item/whistlecane_fence.json
+fec947f90be1fa286c0bbab996de02847d5cc137 assets/gardens_of_the_dead/models/item/whistlecane_fence.json
 df6b8444ec8b3ed987fdea85a25389c9674cc9fa assets/gardens_of_the_dead/models/item/whistlecane_fence_gate.json
 8db5099f392eb03ebc3771233b22ee47ece7d868 assets/gardens_of_the_dead/models/item/whistlecane_hanging_sign.json
 1e122016585aa1496c73f4bcc6b91e126d156218 assets/gardens_of_the_dead/models/item/whistlecane_mosaic.json

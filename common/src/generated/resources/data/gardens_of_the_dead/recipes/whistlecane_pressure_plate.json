@@ -12,5 +12,6 @@
   ],
   "result": {
     "item": "gardens_of_the_dead:whistlecane_pressure_plate"
-  }
+  },
+  "show_notification": true
 }

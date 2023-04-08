@@ -34,7 +34,7 @@ public class GardensOfTheDeadData {
 
         generator.addProvider(event.includeServer(), blockTagsProvider);
         generator.addProvider(event.includeClient(), new BlockStateProvider(packOutput, existingFileHelper));
-        generator.addProvider(event.includeServer(), new ItemTagsProvider(packOutput, lookupProvider, blockTagsProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTableProvider(packOutput));
         generator.addProvider(event.includeServer(), new RecipeProvider(packOutput));
         generator.addProvider(event.includeClient(), new SoundDefinitionsProvider(packOutput, existingFileHelper));

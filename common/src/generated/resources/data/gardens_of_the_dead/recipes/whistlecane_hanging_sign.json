@@ -18,5 +18,6 @@
   "result": {
     "count": 6,
     "item": "gardens_of_the_dead:whistlecane_hanging_sign"
-  }
+  },
+  "show_notification": true
 }

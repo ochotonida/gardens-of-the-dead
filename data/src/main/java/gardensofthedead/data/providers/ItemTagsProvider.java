@@ -5,6 +5,7 @@ import gardensofthedead.data.registry.CommonTags;
 import gardensofthedead.registry.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -17,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
 
-    public ItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+    public ItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
         super(packOutput, lookupProvider, blockTags, GardensOfTheDead.MOD_ID, existingFileHelper);
     }
 

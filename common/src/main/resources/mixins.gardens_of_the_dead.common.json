@@ -3,6 +3,7 @@
   "package": "gardensofthedead.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockSetTypeInvoker",
     "SimpleParticleTypeInvoker",
     "WoodTypeInvoker"
   ],

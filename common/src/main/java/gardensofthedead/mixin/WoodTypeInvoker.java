@@ -7,11 +7,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(WoodType.class)
 public interface WoodTypeInvoker {
 
-    @Invoker("<init>")
-    static WoodType newWoodType(String name) {
-        throw new AssertionError();
-    }
-
     @Invoker("register")
     static WoodType invokerRegister(WoodType woodType) {
         throw new AssertionError();

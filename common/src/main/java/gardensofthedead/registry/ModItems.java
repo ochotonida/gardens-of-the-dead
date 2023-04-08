@@ -68,12 +68,12 @@ public class ModItems {
                     .icon(() -> new ItemStack(ModItems.GLOWING_SOUL_SPORE.get()))
                     .title(Component.translatable("%s.creative_tab".formatted(GardensOfTheDead.MOD_ID)))
                     .displayItems(
-                            (featureFlagSet, output, hasOp) -> BuiltInRegistries.ITEM.keySet()
+                            (itemDisplayParameters, output) -> BuiltInRegistries.ITEM.keySet()
                                     .stream()
                                     .filter(key -> key.getNamespace().equals(GardensOfTheDead.MOD_ID))
                                     .sorted()
                                     .map(BuiltInRegistries.ITEM::get)
-                                    .filter(item -> item.requiredFeatures().isSubsetOf(featureFlagSet))
+                                    .filter(item -> item.requiredFeatures().isSubsetOf(itemDisplayParameters.enabledFeatures()))
                                     .forEach(output::accept)
                     )
     );

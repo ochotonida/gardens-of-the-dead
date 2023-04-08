@@ -5,12 +5,12 @@ import gardensofthedead.block.SoulSporeBaseBlock;
 import gardensofthedead.block.SoulSporeBlock;
 import gardensofthedead.data.registry.ModBlockFamilies;
 import gardensofthedead.registry.ModBlocks;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.client.model.generators.*;
@@ -192,11 +192,11 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         ResourceLocation beamTexture = GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE_FENCE.get()) + "_side");
         ItemModelBuilder builder = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
                 .transforms()
-                .transform(ItemTransforms.TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                 .rotation(30, 135, 0)
                 .scale(0.625F)
                 .end()
-                .transform(ItemTransforms.TransformType.FIXED)
+                .transform(ItemDisplayContext.FIXED)
                 .rotation(0, 90, 0)
                 .translation(0, 0, 0)
                 .scale(0.5F)

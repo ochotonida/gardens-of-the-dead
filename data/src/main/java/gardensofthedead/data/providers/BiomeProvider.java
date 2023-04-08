@@ -80,7 +80,7 @@ public class BiomeProvider {
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         return new Biome.BiomeBuilder()
-                .precipitation(Biome.Precipitation.NONE)
+                .hasPrecipitation(false)
                 .temperature(2)
                 .downfall(0)
                 .specialEffects(
@@ -126,7 +126,7 @@ public class BiomeProvider {
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         return new Biome.BiomeBuilder()
-                .precipitation(Biome.Precipitation.NONE)
+                .hasPrecipitation(false)
                 .temperature(2)
                 .downfall(0)
                 .specialEffects(

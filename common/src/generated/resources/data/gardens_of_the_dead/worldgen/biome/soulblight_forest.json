@@ -69,7 +69,7 @@
       "minecraft:red_mushroom_normal"
     ]
   ],
-  "precipitation": "none",
+  "has_precipitation": false,
   "spawn_costs": {
     "minecraft:enderman": {
       "charge": 1.0,

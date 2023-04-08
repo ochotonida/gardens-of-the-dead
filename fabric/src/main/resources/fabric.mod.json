@@ -26,13 +26,12 @@
     ]
   },
   "mixins": [
-    "mixins.gardens_of_the_dead.common.json",
-    "mixins.gardens_of_the_dead.fabric.json"
+    "mixins.gardens_of_the_dead.common.json"
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.3",
-    "architectury": ">=7.1.70",
-    "terrablender": ">=2.1.0.134"
+    "minecraft": ">=1.19.4",
+    "architectury": ">=8.1.79",
+    "terrablender": ">=2.2.0.155"
   }
 }
