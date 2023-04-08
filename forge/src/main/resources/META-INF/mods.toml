@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[44,)"
 license="MIT"
 issueTrackerURL="https://github.com/ochotonida/gardens-of-the-dead/issues"
 
@@ -16,27 +16,27 @@ description='''Adds new spooky biomes to the Nether. Created for Spooky Jam 2022
 [[dependencies.gardens_of_the_dead]]
 modId="forge"
 mandatory=true
-versionRange="[43,)"
+versionRange="[44,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.gardens_of_the_dead]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19.2,1.20)"
+versionRange="[1.19.3,1.20)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.gardens_of_the_dead]]
 modId = "architectury"
 mandatory = true
-versionRange = "[6.2.43,)"
+versionRange = "[7.1.70,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.gardens_of_the_dead]]
 modId="terrablender"
 mandatory=true
-versionRange="[2.0.1.127,)"
+versionRange="[2.1.0.134,)"
 ordering="NONE"
 side="BOTH"
