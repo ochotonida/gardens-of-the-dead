@@ -30,5 +30,5 @@ public interface PlatformHelper {
 
     String createWoodTypeName(String id);
 
-    void addWoodTypeMaterial(WoodType woodType);
+    String getWoodTypeName(WoodType woodType);
 }

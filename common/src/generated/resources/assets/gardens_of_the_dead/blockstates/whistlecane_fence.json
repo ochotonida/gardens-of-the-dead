@@ -7,8 +7,7 @@
     },
     {
       "apply": {
-        "model": "gardens_of_the_dead:block/whistlecane_fence_beams",
-        "uvlock": true
+        "model": "gardens_of_the_dead:block/whistlecane_fence_side_north"
       },
       "when": {
         "north": "true"
@@ -16,9 +15,7 @@
     },
     {
       "apply": {
-        "model": "gardens_of_the_dead:block/whistlecane_fence_beams",
-        "uvlock": true,
-        "y": 180
+        "model": "gardens_of_the_dead:block/whistlecane_fence_side_south"
       },
       "when": {
         "south": "true"
@@ -26,9 +23,7 @@
     },
     {
       "apply": {
-        "model": "gardens_of_the_dead:block/whistlecane_fence_beams",
-        "uvlock": true,
-        "y": 270
+        "model": "gardens_of_the_dead:block/whistlecane_fence_side_west"
       },
       "when": {
         "west": "true"
@@ -36,9 +31,7 @@
     },
     {
       "apply": {
-        "model": "gardens_of_the_dead:block/whistlecane_fence_beams",
-        "uvlock": true,
-        "y": 90
+        "model": "gardens_of_the_dead:block/whistlecane_fence_side_east"
       },
       "when": {
         "east": "true"

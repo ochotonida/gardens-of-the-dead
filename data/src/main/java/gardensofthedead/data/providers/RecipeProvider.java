@@ -42,6 +42,11 @@ public class RecipeProvider extends net.minecraft.data.recipes.RecipeProvider {
 
         whistlecaneBlock(consumer);
         blistercrown(consumer);
+
+        // TODO remove in 1.20?
+        mosaicBuilder(consumer, RecipeCategory.DECORATIONS, ModBlocks.WHISTLECANE_MOSAIC.get(), ModBlocks.WHISTLECANE_SLAB.get());
+        hangingSign(consumer, ModBlocks.SOULBLIGHT_HANGING_SIGN.get(), ModBlocks.STRIPPED_SOULBLIGHT_STEM.get());
+        hangingSign(consumer, ModBlocks.WHISTLECANE_HANGING_SIGN.get(), ModBlocks.WHISTLECANE_BLOCK.get());
     }
 
     protected void whistlecaneBlock(Consumer<FinishedRecipe> consumer) {

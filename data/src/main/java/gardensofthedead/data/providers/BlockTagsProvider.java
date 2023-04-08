@@ -39,6 +39,7 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
             ModBlocks.SOULBLIGHT_DOOR.get(),
             ModBlocks.SOULBLIGHT_TRAPDOOR.get(),
             ModBlocks.SOULBLIGHT_SIGN.get(),
+            ModBlocks.SOULBLIGHT_HANGING_SIGN.get(),
             ModBlocks.WHISTLECANE_PLANKS.get(),
             ModBlocks.WHISTLECANE_SLAB.get(),
             ModBlocks.WHISTLECANE_STAIRS.get(),
@@ -49,6 +50,7 @@ public class BlockTagsProvider extends net.minecraftforge.common.data.BlockTagsP
             ModBlocks.WHISTLECANE_DOOR.get(),
             ModBlocks.WHISTLECANE_TRAPDOOR.get(),
             ModBlocks.WHISTLECANE_SIGN.get(),
+            ModBlocks.WHISTLECANE_HANGING_SIGN.get(),
             ModBlocks.WHISTLECANE_MOSAIC.get(),
             ModBlocks.WHISTLECANE_MOSAIC_SLAB.get(),
             ModBlocks.WHISTLECANE_MOSAIC_STAIRS.get()

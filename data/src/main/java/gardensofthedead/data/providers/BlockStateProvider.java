@@ -10,7 +10,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -20,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.minecraftforge.client.model.generators.ModelProvider.ITEM_FOLDER;
@@ -65,10 +65,11 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         addPottedWhistleCane();
 
         axisBlockUvLocked(ModBlocks.WHISTLECANE_BLOCK.get());
-        ResourceLocation whistlecaneFenceGateTexture = blockTexture(ModBlocks.WHISTLECANE_FENCE_GATE.get());
 
         addWhistlecaneFence();
-        fenceGateWithItem(ModBlocks.WHISTLECANE_FENCE_GATE.get(), whistlecaneFenceGateTexture);
+
+        signWithItem(ModBlocks.SOULBLIGHT_HANGING_SIGN.get(), ModBlocks.SOULBLIGHT_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.STRIPPED_SOULBLIGHT_STEM.get()));
+        signWithItem(ModBlocks.WHISTLECANE_HANGING_SIGN.get(), ModBlocks.WHISTLECANE_WALL_HANGING_SIGN.get(), blockTexture(ModBlocks.WHISTLECANE_BLOCK.get()));
     }
 
     private void generateModels(BlockFamily family) {
@@ -96,7 +97,7 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
             fenceGateWithItem((FenceGateBlock) variants.get(BlockFamily.Variant.FENCE_GATE), texture);
         }
         if (variants.containsKey(BlockFamily.Variant.SIGN) && variants.containsKey(BlockFamily.Variant.WALL_SIGN)) {
-            signWithItem((StandingSignBlock) variants.get(BlockFamily.Variant.SIGN), (WallSignBlock) variants.get(BlockFamily.Variant.WALL_SIGN), texture);
+            signWithItem(variants.get(BlockFamily.Variant.SIGN), variants.get(BlockFamily.Variant.WALL_SIGN), texture);
         }
         if (variants.containsKey(BlockFamily.Variant.DOOR)) {
             doorWithItem((DoorBlock) variants.get(BlockFamily.Variant.DOOR));
@@ -133,29 +134,63 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
 
     private void addWhistlecaneFence() {
         String whistlecane = getName(ModBlocks.WHISTLECANE.get());
-        String whistlecaneFenceBeams = getName(ModBlocks.WHISTLECANE_FENCE.get()) + "_beams";
+        String whistlecaneFenceBeams = getName(ModBlocks.WHISTLECANE_FENCE.get()) + "_side";
         ResourceLocation beamTexture = GardensOfTheDead.id(BLOCK_FOLDER + "/" + whistlecaneFenceBeams);
 
-        ResourceLocation postTexture = WHISTLECANE_1;
-        int postU1 = 0;
-        int beam1Height = 6;
-        int beam2Height = 12;
-        int postWidth = 6;
-        int beamHeight = 3;
-        int beamWidth = 2;
+        String fenceGate = getName(ModBlocks.WHISTLECANE_FENCE_GATE.get());
+        String gateParent = "template_custom_fence_gate";
+        String gateTexture = BLOCK_FOLDER + "/" + fenceGate;
+        String planksTexture = BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE_PLANKS.get());
 
-        ModelFile post = whistlecaneModel(whistlecane + "_post", postU1, postTexture);
-        BlockModelBuilder beams = models().getBuilder(whistlecaneFenceBeams)
-                .texture("beam", beamTexture);
+        ModelFile gate = models().withExistingParent(fenceGate, new ResourceLocation(gateParent))
+                .texture("texture", gateTexture).texture("particle", planksTexture);
+        ModelFile gateOpen = models().withExistingParent(fenceGate + "_open", new ResourceLocation(gateParent + "_open"))
+                .texture("texture", gateTexture).texture("particle", planksTexture);
+        ModelFile gateWall = models().withExistingParent(fenceGate + "_wall", new ResourceLocation(gateParent + "_wall"))
+                .texture("texture", gateTexture).texture("particle", planksTexture);
+        ModelFile gateWallOpen = models().withExistingParent(fenceGate + "_wall_open", new ResourceLocation(gateParent + "_wall_open"))
+                .texture("texture", gateTexture).texture("particle", planksTexture);
 
-        fourWayBlock(ModBlocks.WHISTLECANE_FENCE.get(),
-                post, beams
-        );
+        getVariantBuilder(ModBlocks.WHISTLECANE_FENCE_GATE.get()).forAllStatesExcept(state -> {
+            ModelFile model = gate;
+            if (state.getValue(FenceGateBlock.IN_WALL)) {
+                model = gateWall;
+            }
+            if (state.getValue(FenceGateBlock.OPEN)) {
+                model = model == gateWall ? gateWallOpen : gateOpen;
+            }
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationY((int) state.getValue(FenceGateBlock.FACING).toYRot())
+                    .build();
+        }, FenceGateBlock.POWERED);
 
-        addWhistlecaneFenceBeam(beams, beam1Height, postWidth, beamHeight, beamWidth);
-        addWhistlecaneFenceBeam(beams, beam2Height, postWidth, beamHeight, beamWidth);
+        simpleBlockItem(ModBlocks.WHISTLECANE_FENCE_GATE.get());
 
-        ItemModelBuilder itemModel = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
+        ModelFile post = whistlecaneModel(whistlecane + "_post", 0, WHISTLECANE_1);
+
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(ModBlocks.WHISTLECANE_FENCE.get())
+                .part().modelFile(post).addModel().end();
+        PipeBlock.PROPERTY_BY_DIRECTION.forEach((dir, value) -> {
+            if (dir.getAxis().isHorizontal()) {
+                String directionName = dir.getName().toLowerCase();
+                String modelName = whistlecaneFenceBeams + "_" + directionName;
+                String parent = "custom_fence_side_" + directionName;
+                var model = models().withExistingParent(modelName, parent)
+                                .texture("texture", "#beams")
+                                .texture("beams", beamTexture);
+                builder.part().modelFile(model)
+                        .addModel()
+                        .condition(value, true);
+            }
+        });
+
+        createWhistlecaneFenceItemModel();
+    }
+
+    private void createWhistlecaneFenceItemModel() {
+        ResourceLocation beamTexture = GardensOfTheDead.id(BLOCK_FOLDER + "/" + getName(ModBlocks.WHISTLECANE_FENCE.get()) + "_side");
+        ItemModelBuilder builder = itemModels().withExistingParent(getName(ModBlocks.WHISTLECANE_FENCE.get()), BLOCK_MODEL)
                 .transforms()
                 .transform(ItemTransforms.TransformType.GUI)
                 .rotation(30, 135, 0)
@@ -168,86 +203,54 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
                 .end()
                 .end()
                 .ao(false)
-                .texture("side", postTexture)
+                .texture("side", WHISTLECANE_1)
                 .texture("top", WHISTLECANE_0)
-                .texture("beam", beamTexture);
+                .texture("beams", beamTexture);
 
-        int postOffset = 6;
-        addWhistlecanePost(itemModel, postU1, -postOffset);
-        addWhistlecanePost(itemModel, postU1, postOffset);
+        addWhistlecanePost(builder, 0, -6);
+        addWhistlecanePost(builder, 0, 6);
+        for (int height : Set.of(6, 12)) {
+            builder.element()
+                    .from(7, height, 4)
+                    .to(9, height + 3, 12)
+                    .face(Direction.EAST).end()
+                    .face(Direction.WEST).end()
+                    .face(Direction.UP).end()
+                    .face(Direction.DOWN).end()
+                    .faces((direction, faceBuilder) -> {
+                        if (direction.getAxis() == Direction.Axis.X) {
+                            faceBuilder.uvs(8, 0, 16, 3);
+                        } else {
+                            int v1 = direction == Direction.UP ? 7 : 15;
+                            int v2 = direction == Direction.UP ? 15 : 7;
+                            faceBuilder.uvs(11, v1, 13, v2);
+                        }
+                        faceBuilder.texture("#beams");
+                    });
 
-        addWhistlecaneFenceItemBeam(itemModel, beam1Height, postWidth, beamHeight, beamWidth, +postOffset);
-        addWhistlecaneFenceItemBeam(itemModel, beam1Height, postWidth, beamHeight, beamWidth, -postOffset);
-        addWhistlecaneFenceItemBeam(itemModel, beam2Height, postWidth, beamHeight, beamWidth, +postOffset);
-        addWhistlecaneFenceItemBeam(itemModel, beam2Height, postWidth, beamHeight, beamWidth, -postOffset);
-    }
+            for (boolean isLeft : Set.of(true, false)) {
+                int start = isLeft ? -2 : 16;
+                int end = isLeft ? 0 : 18;
 
-    private void addWhistlecaneFenceItemBeam(ModelBuilder<?> builder, int height, int postWidth, int beamHeight, int beamWidth, int offset) {
-        float beamStart = 8 - beamWidth / 2F;
-        float beamEnd = 8 + beamWidth / 2F;
-        float endCapLength = 2;
-
-        float z1 = Math.min(8, 8 + offset + Mth.sign(offset) * (postWidth / 2F + endCapLength));
-        float zOffset = Math.max(8, 8 + offset + Mth.sign(offset) * (postWidth / 2F + endCapLength)) - z1;
-        Direction beamDirection = Mth.sign(offset) > 0 ? Direction.SOUTH : Direction.NORTH;
-
-        builder.element()
-                .from(beamStart, height, z1)
-                .to(beamEnd, height + beamHeight, z1 + zOffset)
-                .face(Direction.UP).end()
-                .face(Direction.DOWN).end()
-                .face(Direction.EAST).end()
-                .face(Direction.WEST).end()
-                .face(beamDirection).end()
-                .texture("#beam")
-                .faces((direction, faceBuilder) -> {
-                    if (direction.getAxis() == Direction.Axis.Y) {
-                        faceBuilder.uvs(beamStart, z1 - offset, beamEnd, z1 - offset + zOffset);
-                    } else if (direction.getAxis() == Direction.Axis.X) {
-                        float start = 8 - postWidth / 2F - endCapLength;
-                        float end = start + zOffset;
-                        faceBuilder.uvs(
-                                direction == Direction.EAST ^ offset > 0 ? end : start,
-                                beamStart,
-                                direction == Direction.WEST ^ offset > 0 ? end : start,
-                                beamEnd
-                        );
-
-                    } else if (direction.getAxis() == Direction.Axis.Z) {
-                        faceBuilder.uvs(beamStart, beamStart, beamEnd, beamEnd);
-                    }
-                });
-
-    }
-
-    private void addWhistlecaneFenceBeam(BlockModelBuilder builder, int height, int postWidth, int beamHeight, int beamWidth) {
-        float beamStart = 8 - beamWidth / 2F;
-        float beamEnd = 8 + beamWidth / 2F;
-        float postStart = 8 - postWidth / 2F;
-
-        builder.element()
-                .from(beamStart, height, 0)
-                .to(beamEnd, height + beamHeight, postStart)
-                .face(Direction.UP).end()
-                .face(Direction.DOWN).end()
-                .face(Direction.EAST).end()
-                .face(Direction.WEST).end()
-                .face(Direction.NORTH).uvs(beamStart, beamStart, beamEnd, beamEnd).cullface(Direction.NORTH)
-                .end()
-                .faces((direction, faceBuilder) -> {
-                    if (direction.getAxis() == Direction.Axis.Y) {
-                        faceBuilder.uvs(beamStart, 0, beamEnd, postStart);
-                    } else if (direction.getAxis() == Direction.Axis.X) {
-                        faceBuilder.uvs(
-                                direction == Direction.EAST ? postStart : 0,
-                                beamStart,
-                                direction == Direction.WEST ? postStart : 0,
-                                beamEnd
-                        );
-                    }
-                })
-                .texture("#beam")
-                .end();
+                builder.element()
+                        .from(7, height, start)
+                        .to(9, height + 3, end)
+                        .face(Direction.EAST).end()
+                        .face(Direction.WEST).end()
+                        .face(Direction.UP).end()
+                        .face(Direction.DOWN).end()
+                        .faces((direction, faceBuilder) -> {
+                            if (direction.getAxis() == Direction.Axis.X) {
+                                int offSet = isLeft ? 0 : 6;
+                                faceBuilder.uvs(8 + offSet, 0, 10 + offSet, 3);
+                            } else {
+                                faceBuilder.uvs(11, 13, 13, 15);
+                            }
+                        })
+                        .face(isLeft ? Direction.NORTH : Direction.SOUTH).uvs(13, 4, 15, 7).end()
+                        .faces((direction, faceBuilder) -> faceBuilder.texture("#beams"));
+            }
+        }
     }
 
     private void addWhistlecane() {
@@ -468,8 +471,10 @@ public class BlockStateProvider extends net.minecraftforge.client.model.generato
         simpleBlockItem(block);
     }
 
-    public void signWithItem(StandingSignBlock signBlock, WallSignBlock wallSignBlock, ResourceLocation texture) {
-        signBlock(signBlock, wallSignBlock, texture);
+    public void signWithItem(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(getName(signBlock), texture);
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
         itemModels().basicItem(signBlock.asItem());
     }
 

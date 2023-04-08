@@ -30,7 +30,7 @@ public class ModBlockFamilies {
             .recipeUnlockedBy(RECIPE_UNLOCKED_BY_HAS_PLANKS)
             .getFamily();
 
-    public static final BlockFamily BAMBOO_PLANKS = familyBuilder(ModBlocks.WHISTLECANE_PLANKS.get())
+    public static final BlockFamily WHISTLECANE_PLANKS = familyBuilder(ModBlocks.WHISTLECANE_PLANKS.get())
             .button(ModBlocks.WHISTLECANE_BUTTON.get())
             .slab(ModBlocks.WHISTLECANE_SLAB.get())
             .stairs(ModBlocks.WHISTLECANE_STAIRS.get())

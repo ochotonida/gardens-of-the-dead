@@ -1,11 +1,15 @@
 package gardensofthedead.registry;
 
+import gardensofthedead.GardensOfTheDead;
 import gardensofthedead.mixin.WoodTypeInvoker;
 import gardensofthedead.platform.PlatformServices;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static net.minecraft.client.renderer.Sheets.SIGN_SHEET;
 
 public class ModWoodTypes {
 
@@ -22,6 +26,10 @@ public class ModWoodTypes {
     }
 
     public static void register() {
-        VALUES.forEach(PlatformServices.platformHelper::addWoodTypeMaterial);
+        for (WoodType woodType : VALUES) {
+            String name = PlatformServices.platformHelper.getWoodTypeName(woodType);
+            Sheets.SIGN_MATERIALS.put(woodType, new net.minecraft.client.resources.model.Material(SIGN_SHEET, GardensOfTheDead.id("entity/signs/" + name)));
+            Sheets.HANGING_SIGN_MATERIALS.put(woodType, new net.minecraft.client.resources.model.Material(SIGN_SHEET, GardensOfTheDead.id("entity/signs/hanging/" + name)));
+        }
     }
 }

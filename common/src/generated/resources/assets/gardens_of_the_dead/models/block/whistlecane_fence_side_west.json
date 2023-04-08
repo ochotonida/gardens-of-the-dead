@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/custom_fence_side_west",
+  "textures": {
+    "beams": "gardens_of_the_dead:block/whistlecane_fence_side",
+    "texture": "#beams"
+  }
+}

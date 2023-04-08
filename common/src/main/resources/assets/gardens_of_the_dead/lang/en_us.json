@@ -30,6 +30,7 @@
   "block.gardens_of_the_dead.soulblight_door": "Soulblight Door",
   "block.gardens_of_the_dead.soulblight_trapdoor": "Soulblight Trapdoor",
   "block.gardens_of_the_dead.soulblight_sign": "Soulblight Sign",
+  "block.gardens_of_the_dead.soulblight_hanging_sign": "Soulblight Hanging Sign",
   "block.gardens_of_the_dead.whistlecane_block": "Block of Whistlecane",
   "block.gardens_of_the_dead.whistlecane_planks": "Whistlecane Planks",
   "block.gardens_of_the_dead.whistlecane_mosaic": "Whistlecane Mosaic",
@@ -44,5 +45,6 @@
   "block.gardens_of_the_dead.whistlecane_door": "Whistlecane Door",
   "block.gardens_of_the_dead.whistlecane_trapdoor": "Whistlecane Trapdoor",
   "block.gardens_of_the_dead.whistlecane_sign": "Whistlecane Sign",
+  "block.gardens_of_the_dead.whistlecane_hanging_sign": "Whistlecane Hanging Sign",
   "gardens_of_the_dead.subtitle.block.whistlecane.whistle": "Whistlecane whistles"
 }

@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/template_fence_gate",
+  "parent": "minecraft:block/template_custom_fence_gate",
   "textures": {
+    "particle": "gardens_of_the_dead:block/whistlecane_planks",
     "texture": "gardens_of_the_dead:block/whistlecane_fence_gate"
   }
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gardens_of_the_dead:whistlecane_mosaic"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_whistlecane_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gardens_of_the_dead:whistlecane_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_whistlecane_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "gardens_of_the_dead:whistlecane_mosaic"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "gardensofthedead.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "HangingSignEditScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

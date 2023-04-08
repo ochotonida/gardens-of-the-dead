@@ -26,7 +26,8 @@
     ]
   },
   "mixins": [
-    "mixins.gardens_of_the_dead.common.json"
+    "mixins.gardens_of_the_dead.common.json",
+    "mixins.gardens_of_the_dead.fabric.json"
   ],
   "depends": {
     "fabric": "*",

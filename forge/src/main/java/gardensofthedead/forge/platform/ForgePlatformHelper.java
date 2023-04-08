@@ -78,7 +78,7 @@ public class ForgePlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public void addWoodTypeMaterial(WoodType woodType) {
-        Sheets.SIGN_MATERIALS.put(woodType, new net.minecraft.client.resources.model.Material(SIGN_SHEET, GardensOfTheDead.id("entity/signs/" + new ResourceLocation(woodType.name()).getPath())));
+    public String getWoodTypeName(WoodType woodType) {
+        return new ResourceLocation(woodType.name()).getPath();
     }
 }

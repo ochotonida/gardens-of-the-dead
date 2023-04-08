@@ -171,242 +171,342 @@
     {
       "faces": {
         "down": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            7.0,
-            2.0,
-            9.0,
-            13.0
+            11.0,
+            15.0,
+            13.0,
+            7.0
           ]
         },
         "east": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            3.0,
-            7.0,
-            14.0,
-            9.0
-          ]
-        },
-        "south": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            7.0,
-            9.0,
-            9.0
+            8.0,
+            0.0,
+            16.0,
+            3.0
           ]
         },
         "up": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
+            11.0,
             7.0,
-            2.0,
-            9.0,
-            13.0
+            13.0,
+            15.0
           ]
         },
         "west": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            14.0,
-            7.0,
-            3.0,
-            9.0
-          ]
-        }
-      },
-      "from": [
-        7,
-        6,
-        8
-      ],
-      "to": [
-        9,
-        9,
-        19
-      ]
-    },
-    {
-      "faces": {
-        "down": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            3.0,
-            9.0,
-            14.0
-          ]
-        },
-        "east": {
-          "texture": "#beam",
-          "uv": [
-            14.0,
-            7.0,
-            3.0,
-            9.0
-          ]
-        },
-        "north": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            7.0,
-            9.0,
-            9.0
-          ]
-        },
-        "up": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            3.0,
-            9.0,
-            14.0
-          ]
-        },
-        "west": {
-          "texture": "#beam",
-          "uv": [
-            3.0,
-            7.0,
-            14.0,
-            9.0
-          ]
-        }
-      },
-      "from": [
-        7,
-        6,
-        -3
-      ],
-      "to": [
-        9,
-        9,
-        8
-      ]
-    },
-    {
-      "faces": {
-        "down": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            2.0,
-            9.0,
-            13.0
-          ]
-        },
-        "east": {
-          "texture": "#beam",
-          "uv": [
-            3.0,
-            7.0,
-            14.0,
-            9.0
-          ]
-        },
-        "south": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            7.0,
-            9.0,
-            9.0
-          ]
-        },
-        "up": {
-          "texture": "#beam",
-          "uv": [
-            7.0,
-            2.0,
-            9.0,
-            13.0
-          ]
-        },
-        "west": {
-          "texture": "#beam",
-          "uv": [
-            14.0,
-            7.0,
-            3.0,
-            9.0
+            8.0,
+            0.0,
+            16.0,
+            3.0
           ]
         }
       },
       "from": [
         7,
         12,
-        8
+        4
       ],
       "to": [
         9,
         15,
-        19
+        12
       ]
     },
     {
       "faces": {
         "down": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            7.0,
-            3.0,
-            9.0,
-            14.0
+            11.0,
+            13.0,
+            13.0,
+            15.0
           ]
         },
         "east": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
             14.0,
-            7.0,
-            3.0,
-            9.0
+            0.0,
+            16.0,
+            3.0
           ]
         },
-        "north": {
-          "texture": "#beam",
+        "south": {
+          "texture": "#beams",
           "uv": [
-            7.0,
-            7.0,
-            9.0,
-            9.0
+            13.0,
+            4.0,
+            15.0,
+            7.0
           ]
         },
         "up": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            7.0,
-            3.0,
-            9.0,
-            14.0
+            11.0,
+            13.0,
+            13.0,
+            15.0
           ]
         },
         "west": {
-          "texture": "#beam",
+          "texture": "#beams",
           "uv": [
-            3.0,
-            7.0,
             14.0,
-            9.0
+            0.0,
+            16.0,
+            3.0
           ]
         }
       },
       "from": [
         7,
         12,
-        -3
+        16
       ],
       "to": [
         9,
         15,
-        8
+        18
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "east": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            10.0,
+            3.0
+          ]
+        },
+        "north": {
+          "texture": "#beams",
+          "uv": [
+            13.0,
+            4.0,
+            15.0,
+            7.0
+          ]
+        },
+        "up": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "west": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            10.0,
+            3.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        12,
+        -2
+      ],
+      "to": [
+        9,
+        15,
+        0
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            15.0,
+            13.0,
+            7.0
+          ]
+        },
+        "east": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            16.0,
+            3.0
+          ]
+        },
+        "up": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            7.0,
+            13.0,
+            15.0
+          ]
+        },
+        "west": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            16.0,
+            3.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        6,
+        4
+      ],
+      "to": [
+        9,
+        9,
+        12
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "east": {
+          "texture": "#beams",
+          "uv": [
+            14.0,
+            0.0,
+            16.0,
+            3.0
+          ]
+        },
+        "south": {
+          "texture": "#beams",
+          "uv": [
+            13.0,
+            4.0,
+            15.0,
+            7.0
+          ]
+        },
+        "up": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "west": {
+          "texture": "#beams",
+          "uv": [
+            14.0,
+            0.0,
+            16.0,
+            3.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        6,
+        16
+      ],
+      "to": [
+        9,
+        9,
+        18
+      ]
+    },
+    {
+      "faces": {
+        "down": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "east": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            10.0,
+            3.0
+          ]
+        },
+        "north": {
+          "texture": "#beams",
+          "uv": [
+            13.0,
+            4.0,
+            15.0,
+            7.0
+          ]
+        },
+        "up": {
+          "texture": "#beams",
+          "uv": [
+            11.0,
+            13.0,
+            13.0,
+            15.0
+          ]
+        },
+        "west": {
+          "texture": "#beams",
+          "uv": [
+            8.0,
+            0.0,
+            10.0,
+            3.0
+          ]
+        }
+      },
+      "from": [
+        7,
+        6,
+        -2
+      ],
+      "to": [
+        9,
+        9,
+        0
       ]
     }
   ],
   "textures": {
-    "beam": "gardens_of_the_dead:block/whistlecane_fence_beams",
+    "beams": "gardens_of_the_dead:block/whistlecane_fence_side",
     "side": "gardens_of_the_dead:block/whistlecane1",
     "top": "gardens_of_the_dead:block/whistlecane0"
   }
