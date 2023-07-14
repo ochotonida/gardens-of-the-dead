@@ -17,8 +17,12 @@ import java.util.function.BiConsumer;
 @SuppressWarnings("unused")
 public class ModItems {
 
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registries.CREATIVE_MODE_TAB);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(GardensOfTheDead.MOD_ID, Registries.ITEM);
 
+    public static final RegistrySupplier<CreativeModeTab> CREATIVE_TAB = CREATIVE_MODE_TABS.register("main", () ->
+            CreativeTabRegistry.create(Component.translatable("%s.creative_tab".formatted(GardensOfTheDead.MOD_ID)), () -> new ItemStack(ModItems.GLOWING_SOUL_SPORE.get()))
+    );
     public static final RegistrySupplier<Item> SOUL_SPORE = blockItem(ModBlocks.SOUL_SPORE);
     public static final RegistrySupplier<Item> GLOWING_SOUL_SPORE = blockItem(ModBlocks.GLOWING_SOUL_SPORE);
     public static final RegistrySupplier<Item> SOULBLIGHT_FUNGUS = blockItem(ModBlocks.SOULBLIGHT_FUNGUS);
@@ -40,7 +44,7 @@ public class ModItems {
     public static final RegistrySupplier<Item> SOULBLIGHT_FENCE_GATE = blockItem(ModBlocks.SOULBLIGHT_FENCE_GATE);
     public static final RegistrySupplier<Item> SOULBLIGHT_BUTTON = blockItem(ModBlocks.SOULBLIGHT_BUTTON);
     public static final RegistrySupplier<Item> SOULBLIGHT_PRESSURE_PLATE = blockItem(ModBlocks.SOULBLIGHT_PRESSURE_PLATE);
-    public static final RegistrySupplier<Item> SOULBLIGHT_DOOR = ITEMS.register("soulblight_door", () -> new DoubleHighBlockItem(ModBlocks.SOULBLIGHT_DOOR.get(), new Item.Properties()));
+    public static final RegistrySupplier<Item> SOULBLIGHT_DOOR = ITEMS.register("soulblight_door", () -> new DoubleHighBlockItem(ModBlocks.SOULBLIGHT_DOOR.get(), createProperties()));
     public static final RegistrySupplier<Item> SOULBLIGHT_TRAPDOOR = blockItem(ModBlocks.SOULBLIGHT_TRAPDOOR);
     public static final RegistrySupplier<Item> SOULBLIGHT_SIGN = ITEMS.register("soulblight_sign", () -> sign(ModBlocks.SOULBLIGHT_SIGN, ModBlocks.SOULBLIGHT_WALL_SIGN));
     public static final RegistrySupplier<Item> SOULBLIGHT_HANGING_SIGN = ITEMS.register("soulblight_hanging_sign", () -> hangingSign(ModBlocks.SOULBLIGHT_HANGING_SIGN, ModBlocks.SOULBLIGHT_WALL_HANGING_SIGN));
@@ -53,7 +57,7 @@ public class ModItems {
     public static final RegistrySupplier<Item> WHISTLECANE_FENCE_GATE = blockItem(ModBlocks.WHISTLECANE_FENCE_GATE);
     public static final RegistrySupplier<Item> WHISTLECANE_BUTTON = blockItem(ModBlocks.WHISTLECANE_BUTTON);
     public static final RegistrySupplier<Item> WHISTLECANE_PRESSURE_PLATE = blockItem(ModBlocks.WHISTLECANE_PRESSURE_PLATE);
-    public static final RegistrySupplier<Item> WHISTLECANE_DOOR = ITEMS.register("whistlecane_door", () -> new DoubleHighBlockItem(ModBlocks.WHISTLECANE_DOOR.get(), new Item.Properties()));
+    public static final RegistrySupplier<Item> WHISTLECANE_DOOR = ITEMS.register("whistlecane_door", () -> new DoubleHighBlockItem(ModBlocks.WHISTLECANE_DOOR.get(), createProperties()));
     public static final RegistrySupplier<Item> WHISTLECANE_TRAPDOOR = blockItem(ModBlocks.WHISTLECANE_TRAPDOOR);
     public static final RegistrySupplier<Item> WHISTLECANE_SIGN = ITEMS.register("whistlecane_sign", () -> sign(ModBlocks.WHISTLECANE_SIGN, ModBlocks.WHISTLECANE_WALL_SIGN));
     public static final RegistrySupplier<Item> WHISTLECANE_HANGING_SIGN = ITEMS.register("whistlecane_hanging_sign", () -> hangingSign(ModBlocks.WHISTLECANE_HANGING_SIGN, ModBlocks.WHISTLECANE_WALL_HANGING_SIGN));
@@ -63,31 +67,20 @@ public class ModItems {
     public static final RegistrySupplier<Item> WHISTLECANE_MOSAIC_STAIRS = blockItem(ModBlocks.WHISTLECANE_MOSAIC_STAIRS);
 
     @SuppressWarnings("UnstableApiUsage")
-    public static final CreativeTabRegistry.TabSupplier CREATIVE_TAB = CreativeTabRegistry.create(GardensOfTheDead.id("main"),
-            builder -> builder
-                    .icon(() -> new ItemStack(ModItems.GLOWING_SOUL_SPORE.get()))
-                    .title(Component.translatable("%s.creative_tab".formatted(GardensOfTheDead.MOD_ID)))
-                    .displayItems(
-                            (itemDisplayParameters, output) -> BuiltInRegistries.ITEM.keySet()
-                                    .stream()
-                                    .filter(key -> key.getNamespace().equals(GardensOfTheDead.MOD_ID))
-                                    .sorted()
-                                    .map(BuiltInRegistries.ITEM::get)
-                                    .filter(item -> item.requiredFeatures().isSubsetOf(itemDisplayParameters.enabledFeatures()))
-                                    .forEach(output::accept)
-                    )
-    );
+    private static Item.Properties createProperties() {
+        return new Item.Properties().arch$tab(CREATIVE_TAB);
+    }
 
     private static RegistrySupplier<Item> blockItem(RegistrySupplier<? extends Block> block) {
-        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
+        return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), createProperties()));
     }
 
     private static SignItem sign(RegistrySupplier<? extends Block> standingSign, RegistrySupplier<? extends Block> wallSign) {
-        return new SignItem(new Item.Properties().stacksTo(16), standingSign.get(), wallSign.get());
+        return new SignItem(createProperties().stacksTo(16), standingSign.get(), wallSign.get());
     }
 
     private static HangingSignItem hangingSign(RegistrySupplier<? extends Block> standingSign, RegistrySupplier<? extends Block> wallSign) {
-        return new HangingSignItem(standingSign.get(), wallSign.get(), new Item.Properties().stacksTo(16).requiredFeatures(FeatureFlags.UPDATE_1_20));
+        return new HangingSignItem(standingSign.get(), wallSign.get(), createProperties().stacksTo(16));
     }
 
     public static void addCompostables(BiConsumer<ItemLike, Float> consumer) {

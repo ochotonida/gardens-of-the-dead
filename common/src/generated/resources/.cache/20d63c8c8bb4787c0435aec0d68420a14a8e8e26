@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-08T22:16:02.3043317	Tags for minecraft:worldgen/biome mod id gardens_of_the_dead
+// 1.20.1	2023-07-14T23:05:29.2801259	Tags for minecraft:worldgen/biome mod id gardens_of_the_dead
 aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/forge/tags/worldgen/biome/is_dry/nether.json
 aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/forge/tags/worldgen/biome/is_hot/nether.json
 aa6d58aab2aeecaa773acbd6cc1a8cbda0142e69 data/minecraft/tags/worldgen/biome/has_structure/bastion_remnant.json

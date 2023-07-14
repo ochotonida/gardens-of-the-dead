@@ -28,5 +28,6 @@
     "recipes": [
       "gardens_of_the_dead:whistlecane_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

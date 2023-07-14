@@ -11,11 +11,11 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.material.Material;
 
 public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> {
 
@@ -52,20 +52,21 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         return true;
     }
 
-    private static boolean isReplaceable(LevelAccessor level, BlockPos pos, boolean isTrunk) {
-        return level.isStateAtPosition(pos, (state) -> {
-            Material material = state.getMaterial();
-            return state.getMaterial().isReplaceable() || isTrunk && material == Material.PLANT;
-        });
+    private static boolean isReplaceable(WorldGenLevel level, BlockPos pos, HugeFlatFungusConfiguration configuration, boolean isTrunk) {
+        if (level.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::canBeReplaced)) {
+            return true;
+        } else {
+            return isTrunk && configuration.replaceableBlocks().test(level, pos);
+        }
     }
 
-    private void placeStem(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
+    private void placeStem(WorldGenLevel level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
         BlockState stemState = configuration.stemState();
 
         for (int y = 0; y < height; ++y) {
             pos.setWithOffset(origin, 0, y, 0);
-            if (isReplaceable(level, pos, true)) {
+            if (isReplaceable(level, pos, configuration, true)) {
                 level.setBlock(pos, stemState, Block.UPDATE_ALL);
             }
         }
@@ -98,8 +99,8 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         }
     }
 
-    private boolean tryPlaceStem(LevelAccessor level, BlockPos.MutableBlockPos pos, HugeFlatFungusConfiguration configuration) {
-        if (isReplaceable(level, pos, true)) {
+    private boolean tryPlaceStem(WorldGenLevel level, BlockPos.MutableBlockPos pos, HugeFlatFungusConfiguration configuration) {
+        if (isReplaceable(level, pos, configuration, true)) {
             if (configuration.planted()) {
                 if (!level.getBlockState(pos.below()).isAir()) {
                     level.destroyBlock(pos, true);
@@ -111,7 +112,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         return false;
     }
 
-    private void placeHat(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
+    private void placeHat(WorldGenLevel level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos origin, int height) {
         float wobbliness = 0.1F + randomSource.nextFloat() * 0.15F;
         float wobbleAngle = randomSource.nextFloat() * (float) Math.PI * 2;
         float size = (6 + randomSource.nextFloat() * 3) / 2;
@@ -133,7 +134,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
                         pos.setWithOffset(origin, x, height, z);
                     }
 
-                    if (isReplaceable(level, pos, false)) {
+                    if (isReplaceable(level, pos, configuration, false)) {
                         if (configuration.planted() && !level.getBlockState(pos.below()).isAir()) {
                             level.destroyBlock(pos, true);
                         }
@@ -144,7 +145,7 @@ public class HugeFlatFungusFeature extends Feature<HugeFlatFungusConfiguration> 
         }
     }
 
-    private void placeHatBlock(LevelAccessor level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge, boolean placeGlowingSpores) {
+    private void placeHatBlock(WorldGenLevel level, RandomSource randomSource, HugeFlatFungusConfiguration configuration, BlockPos.MutableBlockPos pos, boolean isEdge, boolean placeGlowingSpores) {
         setBlock(level, pos, configuration.hatState());
         float shroomlightChance = isEdge ? 0 : 0.05F;
         float hangingVineChance = isEdge ? 0.3F : 0.75F;

@@ -9,72 +9,81 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 public class ModBlockProperties {
 
     private static final int GLOWING_SOUL_SPORE_LIGHT = 7;
     private static final int BLISTERCROWN_LIGHT = 5;
 
-    public static BlockBehaviour.Properties SOUL_SPORE = of(Material.PLANT)
-            .color(MaterialColor.COLOR_BROWN)
+    public static BlockBehaviour.Properties SOUL_SPORE = of()
+            .mapColor(MapColor.COLOR_BROWN)
             .sound(SoundType.WEEPING_VINES)
             .noCollission()
-            .instabreak();
+            .instabreak()
+            .pushReaction(PushReaction.DESTROY);
 
     public static BlockBehaviour.Properties GLOWING_SOUL_SPORE = copy(SOUL_SPORE)
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_FUNGUS = of(Material.PLANT)
-            .color(MaterialColor.COLOR_BROWN)
+    public static BlockBehaviour.Properties SOULBLIGHT_FUNGUS = of()
+            .mapColor(MapColor.COLOR_BROWN)
             .instabreak()
             .noCollission()
-            .sound(SoundType.FUNGUS);
+            .sound(SoundType.FUNGUS)
+            .pushReaction(PushReaction.DESTROY);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_SPROUTS = of(Material.REPLACEABLE_FIREPROOF_PLANT)
-            .color(MaterialColor.COLOR_BROWN)
-            .noCollission()
-            .instabreak()
-            .sound(SoundType.NETHER_SPROUTS)
-            .offsetType(BlockBehaviour.OffsetType.XZ);
-
-    public static BlockBehaviour.Properties BLISTERCROWN = of(Material.REPLACEABLE_FIREPROOF_PLANT)
-            .color(MaterialColor.COLOR_RED)
+    public static BlockBehaviour.Properties SOULBLIGHT_SPROUTS = of()
+            .mapColor(MapColor.COLOR_BROWN)
+            .replaceable()
             .noCollission()
             .instabreak()
             .sound(SoundType.NETHER_SPROUTS)
             .offsetType(BlockBehaviour.OffsetType.XZ)
-            .lightLevel(state -> BLISTERCROWN_LIGHT);
+            .pushReaction(PushReaction.DESTROY);
 
-    public static BlockBehaviour.Properties WHISTLECANE_BASE = of(Material.VEGETABLE)
-            .color(MaterialColor.CRIMSON_NYLIUM)
+    public static BlockBehaviour.Properties BLISTERCROWN = of()
+            .mapColor(MapColor.COLOR_RED)
+            .replaceable()
+            .noCollission()
+            .instabreak()
+            .sound(SoundType.NETHER_SPROUTS)
+            .offsetType(BlockBehaviour.OffsetType.XZ)
+            .lightLevel(state -> BLISTERCROWN_LIGHT)
+            .pushReaction(PushReaction.DESTROY);
+
+    public static BlockBehaviour.Properties WHISTLECANE = of()
+            .mapColor(MapColor.CRIMSON_NYLIUM)
+            .forceSolidOn()
             .randomTicks()
             .instabreak()
             .strength(1)
             .sound(ModSoundTypes.WHISTLECANE)
             .noOcclusion()
             .dynamicShape()
-            .offsetType(BlockBehaviour.OffsetType.XZ);
+            .offsetType(BlockBehaviour.OffsetType.XZ)
+            .pushReaction(PushReaction.DESTROY)
+            .isRedstoneConductor((blockState, level, pos) -> false);
 
-    public static BlockBehaviour.Properties WHISTLECANE = copy(WHISTLECANE_BASE)
-            .randomTicks();
-
-    public static BlockBehaviour.Properties SOULBLIGHT_STEM = of(Material.NETHER_WOOD)
-            .color(MaterialColor.COLOR_BROWN)
+    public static BlockBehaviour.Properties SOULBLIGHT_STEM = of()
+            .mapColor(MapColor.COLOR_BROWN)
+            .instrument(NoteBlockInstrument.BASS)
             .strength(2)
             .sound(SoundType.STEM);
 
-    public static BlockBehaviour.Properties BLIGHTWART_BLOCK = of(Material.GRASS)
-            .color(MaterialColor.COLOR_YELLOW)
+    public static BlockBehaviour.Properties BLIGHTWART_BLOCK = of()
+            .mapColor(MapColor.COLOR_YELLOW)
             .strength(1)
             .sound(SoundType.WART_BLOCK);
 
     public static BlockBehaviour.Properties POTTED_GLOWING_SOUL_SPORE = pottedPlant()
             .lightLevel(state -> GLOWING_SOUL_SPORE_LIGHT);
 
-    public static BlockBehaviour.Properties SOULBLIGHT_PLANKS = of(Material.NETHER_WOOD)
-            .color(MaterialColor.COLOR_BROWN)
+    public static BlockBehaviour.Properties SOULBLIGHT_PLANKS = of()
+            .mapColor(MapColor.COLOR_BROWN)
+            .instrument(NoteBlockInstrument.BASS)
             .strength(2, 3)
             .sound(SoundType.WOOD);
 
@@ -89,8 +98,9 @@ public class ModBlockProperties {
             .noCollission()
             .strength(1);
 
-    public static BlockBehaviour.Properties WHISTLECANE_BLOCK = of(Material.NETHER_WOOD)
-            .color(MaterialColor.CRIMSON_NYLIUM)
+    public static BlockBehaviour.Properties WHISTLECANE_BLOCK = of()
+            .mapColor(MapColor.CRIMSON_NYLIUM)
+            .instrument(NoteBlockInstrument.BASS)
             .strength(1, 2)
             .sound(SoundType.BAMBOO_WOOD);
 
@@ -111,13 +121,13 @@ public class ModBlockProperties {
     );
 
     public static BlockBehaviour.Properties pottedPlant() {
-        return of(Material.DECORATION)
+        return of()
                 .instabreak()
                 .noOcclusion();
     }
 
-    public static BlockBehaviour.Properties of(Material material) {
-        return PlatformServices.platformHelper.createBlockProperties(material);
+    public static BlockBehaviour.Properties of() {
+        return PlatformServices.platformHelper.createBlockProperties();
     }
 
     public static BlockBehaviour.Properties copy(BlockBehaviour.Properties properties) {

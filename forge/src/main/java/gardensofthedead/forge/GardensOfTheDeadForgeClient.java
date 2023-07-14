@@ -34,7 +34,7 @@ public class GardensOfTheDeadForgeClient {
     }
 
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
-        event.register(ModParticleTypes.SOULBLIGHT_SPORE.get(), SoulblightSporeProvider::new);
-        event.register(ModParticleTypes.WHISTLECANE_SMOKE.get(), WhistlecaneSmokeParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.SOULBLIGHT_SPORE.get(), SoulblightSporeProvider::new);
+        event.registerSpriteSet(ModParticleTypes.WHISTLECANE_SMOKE.get(), WhistlecaneSmokeParticle.Provider::new);
     }
 }

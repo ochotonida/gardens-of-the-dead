@@ -10,12 +10,11 @@ import gardensofthedead.block.WallHangingSignBlock;
 import gardensofthedead.block.WallSignBlock;
 import gardensofthedead.platform.PlatformServices;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.PushReaction;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
@@ -118,9 +117,10 @@ public class ModBlocks {
 
     private static ButtonBlock button(int ticksToStayPressed, boolean arrowsCanPress, BlockSetType blockSetType) {
         BlockBehaviour.Properties properties = BlockBehaviour.Properties
-                .of(Material.DECORATION)
+                .of()
                 .noCollission()
                 .strength(0.5F)
+                .pushReaction(PushReaction.DESTROY)
                 .sound(blockSetType.soundType());
 
         return new ButtonBlock(properties, blockSetType, ticksToStayPressed, arrowsCanPress);
@@ -176,8 +176,7 @@ public class ModBlocks {
         Properties properties = ModBlockProperties.copy(baseProperties)
                 .sound(soundType)
                 .strength(1)
-                .noCollission()
-                .requiredFeatures(FeatureFlags.UPDATE_1_20);
+                .noCollission();
         return new CeilingHangingSignBlock(properties, woodType);
     }
 
@@ -185,8 +184,7 @@ public class ModBlocks {
         Properties properties = ModBlockProperties.copyWithLoot(baseProperties, signBlock.getId())
                 .sound(soundType)
                 .strength(1)
-                .noCollission()
-                .requiredFeatures(FeatureFlags.UPDATE_1_20);
+                .noCollission();
         return new WallHangingSignBlock(properties, woodType);
     }
 }

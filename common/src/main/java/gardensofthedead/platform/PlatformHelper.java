@@ -7,7 +7,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 
 import java.util.function.Supplier;
 
@@ -21,7 +20,7 @@ public interface PlatformHelper {
 
     RotatedPillarBlock createStrippableBlock(Supplier<? extends Block> strippedBlock, BlockBehaviour.Properties properties);
 
-    BlockBehaviour.Properties createBlockProperties(Material material);
+    BlockBehaviour.Properties createBlockProperties();
 
     BlockBehaviour.Properties copyBlockProperties(BlockBehaviour.Properties properties);
 

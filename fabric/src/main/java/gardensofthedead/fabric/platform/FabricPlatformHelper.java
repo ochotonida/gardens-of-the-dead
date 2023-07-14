@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 
 import java.util.function.Supplier;
 
@@ -41,8 +40,8 @@ public class FabricPlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public BlockBehaviour.Properties createBlockProperties(Material material) {
-        return FabricBlockSettings.of(material);
+    public BlockBehaviour.Properties createBlockProperties() {
+        return FabricBlockSettings.create();
     }
 
     @Override

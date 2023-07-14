@@ -20,6 +20,7 @@ public class GardensOfTheDead {
 
         ModBlocks.BLOCKS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
+        ModItems.CREATIVE_MODE_TABS.register();
         ModItems.ITEMS.register();
         ModFeatures.FEATURES.register();
         ModPlacementModifiers.PLACEMENT_MODIFIER_TYPES.register();

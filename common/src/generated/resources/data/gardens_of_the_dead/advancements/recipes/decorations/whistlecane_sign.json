@@ -30,5 +30,6 @@
     "recipes": [
       "gardens_of_the_dead:whistlecane_sign"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "gardens_of_the_dead:soulblight_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

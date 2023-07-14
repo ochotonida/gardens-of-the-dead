@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -43,8 +42,8 @@ public class ForgePlatformHelper implements PlatformHelper {
     }
 
     @Override
-    public BlockBehaviour.Properties createBlockProperties(Material material) {
-        return BlockBehaviour.Properties.of(material);
+    public BlockBehaviour.Properties createBlockProperties() {
+        return BlockBehaviour.Properties.of();
     }
 
     @Override
